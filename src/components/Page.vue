@@ -1,13 +1,22 @@
 <template>
 
 
-    <slot></slot>
+  <slot></slot>
 
 </template>
 
+<!--
+information on using images in Vue.js apps:
+https://newbedev.com/how-to-import-and-use-image-in-a-vue-single-file-component
+-->
+
 <script>
 export default {
-  name: 'Page',
+  props: ['title'],
+
+  mounted() {
+    document.title = this.title
+  }
 }
 </script>
 
