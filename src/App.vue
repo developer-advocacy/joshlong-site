@@ -1,26 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Page>
+    <Zone class="menu">
+      <Menu></Menu>
+    </Zone>
+    <Zone class="go">
+      You can dooo THIS!
+    </Zone>
+  </Page>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Zone from "@/components/Zone";
+import Page from "@/components/Page";
+import Menu from "@/components/Menu";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Zone, Page, Menu
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.go {
+  border: 1px solid orange;
 }
+
 </style>
