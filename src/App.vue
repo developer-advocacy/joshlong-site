@@ -22,7 +22,6 @@ import {Appearance} from '@/components/appearance/appearance'
 
 export default {
   name: 'App',
-
   setup() {
     const appearances = [
       new Appearance(new Date(), 'Taster Masterclass', `I'll be doing a masterclass taster talk on all things Spring, Kubernetes, and Microservices`),
@@ -30,11 +29,14 @@ export default {
       new Appearance(new Date(), `Devoxx`, `I'll be presenting (virtually) at the upcoming Devoxx show!`)
     ]
     console.log('the appearances length is ' + appearances.length)
-    return { appearances: appearances }
+    return {appearances: appearances}
   },
   components: {
     Hero,
-    Zone, Page, Menu, Appearances
+    Zone,
+    Page,
+    Menu,
+    Appearances
   }
 }
 </script>
