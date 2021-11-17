@@ -82,6 +82,20 @@ body {
   padding-top: var(--page-top-pad);
 }
 
+
+button {
+  font-size: medium;
+  font-weight: bold;
+  background-color: var(--green-50);
+  border-radius: var(--common-gutter);
+  padding: calc(1.5 * var(--common-gutter));
+  border-width: 0;
+  color: var(--green-700);
+  display: inline-block;
+  margin-bottom: var(--common-gutter);
+  width: 100%;
+}
+
 @media screen and (min-width: 1000px) {
   body {
     font-size: medium;
@@ -96,19 +110,6 @@ body {
     --global-pad-multiplier: 3;
   }
 
-}
-
-button {
-  font-size: medium;
-  font-weight: bold;
-  background-color: var(--green-50);
-  border-radius: var(--common-gutter);
-  padding: calc(1.5 * var(--common-gutter));
-  border-width: 0;
-  color: var(--green-700);
-  display: inline-block;
-  margin-bottom: var(--common-gutter);
-  width: 100%;
 }
 
 button.icon {
