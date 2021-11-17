@@ -12,8 +12,9 @@
     <Zone class="recent-posts">
       <RecentPosts :posts="posts"/>
     </Zone>
-
-
+    <Zone class="podcast">
+      <RecentPodcast :podcast="podcast"/>
+    </Zone>
   </Page>
 </template>
 
@@ -23,14 +24,15 @@ import Page from "@/components/Page";
 import Menu from "@/components/Menu";
 import Hero from "@/components/Hero";
 import Appearances from "@/components/appearance/Appearances";
-import {Post} from '@/components/posts/post'
+import {Post} from '@/components/posts/post';
+import {Podcast} from '@/components/podcasts/podcast';
 import {Appearance} from '@/components/appearance/appearance'
 import RecentPosts from "@/components/posts/RecentPosts";
+import RecentPodcast from "@/components/podcasts/RecentPodcast";
 
 export default {
   name: 'App',
   setup() {
-
     function generateAppearances() {
       return [
         new Appearance(new Date(), 'Taster Masterclass', `I'll be doing a masterclass taster talk on all things Spring, Kubernetes, and Microservices`),
@@ -38,6 +40,7 @@ export default {
         new Appearance(new Date(), `Devoxx`, `I'll be presenting (virtually) at the upcoming Devoxx show!`)
       ]
     }
+
     function generatePosts() {
       function generatePost() {
         function randomElementsFrom(items) {
@@ -90,12 +93,18 @@ export default {
       for (let i = 0; i < 5; i++) posts.push(generatePost())
       return posts
     }
+
+    const podcast = new Podcast('Layla Porter FTW', `<P> Hi, Spring fans! In this installment Josh Long talks to Layla Porter</P>`,
+        'https://static-cdn.jtvnw.net/jtv_user_pictures/ac662385-725b-43c9-b0e1-03a49533931f-profile_image-70x70.png');
+
     return {
+      podcast: podcast,
       posts: generatePosts(),
       appearances: generateAppearances()
     }
   },
   components: {
+    RecentPodcast,
     RecentPosts,
     Hero,
     Zone,

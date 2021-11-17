@@ -109,7 +109,6 @@ button {
   :root {
     --global-pad-multiplier: 3;
   }
-
 }
 
 button.icon {
