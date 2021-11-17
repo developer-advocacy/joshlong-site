@@ -172,16 +172,9 @@
     margin-right: calc(-1 * var(--zone-padding));
   }
 
-  .buttons {
-    padding: 0;
-    margin: 0;
-    text-align: left;
-  }
-
-
   .content {
     --width: calc(calc(var(--cover-width) / 2) + var(--active-cover-width) + calc(var(--cover-width) / 2));
-    grid-template-columns: auto   var(--width);
+    grid-template-columns: auto var(--width);
     margin-right: calc(-1 * var(--zone-padding));
     grid-template-areas:
             "description covers "
@@ -232,6 +225,26 @@ function goRight(cs, content) {
   return (cs === (content.length - 1)) ? 0 : cs + 1
 }
 
+function createPromiseFromDomEvent(eventTarget, eventName, run) {
+  return new Promise((resolve, reject) => {
+        const handleEvent = () => {
+          eventTarget.removeEventListener(eventName, handleEvent);
+          // console.log('handling the event for ' + eventName + '.')
+          resolve(eventTarget);
+        };
+
+        eventTarget.addEventListener(eventName, handleEvent);
+
+        try {
+          if (run) {
+            run();
+          }
+        } catch (err) {
+          reject(err);
+        }
+      }
+  );
+}
 
 export default {
   name: 'ContentCarousel',
@@ -251,10 +264,9 @@ export default {
       this.leftUrl = this.content [this.leftIndex].imageUrl
       this.rightUrl = this.content [this.rightIndex].imageUrl
       this.activeUrl = this.content [this.activeIndex].imageUrl
-      console.log('left: ' + this.leftIndex + '; active: ' + this.activeIndex + '; right: ' + this.rightIndex)
-      console.log('the left url is ' + this.leftUrl)
       this.contentDescription = this.content[this.activeIndex].html
       this.contentTitle = this.content[this.activeIndex].title
+      console.log('left: ' + this.leftIndex + '; active: ' + this.activeIndex + '; right: ' + this.rightIndex)
     },
     right() {
       this.activeIndex = goRight(this.activeIndex, this.content)
@@ -266,8 +278,74 @@ export default {
     },
   },
 
-  mounted() {
-    console.log('there are ' + this.content.length + ' entries.')
+  async mounted() {
+
+    // basically the div element containing the cover images
+    // tends to bounce around a lot if the cover images are not
+    // of uniform size so ive got an idea: what if we loaded the
+    // images in memory, note the dimensions, then use that to
+    // compute the largest image of the lot. then, with that,
+    // we set the dive height to be whatever the scaled down
+    // version of the height of that image is
+
+
+    /*
+
+    class ImageContext {
+
+      constructor(url, img) {
+        this.image = img
+        this.url = url
+      }
+
+      ready() {
+        this.w = this.image.width
+        this.h = this.image.height
+      }
+    }
+
+    function buildImageFor(url) {
+      const imageObject = new Image();
+      const ctx = new ImageContext(url, imageObject)
+      imageObject.addEventListener('load', () => {
+        console.log('loaded the bytes for ' + url + ' with w ' + imageObject.width + ' and ' + imageObject.height)
+        ctx.h = imageObject.height
+        ctx.w = imageObject.width
+        ctx.ready()
+      })
+      imageObject.src = url
+      return ctx
+    }
+
+        const imageUrls = this.content
+            .map(c => c.imageUrl)
+            .map(url => buildImageFor(url))
+      */
+
+    function loadImage(url) {
+      const io = new Image()
+      return createPromiseFromDomEvent(io, 'load', () => io.src = url);
+    }
+
+    const imageUrls = this.content
+        .map(i => i.imageUrl)
+        .map(loadImage)
+
+    const results = (await Promise.all(imageUrls))
+        .map(r => {
+          const ratio = ((1.0 * r.height) / (r.width * 1.0))
+          console.log('the image URL is ' + r.src + ' and the ratio is ' + ratio)
+          return {ratio: ratio, src: r.src}
+        })
+
+    results.sort((a, b) => a.ratio - b.ratio);
+    // results.sort((a, b) => a.height - b.height);
+    results.reverse();
+
+
+    console.log('the results', results.map(i => i) [0])
+
+
     this.refresh()
   }
 }
