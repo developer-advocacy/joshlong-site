@@ -15,11 +15,25 @@
     <Zone class="podcast">
       <RecentPodcast :podcast="podcast"/>
     </Zone>
-    <Zone class="books">
+    <Zone class="books ">
       <ContentCarousel :content="booksContent">
-        <slot name="title"> this is the title</slot>
+
+        <template v-slot:title>
+          Books
+        </template>
+        <template v-slot:description>
+          <P>
+            I've authored, or co-authored, six books so far.
+            The latest and greatest of these are <strong><EM>Reactive Spring</EM></strong> and
+            <strong><em>Cloud Native Java</em></strong>.
+          </P>
+
+        </template>
+
       </ContentCarousel>
     </Zone>
+
+
   </Page>
 </template>
 
@@ -44,7 +58,7 @@ export default {
     /* prototype models */
     function generateAppearances() {
       return [
-        new Appearance(new Date(), 'Taster Masterclass',  `I'll be doing a masterclass taster talk on all things Spring, Kubernetes, and Microservices`),
+        new Appearance(new Date(), 'Taster Masterclass', `I'll be doing a masterclass taster talk on all things Spring, Kubernetes, and Microservices`),
         new Appearance(new Date(), `O'REILLY`, `I'll be doing a talk at the upcoming O'REILLY conference. Wait, what do you mean it doesn't exist? :-(`),
         new Appearance(new Date(), `Devoxx`, `I'll be presenting (virtually) at the upcoming Devoxx show!`)
       ]
@@ -107,10 +121,7 @@ export default {
     const podcast = new Podcast('Layla Porter FTW', `<P> Hi, Spring fans! In this installment Josh Long talks to Layla Porter</P>`,
         'https://static-cdn.jtvnw.net/jtv_user_pictures/ac662385-725b-43c9-b0e1-03a49533931f-profile_image-70x70.png');
 
-    const books = [
-      new Content('Cloud Native Java book cover',   'https://joshlong.com/media/books/reactive-spring/cover.png',`<P> This is the cloud native java description</P>`),
-      new Content('Pro Spring Recipes', 'https://joshlong.com/media/books/cloud-native-java/english.jpg',`<P> This is the <EM>Pro Spring Recipes </EM>content</P>`),
-      new Content(`The Reactive Spring Book`, 'https://images-na.ssl-images-amazon.com/images/I/41R7SBjRbKL._SX348_BO1,204,203,200_.jpg',`  <P>
+    const html = `  <P>
                 Join Spring Developer Advocate Josh Long for an introduction to reactive programming in the Spring
                 ecosystem, leveraging the reactive streams specification, Reactor, Spring Boot, Spring Cloud and so much
                 more.
@@ -123,7 +134,11 @@ export default {
             <div class="buttons">
                 <button class="icon amazon"> Buy on Amazon</button>
                 <button class="icon leanpub">Buy on Leanpub</button>
-            </div>`)]
+            </div>`
+    const books = [
+      new Content('Cloud Native Java book cover', 'https://joshlong.com/media/books/reactive-spring/cover.png',  `<p> This book is a book</p>`),
+      new Content('Pro Spring Recipes', 'https://joshlong.com/media/books/cloud-native-java/english.jpg',  html ),
+      new Content(`The Reactive Spring Book`, 'https://images-na.ssl-images-amazon.com/images/I/41R7SBjRbKL._SX348_BO1,204,203,200_.jpg', html  )]
     /* prototype models */
 
     return {
@@ -148,5 +163,16 @@ export default {
 
 <style>
 
+.content .buttons button.leanpub {
+  color: white;
+  background-color: black;
+  background-image: url("assets/images/buttons/leanpub.png");
+}
+
+.content .buttons button.amazon {
+  color: black;
+  background-color: white;
+  background-image: url("assets/images/buttons/amazon.png");
+}
 
 </style>

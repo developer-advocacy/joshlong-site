@@ -164,6 +164,34 @@
             "arrows "
             "description ";
 }
+
+
+@media screen and (min-width: 1000px) {
+
+  .content {
+    margin-right: calc(-1 * var(--zone-padding));
+  }
+
+  .buttons {
+    padding: 0;
+    margin: 0;
+    text-align: left;
+  }
+
+
+  .content {
+    --width: calc(calc(var(--cover-width) / 2) + var(--active-cover-width) + calc(var(--cover-width) / 2));
+    grid-template-columns: auto   var(--width);
+    margin-right: calc(-1 * var(--zone-padding));
+    grid-template-areas:
+            "description covers "
+            "description arrows ";
+  }
+
+  .covers {
+  }
+}
+
 </style>
 <template>
   <div class="content-showcase">
@@ -174,9 +202,9 @@
     <div class="content">
       <div class="description">
         <h3>
-
+          {{ contentTitle }}
         </h3>
-
+        <div v-html="contentDescription"></div>
       </div>
 
       <div class="covers">
@@ -209,11 +237,13 @@ export default {
   name: 'ContentCarousel',
   components: {},
   props: ['content'],
-  data (){
+  data() {
     return {
+      contentTitle: '',
+      contentDescription: '',
       activeIndex: 0, leftIndex: 0, rightIndex: 0, activeUrl: '', leftUrl: '', rightUrl: ''
     }
-  } ,
+  },
   methods: {
     refresh() {
       this.leftIndex = goLeft(this.activeIndex, this.content)
@@ -223,6 +253,8 @@ export default {
       this.activeUrl = this.content [this.activeIndex].imageUrl
       console.log('left: ' + this.leftIndex + '; active: ' + this.activeIndex + '; right: ' + this.rightIndex)
       console.log('the left url is ' + this.leftUrl)
+      this.contentDescription = this.content[this.activeIndex].html
+      this.contentTitle = this.content[this.activeIndex].title
     },
     right() {
       this.activeIndex = goRight(this.activeIndex, this.content)
