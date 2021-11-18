@@ -155,9 +155,6 @@
   margin-top: calc(5 * var(--common-gutter));
 }
 
-
-/*BOOKS*/
-
 .content {
   grid-template-areas:
             "covers "
@@ -207,8 +204,8 @@
       </div>
       <div>
         <div class="arrows">
-          <div @click="left()" class="arrow left"></div>
-          <div @click="right()" class="arrow active right"></div>
+          <div @click="left()" :class="{'active': leftArrowActive }" class="arrow    left"></div>
+          <div @click="right()" :class="{'active': rightArrowActive }" class="arrow right"></div>
         </div>
       </div>
     </div>
@@ -254,6 +251,8 @@ export default {
       tallestCover: null,
       contentTitle: '',
       contentDescription: '',
+      leftArrowActive: false,
+      rightArrowActive: false,
       sized: false,
       activeIndex: 0, leftIndex: 0, rightIndex: 0, activeUrl: '', leftUrl: '', rightUrl: ''
     }
@@ -267,8 +266,6 @@ export default {
       const cw = ai.clientWidth
       const nh = cw * this.tallestCover.ratio
       const cd = this.$refs['covers-div']
-      const existingH = cd.clientHeight
-      console.log('n:', nh, 'o:', existingH)
       cd.style.height = nh + 'px'
     },
     refresh() {
@@ -279,6 +276,8 @@ export default {
       this.activeUrl = this.content [this.activeIndex].imageUrl
       this.contentDescription = this.content[this.activeIndex].html
       this.contentTitle = this.content[this.activeIndex].title
+      this.leftArrowActive = this.activeIndex !== 0;
+      this.rightArrowActive = this.activeIndex !== (this.content.length - 1);
 
     },
     right() {
