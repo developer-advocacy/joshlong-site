@@ -83,6 +83,7 @@ export default {
     }
 
 
+
     function generatePosts() {
       function generatePost() {
         function randomElementsFrom(items) {
