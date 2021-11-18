@@ -165,18 +165,26 @@
 
 @media screen and (min-width: 1000px) {
 
-  .content {
-    margin-right: calc(-1 * var(--zone-padding));
+  :root {
+    --three-covers-width: calc(calc(var(--cover-width) / 2) + var(--active-cover-width) + calc(var(--cover-width) / 2));
   }
 
-  .content {
-    --width: calc(calc(var(--cover-width) / 2) + var(--active-cover-width) + calc(var(--cover-width) / 2));
-    grid-template-columns: auto var(--width);
+  .content.right {
     margin-right: calc(-1 * var(--zone-padding));
+    grid-template-columns: auto var(--three-covers-width);
     grid-template-areas:
             "description covers "
             "description arrows ";
   }
+
+  .content.left {
+    margin-left: calc(-1 * var(--zone-padding));
+    grid-template-columns:   var(--three-covers-width) auto;
+    grid-template-areas:
+            " covers description "
+            " arrows description ";
+  }
+
 
   .covers {
   }
@@ -189,7 +197,7 @@
       <slot name="title"></slot>
     </h2>
     <slot name="description"></slot>
-    <div class="content">
+    <div class="content" :class="orientationClass">
       <div class="description">
         <h3>
           {{ contentTitle }}
@@ -245,9 +253,15 @@ function createPromiseFromDomEvent(eventTarget, eventName, run) {
 export default {
   name: 'ContentCarousel',
   components: {},
-  props: ['content'],
+  props: ['content', 'side'],
   data() {
     return {
+
+      orientationClass: {
+        'right': true,
+        'left': false,
+      },
+
       tallestCover: null,
       contentTitle: '',
       contentDescription: '',
@@ -306,6 +320,17 @@ export default {
   },
 
   async mounted() {
+
+    // todo make the content heights of the descriptions permanently set
+    // todo to whatever the largest body of text sort of like we did for the cover div
+    // todo otherwise u get reflow in the mobile clients or in vertical orientation
+    // todo where the covers are above the text, things below the text jump around
+
+    if (this.side !== null && (typeof this.side) === 'string') {
+      const l = this.side.toLowerCase() === 'l'
+      const r = this.side.toLowerCase() === 'r'
+      this.orientationClass = {'left': l, 'right': r}
+    }
 
     const imageUrls = this.content
         .map(i => i.imageUrl)
