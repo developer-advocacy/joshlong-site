@@ -266,7 +266,22 @@ export default {
       const cw = ai.clientWidth
       const nh = cw * this.tallestCover.ratio
       const cd = this.$refs['covers-div']
-      cd.style.height = nh + 'px'
+      function validate(h) {
+        let nh = Math.floor(h)
+        if (nh === 0)
+          return
+        let existingHeight = 0
+        if (cd.style.height && (typeof cd.style.height === 'string') && cd.style.height !== '') {
+          existingHeight = Math.floor(parseInt(cd.style.height))
+          console.log('the existing height is ' + existingHeight)
+        }
+        return existingHeight !== nh;
+      }
+
+      if (validate(nh)) {
+        console.log('adjusting div height based on height changes!')
+        cd.style.height = nh + 'px'
+      }
     },
     refresh() {
       this.leftIndex = goLeft(this.activeIndex, this.content)
