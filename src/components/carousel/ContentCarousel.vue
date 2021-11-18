@@ -1,5 +1,6 @@
 <style>
 /* CONTENT SHOWCASES CORE */
+
 :root {
   --cover-width: 100px;
   --active-cover-width: 150px;
@@ -23,8 +24,8 @@
 }
 
 .arrows {
+
   text-align: center;
-  grid-area: arrows;
   margin-top: var(--common-gutter);
 }
 
@@ -59,6 +60,7 @@
 }
 
 .content > .description {
+
   grid-area: description;
   alignment: center;
   text-align: center;
@@ -133,7 +135,7 @@
   }
 
   .content .covers {
-    grid-auto-flow: column;
+    /*grid-auto-flow: column;*/
   }
 
   .content-showcase > p {
@@ -142,8 +144,15 @@
   }
 }
 
-.content > .covers {
+.content .covers-container {
   grid-area: covers;
+
+}
+
+
+
+.content .covers {
+  /*grid-area: covers;*/
   display: grid;
   grid-template-areas: ". l active r .";
   grid-template-columns: auto  calc(var(--cover-width) / 2) var(--active-cover-width) calc(var(--cover-width) / 2) auto;
@@ -151,14 +160,11 @@
   justify-items: center;
 }
 
-.zone h2 {
-  margin-top: calc(5 * var(--common-gutter));
-}
 
 .content {
+  /*grid-template-rows: auto auto ;*/
   grid-template-areas:
             "covers "
-            "arrows "
             "description ";
 }
 
@@ -169,26 +175,24 @@
     --three-covers-width: calc(calc(var(--cover-width) / 2) + var(--active-cover-width) + calc(var(--cover-width) / 2));
   }
 
+  .content {
+
+
+  }
+
   .content.right {
     margin-right: calc(-1 * var(--zone-padding));
     grid-template-columns: auto var(--three-covers-width);
-    grid-template-areas:
-            "description covers "
-            "description arrows ";
+    grid-template-areas: "description covers ";
   }
 
   .content.left {
     margin-left: calc(-1 * var(--zone-padding));
-    grid-template-columns:   var(--three-covers-width) auto;
-    grid-template-areas:
-            " covers description "
-            " arrows description ";
-  }
-
-
-  .covers {
+    grid-template-columns: var(--three-covers-width) auto;
+    grid-template-areas:  " covers description ";
   }
 }
+
 
 </style>
 <template>
@@ -198,22 +202,23 @@
     </h2>
     <slot name="description"></slot>
     <div class="content" :class="orientationClass">
+
       <div class="description">
-        <h3>
-          {{ contentTitle }}
-        </h3>
+        <h3> {{ contentTitle }} </h3>
         <div v-html="contentDescription"></div>
       </div>
 
-      <div ref="covers-div" class="covers">
-        <div class="cover left"><img :src="leftUrl" alt="the left title"/></div>
-        <div ref="active-image" class="cover active"><img alt="the active title" :src="activeUrl"/></div>
-        <div class="cover right "><img alt="the right title" :src="rightUrl"/></div>
-      </div>
-      <div>
-        <div class="arrows">
-          <div @click="left()" :class="{'active': leftArrowActive }" class="arrow    left"></div>
-          <div @click="right()" :class="{'active': rightArrowActive }" class="arrow right"></div>
+      <div class="covers-container">
+        <div ref="covers-div" class="covers">
+          <div class="cover left"><img :src="leftUrl" alt="the left title"/></div>
+          <div ref="active-image" class="cover active"><img alt="the active title" :src="activeUrl"/></div>
+          <div class="cover right "><img alt="the right title" :src="rightUrl"/></div>
+        </div>
+        <div>
+          <div class="arrows">
+            <div @click="left()" :class="{'active': leftArrowActive }" class="arrow    left"></div>
+            <div @click="right()" :class="{'active': rightArrowActive }" class="arrow right"></div>
+          </div>
         </div>
       </div>
     </div>
