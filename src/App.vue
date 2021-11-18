@@ -54,6 +54,14 @@
       <Youtube/>
     </Zone>
 
+
+    <Zone class="footer" >
+      <Footer />
+
+
+
+    </Zone>
+
   </Page>
 </template>
 
@@ -71,6 +79,7 @@ import RecentPosts from "@/components/posts/RecentPosts";
 import RecentPodcast from "@/components/podcasts/RecentPodcast";
 import ContentCarousel from "@/components/carousel/ContentCarousel";
 import {Content} from "@/components/carousel/content";
+import Footer from "@/components/Footer";
 
 
 export default {
@@ -177,6 +186,7 @@ export default {
     }
   },
   components: {
+    Footer,
     ContentCarousel, RecentPodcast, RecentPosts, Hero, Page, Menu, Zone, Youtube, Appearances
   }
 }
