@@ -162,6 +162,9 @@ export default {
 </script>
 
 <style>
+.content .buttons button.icon {
+  border: 1px solid black;
+}
 
 .content .buttons button.leanpub {
   color: white;
