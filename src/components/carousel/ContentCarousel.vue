@@ -200,9 +200,9 @@
         <div v-html="contentDescription"></div>
       </div>
 
-      <div class="covers">
+      <div ref="covers-div" class="covers">
         <div class="cover left"><img :src="leftUrl" alt="the left title"/></div>
-        <div class="cover active"><img alt="the active title" :src="activeUrl"/></div>
+        <div ref="active-image" class="cover active"><img alt="the active title" :src="activeUrl"/></div>
         <div class="cover right "><img alt="the right title" :src="rightUrl"/></div>
       </div>
       <div>
@@ -229,7 +229,6 @@ function createPromiseFromDomEvent(eventTarget, eventName, run) {
   return new Promise((resolve, reject) => {
         const handleEvent = () => {
           eventTarget.removeEventListener(eventName, handleEvent);
-          // console.log('handling the event for ' + eventName + '.')
           resolve(eventTarget);
         };
 
@@ -252,12 +251,26 @@ export default {
   props: ['content'],
   data() {
     return {
+      tallestCover: null,
       contentTitle: '',
       contentDescription: '',
+      sized: false,
       activeIndex: 0, leftIndex: 0, rightIndex: 0, activeUrl: '', leftUrl: '', rightUrl: ''
     }
   },
   methods: {
+    resizeCovers() {
+      // todo make this a little smarter so that we don't update the div
+      //      size unless the window has changed and the client width has changed with it
+      const ai = this.$refs['active-image']
+      if (ai == null) return;
+      const cw = ai.clientWidth
+      const nh = cw * this.tallestCover.ratio
+      const cd = this.$refs['covers-div']
+      const existingH = cd.clientHeight
+      console.log('n:', nh, 'o:', existingH)
+      cd.style.height = nh + 'px'
+    },
     refresh() {
       this.leftIndex = goLeft(this.activeIndex, this.content)
       this.rightIndex = goRight(this.activeIndex, this.content)
@@ -266,7 +279,7 @@ export default {
       this.activeUrl = this.content [this.activeIndex].imageUrl
       this.contentDescription = this.content[this.activeIndex].html
       this.contentTitle = this.content[this.activeIndex].title
-      console.log('left: ' + this.leftIndex + '; active: ' + this.activeIndex + '; right: ' + this.rightIndex)
+
     },
     right() {
       this.activeIndex = goRight(this.activeIndex, this.content)
@@ -280,6 +293,8 @@ export default {
 
   async mounted() {
 
+    console.log('mounted()')
+
     const imageUrls = this.content
         .map(i => i.imageUrl)
         .map((url) => {
@@ -290,15 +305,17 @@ export default {
     const results = (await Promise.all(imageUrls))
         .map(r => {
           const ratio = ((1.0 * r.height) / (r.width * 1.0))
-          console.log('the image URL is ' + r.src + ' and the ratio is ' + ratio)
           return {ratio: ratio, src: r.src}
         })
     results.sort((a, b) => a.ratio - b.ratio);
     results.reverse();
-    const tallestByRatio = results.map(i => i) [0];
-    console.log('the results', tallestByRatio)
-
+    this.tallestCover = results.map(i => i) [0];
+    window.addEventListener('resize', () => {
+      this.sized = false;
+      this.resizeCovers()
+    })
     this.refresh()
+    this.resizeCovers()
   }
 }
 </script>
