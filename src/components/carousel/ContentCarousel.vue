@@ -293,8 +293,6 @@ export default {
 
   async mounted() {
 
-    console.log('mounted()')
-
     const imageUrls = this.content
         .map(i => i.imageUrl)
         .map((url) => {
