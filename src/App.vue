@@ -50,6 +50,9 @@
       </ContentCarousel>
     </Zone>
 
+    <Zone class="youtube-container">
+      <Youtube/>
+    </Zone>
 
   </Page>
 </template>
@@ -59,6 +62,7 @@ import Zone from "@/components/Zone";
 import Page from "@/components/Page";
 import Menu from "@/components/Menu";
 import Hero from "@/components/Hero";
+import Youtube from "@/components/Youtube";
 import Appearances from "@/components/appearance/Appearances";
 import {Post} from '@/components/posts/post';
 import {Podcast} from '@/components/podcasts/podcast';
@@ -81,7 +85,6 @@ export default {
         new Appearance(new Date(), `Devoxx`, `I'll be presenting (virtually) at the upcoming Devoxx show!`)
       ]
     }
-
 
 
     function generatePosts() {
@@ -174,14 +177,7 @@ export default {
     }
   },
   components: {
-    ContentCarousel,
-    RecentPodcast,
-    RecentPosts,
-    Hero,
-    Zone,
-    Page,
-    Menu,
-    Appearances
+    ContentCarousel, RecentPodcast, RecentPosts, Hero, Page, Menu, Zone, Youtube, Appearances
   }
 }
 </script>

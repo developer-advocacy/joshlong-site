@@ -318,7 +318,6 @@ export default {
       this.refresh()
     },
   },
-
   async mounted() {
 
     // todo make the content heights of the descriptions permanently set
@@ -344,8 +343,8 @@ export default {
           const ratio = ((1.0 * r.height) / (r.width * 1.0))
           return {ratio: ratio, src: r.src}
         })
-    results.sort((a, b) => a.ratio - b.ratio);
-    results.reverse();
+    results.sort((a, b) => a.ratio - b.ratio)
+    results.reverse()
     this.tallestCover = results.map(i => i) [0];
     window.addEventListener('resize', () => {
       this.sized = false;
