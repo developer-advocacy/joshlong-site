@@ -259,17 +259,17 @@ export default {
   },
   methods: {
     resizeCovers() {
-      // todo make this a little smarter so that we don't update the div
-      //      size unless the window has changed and the client width has changed with it
       const ai = this.$refs['active-image']
       if (ai == null) return;
       const cw = ai.clientWidth
       const nh = cw * this.tallestCover.ratio
       const cd = this.$refs['covers-div']
-      function validate(h) {
+
+      function isWindowDirty(h) {
         let nh = Math.floor(h)
-        if (nh === 0)
-          return
+        if (nh === 0) {
+          return false
+        }
         let existingHeight = 0
         if (cd.style.height && (typeof cd.style.height === 'string') && cd.style.height !== '') {
           existingHeight = Math.floor(parseInt(cd.style.height))
@@ -278,7 +278,7 @@ export default {
         return existingHeight !== nh;
       }
 
-      if (validate(nh)) {
+      if (isWindowDirty(nh)) {
         console.log('adjusting div height based on height changes!')
         cd.style.height = nh + 'px'
       }
