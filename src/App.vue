@@ -32,11 +32,11 @@
 
       </ContentCarousel>
     </Zone>
-    <Zone  class="livelessons" >
-      <ContentCarousel  :content="booksContent" side="l">
+    <Zone class="livelessons">
+      <ContentCarousel :content="livelessonsContent" side="l">
 
         <template v-slot:title>
-         Livelessons
+          Livelessons
         </template>
         <template v-slot:description>
           <p>
@@ -67,8 +67,6 @@ import RecentPosts from "@/components/posts/RecentPosts";
 import RecentPodcast from "@/components/podcasts/RecentPodcast";
 import ContentCarousel from "@/components/carousel/ContentCarousel";
 import {Content} from "@/components/carousel/content";
-
-
 
 
 export default {
@@ -156,13 +154,19 @@ export default {
                 <button class="icon leanpub">Buy on Leanpub</button>
             </div>`
     const books = [
-      new Content('Cloud Native Java book cover', 'https://joshlong.com/media/books/reactive-spring/cover.png',  `<p> This book is a book</p>`),
-      new Content('Pro Spring Recipes', 'https://joshlong.com/media/books/cloud-native-java/english.jpg',  html ),
-      new Content(`The Reactive Spring Book`, 'https://images-na.ssl-images-amazon.com/images/I/41R7SBjRbKL._SX348_BO1,204,203,200_.jpg', html  )]
+      new Content('Cloud Native Java book cover', 'https://joshlong.com/media/books/reactive-spring/cover.png', `<p> This book is a book</p>`),
+      new Content('Pro Spring Recipes', 'https://joshlong.com/media/books/cloud-native-java/english.jpg', html),
+      new Content(`The Reactive Spring Book`, 'https://images-na.ssl-images-amazon.com/images/I/41R7SBjRbKL._SX348_BO1,204,203,200_.jpg', html)]
+    const livelessons = [
+      new Content('Reactive Spring Livelessons', 'https://joshlong.com/media/livelessons/BuildMicroserviceswSpringBoot_2eLL.jpg', `<p> This book is a book</p>`),
+      new Content('Spring Security Livelessons', 'https://joshlong.com/media/livelessons/ReactiveSpringLL-2E.jpg', html),
+      new Content(`Cloud Native Java Livelessons`, 'https://joshlong.com/media/livelessons/CloudNativeJavaLL.jpg', html)]
+
     /* prototype models */
 
     return {
       booksContent: books,
+      livelessonsContent: livelessons,
       podcast: podcast,
       posts: generatePosts(),
       appearances: generateAppearances()
