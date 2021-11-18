@@ -68,6 +68,9 @@ import RecentPodcast from "@/components/podcasts/RecentPodcast";
 import ContentCarousel from "@/components/carousel/ContentCarousel";
 import {Content} from "@/components/carousel/content";
 
+
+
+
 export default {
   name: 'App',
   setup() {
@@ -179,6 +182,9 @@ export default {
 </script>
 
 <style>
+/*
+  TODO fix the issue with the podcast 'Play' button which, when compressed on mobile devices, gets cropped awkwardly.
+*/
 .content .buttons button.icon {
   border: 1px solid black;
 }
