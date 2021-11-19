@@ -6,7 +6,7 @@
       A Spring Developer Advocate, Java Champion,
       Kotlin Google Developer Expert, author of numerous books,
       best-selling video trainer, open-source contributor,
-      pod caster and YouTuber: hi, Spring fans! 👋
+      podcaster and YouTuber: hi, Spring fans! 👋
     </div>
     <button>
       Get to know me
