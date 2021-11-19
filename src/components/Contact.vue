@@ -1,47 +1,10 @@
 <template>
-  <div class="prompt"><h2> Got Something to Say? </h2></div>
+  <div class="prompt"><h2> Let's Talk! </h2></div>
   <div>
     <form class="contact-form">
-      <label> Name</label> <input type="text" />
-      <label> Name</label> <input type="text" />
-      <label> Name</label> <input type="text" />
-      <label> Name</label> <input type="text" />
-      <!--      &lt;!&ndash; text &ndash;&gt;
-            <p>
-              <input type="text" v-model="msg">
-              {{ msg }}
-            </p>
-            &lt;!&ndash; checkbox &ndash;&gt;
-            <p>
-              <input type="checkbox" v-model="checked">
-              {{ checked ? "yes" : "no" }}
-            </p>
-            &lt;!&ndash; radio buttons &ndash;&gt;
-            <p>
-              <input type="radio" name="picked" value="one" v-model="picked">
-              <input type="radio" name="picked" value="two" v-model="picked">
-              {{ picked }}
-            </p>
-            &lt;!&ndash; select &ndash;&gt;
-            <p>
-              <select v-model="selected">
-                <option>one</option>
-                <option>two</option>
-              </select>
-              {{ selected }}
-            </p>
-            &lt;!&ndash; multiple select &ndash;&gt;
-            <p>
-              <select v-model="multiSelect" multiple>
-                <option>one</option>
-                <option>two</option>
-                <option>three</option>
-              </select>
-              {{ multiSelect }}
-            </p>
-
-            <pre>data: {{ $data  }}</pre>-->
-
+      <label>Name:</label> <input required type="text"/>
+      <label>E-Mail:</label> <input required type="email"/>
+      <label>Message: </label> <textarea></textarea>
     </form>
     <div class="buttons">
       <button> Get in Touch</button>
@@ -49,45 +12,44 @@
   </div>
 </template>
 <style>
-
-
 .contact-form {
+  margin-top: calc(3 * var(--common-gutter));
+  margin-bottom: calc(3 * var(--common-gutter));
   display: grid;
-  grid-row-gap: var(--common-gutter);
+  /*grid-row-gap: calc( 1 * var(--common-gutter));*/
   grid-template-columns:   auto;
   grid-auto-rows: auto;
   grid-column-gap: var(--common-gutter);
 }
 
 .contact-form label {
+  margin-top: calc(3 * var(--common-gutter));
+  margin-bottom: var(--common-gutter);
   color: var(--white);
+  text-align: left;
 }
 
-/**/
 
-@media screen and (min-width: 1000px) {
-  .contact-form label {
+.contact-form input, textarea {
 
-    text-align: right;
-  }
-  .contact-form {
-    display: grid;
-    grid-row-gap: var(--common-gutter);
+  padding: var(--common-gutter);
+  line-height: calc(var(--common-gutter) * 1.4);
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: var(--button-radius);
+}
 
-    grid-template-columns: calc(var(--common-gutter) * 10) auto;
-    grid-auto-rows: auto;
-    grid-column-gap: var(--common-gutter);
-  }
+.contact-form textarea {
+  height: 10em
 }
 
 .contact {
-  padding-top: var(--page-top-pad);
   padding-bottom: var(--page-top-pad);
   background-color: var(--gray-800);
   display: grid;
   text-align: center;
-  grid-template-areas:
-                        "prompt "
+  grid-template-areas:  "prompt "
                         "call-to-action";
 }
 
@@ -96,13 +58,6 @@
 }
 
 
-/*.contact .buttons {
-
-  margin-top: calc(3 * var(--common-gutter));
-  margin-bottom: calc(3 * var(--common-gutter));
-
-}*/
-
 .contact .prompt {
   color: var(--gray-100);
   grid-area: prompt;
@@ -110,6 +65,19 @@
 
 @media screen and (min-width: 1000px) {
 
+  .contact-form label {
+    text-align: right;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+  .contact-form {
+    display: grid;
+    grid-row-gap: calc(2 * var(--common-gutter));
+    grid-template-columns: calc(var(--common-gutter) * 10) auto;
+    grid-auto-rows: auto;
+    grid-column-gap: var(--common-gutter);
+  }
 
   .contact {
     grid-template-areas: "prompt call-to-action";
