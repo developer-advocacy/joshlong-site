@@ -19,19 +19,15 @@ function graphql(graphqlQuery, variables) {
 // https://graphql.org/graphql-js/passing-arguments/
 export class BlogService {
 
-    async search() {
+    async search(query) {
         const graphqlQuery = `
-            query {
-                search(query : "title: 'apache' " ){
+            query Search($query: String) {
+                search(query: $query ){
                     path
                 }
             }
         `
-
-        graphql(graphqlQuery, {})
-            .then(r => r.json())
-            .then(s => console.log(s))
-        // return (await graphql(graphqlQuery, {query: query}))
+        return   (await graphql(graphqlQuery, {query: query})).json()
     }
 
     constructor(client) {

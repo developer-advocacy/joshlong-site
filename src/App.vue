@@ -98,9 +98,9 @@ export default {
   name: 'App',
   setup() {
 
-    onMounted(() => {
-      const results = blogService.search(` title: "Apache" `)
-      console.log('the result is ' + JSON.stringify(results))
+    onMounted(async () => {
+      const results = await blogService.search(` title: "Apache" `)
+      console.log('the result is ',  (results))
     })
 
     /* prototype models */
