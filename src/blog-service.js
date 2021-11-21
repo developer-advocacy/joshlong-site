@@ -7,7 +7,7 @@ export class BlogService {
 
     async search(query) {
         const graphqlQuery = `
-            query Search($query: String) {
+            query ($query: String) {
                 search(query: $query ){
                     path
                 }
