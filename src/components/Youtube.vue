@@ -2,7 +2,7 @@
   <div class="text">
     <h2> Spring Tips </h2>
     <p>
-      I run a screencast called <EM><STRONG>Spring Tips</STRONG></EM>. It's also on Twitter (<a
+      I run a screencast called <em><strong>Spring Tips</strong></em>. It's also on Twitter (<a
         href="https://twitter.com/SpringTipsLive">@SpringTipsLive</a>)
       Spring is the most popular application development framework for Java™. Millions
       of developers use Spring to build simple, truly portable, fast and flexible JVM-based systems and

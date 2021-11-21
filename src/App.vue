@@ -66,6 +66,8 @@
 </template>
 
 <script>
+
+// import {createClient} from 'graphql-ws'; // https://github.com/enisdenjo/graphql-ws
 import Zone from "@/components/Zone";
 import Page from "@/components/Page";
 import Menu from "@/components/Menu";
@@ -81,11 +83,25 @@ import ContentCarousel from "@/components/carousel/ContentCarousel";
 import {Content} from "@/components/carousel/content";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
+import {onMounted} from "vue";
 
+import {BlogService} from "@/blog-service";
 
+/*
+const client = createClient({
+  url: 'ws://localhost:8080/graphql',
+});*/
+const blogService = new BlogService(null)
+
+// https://www.npmjs.com/package/graphql-ws
 export default {
   name: 'App',
   setup() {
+
+    onMounted(() => {
+      const results = blogService.search(` title: "Apache" `)
+      console.log('the result is ' + JSON.stringify(results))
+    })
 
     /* prototype models */
     function generateAppearances() {
