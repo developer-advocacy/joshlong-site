@@ -1,6 +1,5 @@
 export function graphql(graphqlQuery, variables) {
-// https://graphql.org/graphql-js/passing-arguments/
-
+    // https://graphql.org/graphql-js/passing-arguments/
     const url = 'http://localhost:8080/graphql' // todo make this URL a parameter from the environment or something
     return window.fetch(url, {
         method: 'POST',
@@ -14,4 +13,8 @@ export function graphql(graphqlQuery, variables) {
         })
     })
 
+}
+
+export async function graphqlJson (q, v) {
+    return (await graphql( q, v) ).json()
 }

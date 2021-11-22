@@ -3,7 +3,7 @@
     <h2>Recent Posts </h2>
 
     <div class="recent-posts-columns">
-      <div v-for="post in posts " :key="post.title">
+      <div v-for="post in posts " :key="post.path ">
         <div class="recent-post-panel">
           <div class="recent-post">
             <img :alt="post.title" v-if="post.heroImageUrl" :src="post.heroImageUrl"/>

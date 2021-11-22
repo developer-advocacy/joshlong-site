@@ -1,23 +1,53 @@
-import {graphql} from "@/graphql";
+import {graphqlJson} from "@/graphql";
 
+import {Post} from "@/components/posts/post";
+
+function responseToPost(data) {
+    console.log('the data is ', data)
+    const posts = []
+    data.forEach(r => {
+        posts.push(new Post(r['date'], r['title'], r['title'], r['heroParagraphs'], r['heroImageUrl']))
+    })
+    return posts
+}
 
 export class BlogService {
 
 
-
-    async search(query) {
-        const graphqlQuery = `
-            query ($query: String) {
-                search(query: $query ){
-                    path
+    async recent(c) {
+        const graphqlQuery = ` 
+            query ($count: Int) {
+                recentBlogPosts(count: $count) { 
+                    ...blogPostResults
                 }
             }
         `
-        return (await graphql(graphqlQuery, {query: query})).json()
+        const response = (await graphqlJson(this.blogPostFragment + graphqlQuery, {count: c}))['data']['recentBlogPosts']
+        return responseToPost(response)
     }
 
-    constructor(client) {
-        console.log('the blog service is started')
-        this.client = client
+    async search(query) {
+        const graphqlQuery = `
+            
+            query ($query: String) {
+                search(query: $query ){
+                    ...blogPostResults
+                }
+            }
+        `
+        return graphqlJson(this.blogPostFragment + graphqlQuery, {query: query})
+    }
+
+
+    constructor() {
+        this.blogPostFragment = `
+            fragment blogPostResults on BlogPost {
+             path
+             title 
+             heroParagraphs
+             heroImage 
+             date
+            }
+    `
     }
 }
