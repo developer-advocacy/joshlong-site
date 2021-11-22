@@ -73,7 +73,6 @@ import Menu from "@/components/Menu";
 import Hero from "@/components/Hero";
 import Youtube from "@/components/Youtube";
 import Appearances from "@/components/appearance/Appearances";
-// import {Post} from '@/components/posts/post';
 import {Podcast} from '@/components/podcasts/podcast';
 import {Appearance} from '@/components/appearance/appearance'
 import RecentPosts from "@/components/posts/RecentPosts";
@@ -82,22 +81,19 @@ import ContentCarousel from "@/components/carousel/ContentCarousel";
 import {Content} from "@/components/carousel/content";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
-
-// import {Post} from "@/components/posts/post";
-// import {ref} from "vue";
-// import {Post} from "@/components/posts/post";
+import {BlogService} from "@/blog-service";
 // import { ref, watch, onMounted, onUnmounted } from 'vue'
 
-import {BlogService} from "@/blog-service";
-
+// todo set it up so that the recents posts also supports a search functionality, so either u get the latest N posts OR the search results.
+// todo also make it so that each posts has a link that lands on the right page
+// todo does vuejs support DI? it would be nice to extract out the blogService into another layer
+//
 const blogService = new BlogService()
 
-// https://www.npmjs.com/package/graphql-ws
 export default {
   name: 'App',
 
   async created() {
-    console.log('setup()')
     this.posts = await blogService.recent(10)
   },
   setup() {
@@ -144,9 +140,9 @@ export default {
       appearances: generateAppearances()
     }
   },
-  data () {
+  data() {
     return {
-      posts :  [],
+      posts: [],
     }
   },
 

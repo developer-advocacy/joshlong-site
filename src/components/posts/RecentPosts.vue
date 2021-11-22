@@ -35,9 +35,11 @@ export default {
 .recent-post-panel {
   padding: var(--common-gutter);
   display: inline-block;
+  width: 100%;
 }
 
 .recent-post {
+  width: 100%;
   display: inline-block;
   filter: drop-shadow(calc(var(--common-gutter) / 2) calc(var(--common-gutter) / 2) calc(var(--common-gutter) / 2) var(--gray-300));
   background-color: var(--white);

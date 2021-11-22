@@ -3,12 +3,7 @@ import {graphqlJson} from "@/graphql";
 import {Post} from "@/components/posts/post";
 
 function responseToPost(data) {
-    console.log('the data is ', data)
-    const posts = []
-    data.forEach(r => {
-        posts.push(new Post(r['date'], r['title'], r['title'], r['heroParagraphs'], r['heroImageUrl']))
-    })
-    return posts
+    return data.map(r => new Post(r['date'], r['title'], r['title'], r['heroParagraphs'], r['heroImageUrl']))
 }
 
 export class BlogService {
@@ -28,7 +23,6 @@ export class BlogService {
 
     async search(query) {
         const graphqlQuery = `
-            
             query ($query: String) {
                 search(query: $query ){
                     ...blogPostResults
