@@ -1,6 +1,5 @@
 <template>
 
-
   <h2>
     Listen to my Podcast
   </h2>
