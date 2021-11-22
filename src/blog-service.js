@@ -35,7 +35,8 @@ export class BlogService {
                 }
             }
         `
-        return graphqlJson(this.blogPostFragment + graphqlQuery, {query: query})
+        const response = (await graphqlJson(this.blogPostFragment + graphqlQuery, {query: query})) ['data']['search']
+        return responseToPost(response)
     }
 
 

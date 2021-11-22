@@ -99,7 +99,6 @@ export default {
   async created() {
     console.log('setup()')
     this.posts = await blogService.recent(10)
-    console.log('the posts', this.posts)
   },
   setup() {
     function generateAppearances() {
