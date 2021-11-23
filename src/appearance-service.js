@@ -25,7 +25,6 @@ export class AppearanceService {
             }
         `
         const response = (await graphqlJson(graphqlQuery, {}))['data']['appearances']
-        console.log('the response is ', response)
         return appearancesResultsToAppearances(response)
     }
 

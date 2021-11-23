@@ -1,30 +1,32 @@
 <template>
+<!--  <div v-if="podcast">-->
 
-  <h2>
-    Listen to my Podcast
-  </h2>
-  <div class="podcast-description">
-    I run a podcast called A Bootiful Podcast, a celebration of the heroes that drive the Spring and Java
-    ecosystems. It's also on Twitter (<a href="https://twitter.com/bootifulpodcast">@BootifulPodcast</a>). Here are
-    the episodes.
-  </div>
-  <div class="podcast-logo">
-    <img alt="A Bootiful Podcast" src="~@/assets/images/bootiful-podcast-logo.png"/>
-  </div>
-  <div class="latest-episode-panel"></div>
-  <div class="latest-episode-panel-content">
-    <div class="image">
-      <img alt="the latest guest needs no introduction.." :src="podcast.imageUrl"/>
+    <h2>
+      Listen to my Podcast
+    </h2>
+    <div class="podcast-description">
+      I run a podcast called A Bootiful Podcast, a celebration of the heroes that drive the Spring and Java
+      ecosystems. It's also on Twitter (<a href="https://twitter.com/bootifulpodcast">@BootifulPodcast</a>). Here are
+      the episodes.
     </div>
-    <div class="prompt">Latest episode</div>
-    <div class="synopsis">
-      <h3> {{ podcast.title }} </h3>
-      <div v-html="podcast.html"></div>
+    <div class="podcast-logo">
+      <img alt="A Bootiful Podcast" src="~@/assets/images/bootiful-podcast-logo.png"/>
     </div>
-    <div class="play"></div>
-  </div>
+    <div class="latest-episode-panel"></div>
+    <div class="latest-episode-panel-content">
+      <div class="image">
+        <img v-if="podcast" alt="the latest guest needs no introduction.." :src="podcast.episodePhotoUri"/>
+      </div>
+      <div class="prompt">Latest episode</div>
+      <div class="synopsis">
+        <h3 v-if="podcast"> {{ podcast.title }} </h3>
+        <div v-if="podcast" v-html="podcast.description"></div>
+      </div>
+      <div class="play"></div>
+    </div>
 
 
+<!--  </div>-->
 </template>
 
 <script>
@@ -147,6 +149,7 @@ export default {
 }
 
 .latest-episode-panel-content > .synopsis {
+  border: 1px solid red ;
   grid-area: synopsis;
   margin-bottom: calc(-1 * var(--common-gutter));
 }

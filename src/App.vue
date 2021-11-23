@@ -73,7 +73,6 @@ import Menu from "@/components/Menu";
 import Hero from "@/components/Hero";
 import Youtube from "@/components/Youtube";
 import Appearances from "@/components/appearances/Appearances";
-import {Podcast} from '@/components/podcasts/podcast';
 import Posts from "@/components/posts/Posts";
 import RecentPodcast from "@/components/podcasts/RecentPodcast";
 import ContentCarousel from "@/components/carousel/ContentCarousel";
@@ -82,6 +81,7 @@ import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import {BlogService} from "@/blog-service";
 import {AppearanceService} from "@/appearance-service";
+import {PodcastService} from "@/podcast-service";
 // import { ref, watch, onMounted, onUnmounted } from 'vue'
 
 // todo set it up so that the recents posts also supports a search functionality, so either u get the latest N posts OR the search results.
@@ -90,19 +90,23 @@ import {AppearanceService} from "@/appearance-service";
 //
 const blogService = new BlogService()
 const appearanceService = new AppearanceService()
+const podcastService = new PodcastService()
 
 export default {
 
   name: 'App',
 
   async created() {
+    this.podcast = (await podcastService.podcasts())[0]
     this.appearances = await appearanceService.appearances()
     this.posts = await blogService.recent(10)
   },
   setup() {
 
+/*
     const podcast = new Podcast('Layla Porter FTW', `<P> Hi, Spring fans! In this installment Josh Long talks to Layla Porter</P>`,
         'https://static-cdn.jtvnw.net/jtv_user_pictures/ac662385-725b-43c9-b0e1-03a49533931f-profile_image-70x70.png');
+*/
 
     const html = `  <P>
                 Join Spring Developer Advocate Josh Long for an introduction to reactive programming in the Spring
@@ -131,12 +135,12 @@ export default {
     return {
       booksContent: books,
       livelessonsContent: livelessons,
-      podcast: podcast
     }
   },
   data() {
     return {
       appearances: [],
+      podcast: null,
       posts: [],
     }
   },
