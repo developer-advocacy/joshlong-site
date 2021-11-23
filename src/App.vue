@@ -103,10 +103,6 @@ export default {
   },
   setup() {
 
-/*
-    const podcast = new Podcast('Layla Porter FTW', `<P> Hi, Spring fans! In this installment Josh Long talks to Layla Porter</P>`,
-        'https://static-cdn.jtvnw.net/jtv_user_pictures/ac662385-725b-43c9-b0e1-03a49533931f-profile_image-70x70.png');
-*/
 
     const html = `  <P>
                 Join Spring Developer Advocate Josh Long for an introduction to reactive programming in the Spring

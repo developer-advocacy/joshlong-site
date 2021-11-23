@@ -149,7 +149,6 @@ export default {
 }
 
 .latest-episode-panel-content > .synopsis {
-  border: 1px solid red ;
   grid-area: synopsis;
   margin-bottom: calc(-1 * var(--common-gutter));
 }

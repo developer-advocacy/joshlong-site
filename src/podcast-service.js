@@ -2,7 +2,6 @@ import {graphqlJson} from "@/graphql";
 import {Podcast} from "@/components/podcasts/podcast";
 
 function podcastsResultsToPodcasts(data) {
-    console.log('the data is ', data)
     return data.map(r => new Podcast(
         r['id'],
         r['uid'],
