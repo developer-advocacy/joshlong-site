@@ -33,6 +33,7 @@ export default {
   components: {},
   props: ['appearances'],
   setup() {
+
   }
 }
 </script>

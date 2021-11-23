@@ -2,7 +2,7 @@ import {graphqlJson} from "@/graphql";
 
 import {Post} from "@/components/posts/post";
 
-function responseToPost(data) {
+function blogPostResultsToPosts(data) {
     return data.map(r => new Post(r['date'], r['title'], r['title'], r['heroParagraphs'], r['heroImageUrl']))
 }
 
@@ -18,7 +18,7 @@ export class BlogService {
             }
         `
         const response = (await graphqlJson(this.blogPostFragment + graphqlQuery, {count: c}))['data']['recentBlogPosts']
-        return responseToPost(response)
+        return blogPostResultsToPosts(response)
     }
 
     async search(query) {
@@ -30,7 +30,7 @@ export class BlogService {
             }
         `
         const response = (await graphqlJson(this.blogPostFragment + graphqlQuery, {query: query})) ['data']['search']
-        return responseToPost(response)
+        return blogPostResultsToPosts(response)
     }
 
 

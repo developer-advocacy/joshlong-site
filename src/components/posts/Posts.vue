@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'RecentPosts',
+  name: 'Posts',
   components: {},
   props: ['posts'],
   setup() {

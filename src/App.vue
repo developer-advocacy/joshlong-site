@@ -10,7 +10,7 @@
       <Appearances :appearances="appearances"/>
     </Zone>
     <Zone class="recent-posts">
-      <RecentPosts :posts="posts"/>
+      <Posts :posts="posts"/>
     </Zone>
     <Zone class="podcast">
       <RecentPodcast :podcast="podcast"/>
@@ -72,16 +72,16 @@ import Page from "@/components/Page";
 import Menu from "@/components/Menu";
 import Hero from "@/components/Hero";
 import Youtube from "@/components/Youtube";
-import Appearances from "@/components/appearance/Appearances";
+import Appearances from "@/components/appearances/Appearances";
 import {Podcast} from '@/components/podcasts/podcast';
-import {Appearance} from '@/components/appearance/appearance'
-import RecentPosts from "@/components/posts/RecentPosts";
+import Posts from "@/components/posts/Posts";
 import RecentPodcast from "@/components/podcasts/RecentPodcast";
 import ContentCarousel from "@/components/carousel/ContentCarousel";
 import {Content} from "@/components/carousel/content";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import {BlogService} from "@/blog-service";
+import {AppearanceService} from "@/appearance-service";
 // import { ref, watch, onMounted, onUnmounted } from 'vue'
 
 // todo set it up so that the recents posts also supports a search functionality, so either u get the latest N posts OR the search results.
@@ -89,21 +89,17 @@ import {BlogService} from "@/blog-service";
 // todo does vuejs support DI? it would be nice to extract out the blogService into another layer
 //
 const blogService = new BlogService()
+const appearanceService = new AppearanceService()
 
 export default {
+
   name: 'App',
 
   async created() {
+    this.appearances = await appearanceService.appearances()
     this.posts = await blogService.recent(10)
   },
   setup() {
-    function generateAppearances() {
-      return [
-        new Appearance(new Date(), 'Taster Masterclass', `I'll be doing a masterclass taster talk on all things Spring, Kubernetes, and Microservices`),
-        new Appearance(new Date(), `O'REILLY`, `I'll be doing a talk at the upcoming O'REILLY conference. Wait, what do you mean it doesn't exist? :-(`),
-        new Appearance(new Date(), `Devoxx`, `I'll be presenting (virtually) at the upcoming Devoxx show!`)
-      ]
-    }
 
     const podcast = new Podcast('Layla Porter FTW', `<P> Hi, Spring fans! In this installment Josh Long talks to Layla Porter</P>`,
         'https://static-cdn.jtvnw.net/jtv_user_pictures/ac662385-725b-43c9-b0e1-03a49533931f-profile_image-70x70.png');
@@ -131,23 +127,22 @@ export default {
       new Content('Spring Security Livelessons', 'https://joshlong.com/media/livelessons/ReactiveSpringLL-2E.jpg', html),
       new Content(`Cloud Native Java Livelessons`, 'https://joshlong.com/media/livelessons/CloudNativeJavaLL.jpg', html)]
 
-    /* prototype models */
+
     return {
-      // posts: async () => await blogService.recent(10),
       booksContent: books,
       livelessonsContent: livelessons,
-      podcast: podcast,
-      appearances: generateAppearances()
+      podcast: podcast
     }
   },
   data() {
     return {
+      appearances: [],
       posts: [],
     }
   },
 
   components: {
-    Contact, Footer, ContentCarousel, RecentPodcast, RecentPosts, Hero, Page, Menu, Zone, Youtube, Appearances
+    Contact, Footer, ContentCarousel, RecentPodcast, Posts, Hero, Page, Menu, Zone, Youtube, Appearances
   }
 }
 </script>
