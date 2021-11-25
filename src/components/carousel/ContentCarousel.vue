@@ -14,7 +14,10 @@
   text-align: center;
   color: #667085;
 }
-
+.content a {
+  color: var(--green-600);
+  font-weight: bold;
+}
 .content-showcase > h2 {
   color: var(--gray-900);
   font-style: normal;

@@ -1,5 +1,5 @@
 import {graphqlJson} from "@/graphql";
-import {Podcast} from "@/components/podcasts/podcast";
+import {Podcast} from "@/podcast";
 
 function podcastsResultsToPodcasts(data) {
     return data.map(r => new Podcast(

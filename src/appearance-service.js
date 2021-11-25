@@ -1,5 +1,5 @@
 import {graphqlJson} from "@/graphql";
-import {Appearance} from "@/components/appearances/appearance";
+import {Appearance} from "@/appearance";
 
 function appearancesResultsToAppearances(data) {
     return data.map(r => {

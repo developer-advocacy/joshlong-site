@@ -1,6 +1,6 @@
 import {graphqlJson} from "@/graphql";
 
-import {Post} from "@/components/posts/post";
+import {Post} from "@/post";
 
 function blogPostResultsToPosts(data) {
     return data.map(r => new Post(r['date'], r['title'], r['title'], r['heroParagraphs'], r['heroImageUrl']))
