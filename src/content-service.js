@@ -9,7 +9,19 @@ function contentResultsToContent(data) {
 
 export class ContentService {
 
-    async books(c) {
+    async livelessons() {
+        const query = ` 
+            query {
+                livelessons {
+                   ...contentResults
+                }
+            }
+        `
+        const response = (await graphqlJson(this.fragment + query, {}))['data']['livelessons']
+        return contentResultsToContent(response)
+    }
+
+    async books() {
         const query = ` 
             query {
                 books {
@@ -17,7 +29,7 @@ export class ContentService {
                 }
             }
         `
-        const response = (await graphqlJson(this.fragment + query, {count: c}))['data']['books']
+        const response = (await graphqlJson(this.fragment + query, {}))['data']['books']
         return contentResultsToContent(response)
     }
 

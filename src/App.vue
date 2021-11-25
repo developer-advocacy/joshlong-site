@@ -33,7 +33,7 @@
       </ContentCarousel>
     </Zone>
     <Zone class="livelessons">
-      <ContentCarousel :content="livelessonsContent" side="l">
+      <ContentCarousel :content="livelessonsContent" v-if="livelessonsContent.length > 0 " side="l">
 
         <template v-slot:title>
           Livelessons
@@ -76,7 +76,6 @@ import Appearances from "@/components/appearances/Appearances";
 import Posts from "@/components/posts/Posts";
 import RecentPodcast from "@/components/podcasts/RecentPodcast";
 import ContentCarousel from "@/components/carousel/ContentCarousel";
-import {Content} from "@/content";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
 import {BlogService} from "@/blog-service";
@@ -102,45 +101,15 @@ export default {
     this.appearances = await appearanceService.appearances()
     this.posts = await blogService.recent(10)
     this.booksContent = await contentService.books()
+    this.livelessonsContent = await contentService.livelessons()
   },
   setup() {
-
-
-    const html =
-        `
-            <P>
-                Join Spring Developer Advocate Josh Long for an introduction to reactive programming in the Spring
-                ecosystem, leveraging the reactive streams specification, Reactor, Spring Boot, Spring Cloud and so much
-                more.
-            </P>
-            <P>
-                This book will cover important concepts in reactive programming including project Reactor and the
-                reactive streams specification, data access, web programming, RPC with protocols like RSocket, testing,
-                and integration and composition, and more.
-            </P>
-            <div class="buttons">
-                <button class="icon amazon"> Buy on Amazon</button>
-                <button class="icon leanpub">Buy on Leanpub</button>
-            </div>
-        `
-
-    // const books = [
-    //   new Content('Cloud Native Java book cover', 'https://joshlong.com/media/books/reactive-spring/cover.png', `<p> This book is a book</p>`),
-    //   new Content('Pro Spring Recipes', 'https://joshlong.com/media/books/cloud-native-java/english.jpg', html),
-    //   new Content(`The Reactive Spring Book`, 'https://images-na.ssl-images-amazon.com/images/I/41R7SBjRbKL._SX348_BO1,204,203,200_.jpg', html)]
-    const livelessons = [
-      new Content('Reactive Spring Livelessons', 'https://joshlong.com/media/livelessons/BuildMicroserviceswSpringBoot_2eLL.jpg', `<p> This book is a book</p>`),
-      new Content('Spring Security Livelessons', 'https://joshlong.com/media/livelessons/ReactiveSpringLL-2E.jpg', html),
-      new Content(`Cloud Native Java Livelessons`, 'https://joshlong.com/media/livelessons/CloudNativeJavaLL.jpg', html)]
-
-
-    return {
-      livelessonsContent: livelessons,
-    }
+    return {}
   },
   data() {
     return {
       booksContent: [],
+      livelessonsContent: [],
       appearances: [],
       podcast: null,
       posts: [],
@@ -159,6 +128,13 @@ export default {
 */
 .content .buttons button.icon {
   border: 1px solid black;
+  margin-right: 0;
+}
+
+@media screen and (min-width: 1000px) {
+  .content .buttons button.icon {
+    margin-right: var(--common-gutter);
+  }
 }
 
 .content .buttons button.leanpub {
