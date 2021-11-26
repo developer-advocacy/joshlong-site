@@ -144,9 +144,9 @@ form {
 }
 
 form label {
-
-  margin-top: calc(3 * var(--common-gutter));
+  /*margin-top: calc(3 * var(--common-gutter));*/
   margin-bottom: var(--common-gutter);
+  margin-top: var(--common-gutter);
   color: var(--white);
   text-align: left;
 }
@@ -175,19 +175,38 @@ form .prompt {
   color: var(--gray-100);
   text-align: left;
   grid-area: prompt;
-  /*border: 10px solid red ;*/
-  padding-bottom: calc(var(--common-gutter) * 3);
+
 }
 
 form .buttons {
   margin-top: calc(2 * var(--common-gutter));
-  margin-bottom: calc(1  * var(--common-gutter));
+  margin-bottom: calc(1 * var(--common-gutter));
   grid-area: buttons;
   text-align: right;
 }
 
 @media screen and (min-width: 1000px) {
 
+
+  form .prompt {
+
+  }
+
+  form .prompt h2 {
+    margin: 0;
+    padding: 0
+  }
+
+  form {
+    padding-top: calc(2 * var(--common-gutter));
+    grid-template-columns: 150px  auto;
+
+    grid-template-areas:
+                        "prompt fields"
+                        "prompt fields"
+                        "buttons buttons";
+
+  }
 
   form .fields {
     grid-row-gap: calc(2 * var(--common-gutter));
@@ -202,15 +221,15 @@ form .buttons {
     margin-top: 0;
   }
 
-/*
-  .contact {
-    grid-template-areas:
-          "prompt form"
-          "buttons buttons";
-    grid-template-columns: auto auto;
-    align-content: baseline;
-  }
-*/
+  /*
+    .contact {
+      grid-template-areas:
+            "prompt form"
+            "buttons buttons";
+      grid-template-columns: auto auto;
+      align-content: baseline;
+    }
+  */
 
 
 }
