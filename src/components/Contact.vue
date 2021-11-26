@@ -1,22 +1,31 @@
 <template>
-  <div class="prompt"><h2> Let's Talk! </h2></div>
-  <div>
-    <form class="contact-form">
+
+  <form>
+    <div class="prompt">
+      <h2> Let's Talk</h2>
+    </div>
+    <div class="fields">
       <label>Name:</label> <input required type="text"/>
       <label>E-Mail:</label> <input required type="email"/>
       <label>Message: </label> <textarea></textarea>
-    </form>
+    </div>
     <div class="buttons">
       <button> Get in Touch</button>
     </div>
-  </div>
+  </form>
+
 </template>
 <style>
+
+.contact {
+  background-color: var(--gray-800);
+}
+
+/*
 .contact-form {
   margin-top: calc(3 * var(--common-gutter));
   margin-bottom: calc(3 * var(--common-gutter));
   display: grid;
-  /*grid-row-gap: calc( 1 * var(--common-gutter));*/
   grid-template-columns:   auto;
   grid-auto-rows: auto;
   grid-column-gap: var(--common-gutter);
@@ -95,5 +104,6 @@
     text-align: right;
   }
 }
+*/
 
 </style>

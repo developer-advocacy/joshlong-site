@@ -10,6 +10,15 @@
       <Appearances :appearances="appearances"/>
     </Zone>
     <Zone class="recent-posts">
+      <div class="search">
+        <form class="search-form">
+          <label>Query:</label> <input required type="text"/>
+        </form>
+        <div class="buttons">
+          <button> Search</button>
+        </div>
+
+      </div>
       <Posts :posts="posts"/>
     </Zone>
     <Zone class="podcast">
@@ -17,7 +26,6 @@
     </Zone>
     <Zone class="books" v-if="booksContent.length > 0 ">
       <ContentCarousel :content="booksContent">
-
         <template v-slot:title>
           Books
         </template>
@@ -27,9 +35,7 @@
             The latest and greatest of these are <strong><em>Reactive Spring</em></strong> and
             <strong><em>Cloud Native Java</em></strong>.
           </p>
-
         </template>
-
       </ContentCarousel>
     </Zone>
     <Zone class="livelessons">
@@ -44,9 +50,7 @@
             The latest and greatest of these are <strong><em>Reactive Spring</em></strong> and
             <strong><em>Cloud Native Java</em></strong>.
           </p>
-
         </template>
-
       </ContentCarousel>
     </Zone>
 
@@ -59,7 +63,6 @@
     </Zone>
     <Zone class="footer">
       <Footer/>
-
     </Zone>
 
   </Page>
@@ -115,7 +118,6 @@ export default {
       posts: [],
     }
   },
-
   components: {
     Contact, Footer, ContentCarousel, RecentPodcast, Posts, Hero, Page, Menu, Zone, Youtube, Appearances
   }
@@ -123,6 +125,97 @@ export default {
 </script>
 
 <style>
+
+
+/* FORM CSS */
+
+
+form {
+  /*margin-top: calc(3 * var(--common-gutter));*/
+  /*margin-bottom: calc(3 * var(--common-gutter));*/
+  /*padding-bottom: calc( -1 * var(--page-top-pad));*/
+  display: grid;
+  grid-template-columns: auto;
+  grid-auto-rows: auto;
+  grid-column-gap: var(--common-gutter);
+  grid-template-areas:  "prompt "
+                        "fields"
+                        "buttons";
+}
+
+form label {
+
+  margin-top: calc(3 * var(--common-gutter));
+  margin-bottom: var(--common-gutter);
+  color: var(--white);
+  text-align: left;
+}
+
+
+form input,
+form textarea {
+  padding: var(--common-gutter);
+  line-height: calc(var(--common-gutter) * 1.4);
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: var(--button-radius);
+}
+
+form textarea {
+  height: 10em
+}
+
+form .fields {
+  display: grid;
+  grid-area: fields;
+}
+
+form .prompt {
+  color: var(--gray-100);
+  text-align: left;
+  grid-area: prompt;
+  /*border: 10px solid red ;*/
+  padding-bottom: calc(var(--common-gutter) * 3);
+}
+
+form .buttons {
+  margin-top: calc(2 * var(--common-gutter));
+  margin-bottom: calc(1  * var(--common-gutter));
+  grid-area: buttons;
+  text-align: right;
+}
+
+@media screen and (min-width: 1000px) {
+
+
+  form .fields {
+    grid-row-gap: calc(2 * var(--common-gutter));
+    grid-template-columns: calc(var(--common-gutter) * 10) auto;
+    grid-auto-rows: auto;
+    grid-column-gap: calc(2 * var(--common-gutter));
+  }
+
+  form label {
+    text-align: right;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+
+/*
+  .contact {
+    grid-template-areas:
+          "prompt form"
+          "buttons buttons";
+    grid-template-columns: auto auto;
+    align-content: baseline;
+  }
+*/
+
+
+}
+
+
 /*
   TODO fix the issue with the podcast 'Play' button which, when compressed on mobile devices, gets cropped awkwardly.
 */
