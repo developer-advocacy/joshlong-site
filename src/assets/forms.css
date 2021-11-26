@@ -1,0 +1,90 @@
+
+form {
+
+
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-rows: auto;
+    grid-column-gap: var(--common-gutter);
+    grid-template-areas:  "prompt "
+                        "fields"
+                        "buttons";
+}
+
+form label {
+    /*margin-top: calc(3 * var(--common-gutter));*/
+    margin-bottom: var(--common-gutter);
+    margin-top: var(--common-gutter);
+    color: var(--white);
+    text-align: left;
+}
+
+
+form input,
+form textarea {
+    padding: var(--common-gutter);
+    line-height: calc(var(--common-gutter) * 1.4);
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: var(--button-radius);
+}
+
+form textarea {
+    height: 10em
+}
+
+form .fields {
+    display: grid;
+    grid-area: fields;
+}
+
+form .prompt {
+    color: var(--gray-100);
+    text-align: left;
+    grid-area: prompt;
+
+}
+
+form .buttons {
+    margin-top: calc(2 * var(--common-gutter));
+    margin-bottom: calc(1 * var(--common-gutter));
+    grid-area: buttons;
+    text-align: right;
+}
+
+@media screen and (min-width: 1000px) {
+
+
+    form .prompt {
+
+    }
+
+    form .prompt h2 {
+        margin: 0;
+        padding: 0
+    }
+
+    form {
+        padding-top: calc(2 * var(--common-gutter));
+        grid-template-columns: 200px  auto;
+        grid-template-areas:
+                        "prompt fields"
+                        "prompt fields"
+                        "buttons buttons";
+
+    }
+
+    form .fields {
+        grid-row-gap: calc(2 * var(--common-gutter));
+        grid-template-columns: calc(var(--common-gutter) * 10) auto;
+        grid-auto-rows: auto;
+        grid-column-gap: calc(2 * var(--common-gutter));
+    }
+
+    form label {
+        text-align: right;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+}

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h2>Recent Posts </h2>
 
     <div class="recent-posts-columns">
       <div v-for="post in posts " :key="post.path ">
@@ -77,9 +76,6 @@ export default {
   }
 }
 
-.recent-posts .buttons {
-  text-align: center;
-}
 
 
 </style>

@@ -10,15 +10,7 @@
       <Appearances :appearances="appearances"/>
     </Zone>
     <Zone class="recent-posts">
-      <div class="search">
-        <form class="search-form">
-          <label>Query:</label> <input required type="text"/>
-        </form>
-        <div class="buttons">
-          <button> Search</button>
-        </div>
-
-      </div>
+      <Search/>
       <Posts :posts="posts"/>
     </Zone>
     <Zone class="podcast">
@@ -85,6 +77,7 @@ import {BlogService} from "@/blog-service";
 import {AppearanceService} from "@/appearance-service";
 import {PodcastService} from "@/podcast-service";
 import {ContentService} from "@/content-service";
+import Search from "@/components/Search";
 
 // todo set it up so that the recents posts also supports a search functionality, so either u get the latest N posts OR the search results.
 // todo also make it so that each posts has a link that lands on the right page
@@ -119,121 +112,19 @@ export default {
     }
   },
   components: {
-    Contact, Footer, ContentCarousel, RecentPodcast, Posts, Hero, Page, Menu, Zone, Youtube, Appearances
+    Search, Contact, Footer, ContentCarousel, RecentPodcast, Posts, Hero, Page, Menu, Zone, Youtube, Appearances
   }
 }
 </script>
 
 <style>
 
+@import url("assets/forms.css");
 
-/* FORM CSS */
 
-
-form {
-  /*margin-top: calc(3 * var(--common-gutter));*/
-  /*margin-bottom: calc(3 * var(--common-gutter));*/
-  /*padding-bottom: calc( -1 * var(--page-top-pad));*/
-  display: grid;
-  grid-template-columns: auto;
-  grid-auto-rows: auto;
-  grid-column-gap: var(--common-gutter);
-  grid-template-areas:  "prompt "
-                        "fields"
-                        "buttons";
+.search form label, .search form .prompt {
+  color: var(--black)
 }
-
-form label {
-  /*margin-top: calc(3 * var(--common-gutter));*/
-  margin-bottom: var(--common-gutter);
-  margin-top: var(--common-gutter);
-  color: var(--white);
-  text-align: left;
-}
-
-
-form input,
-form textarea {
-  padding: var(--common-gutter);
-  line-height: calc(var(--common-gutter) * 1.4);
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: var(--button-radius);
-}
-
-form textarea {
-  height: 10em
-}
-
-form .fields {
-  display: grid;
-  grid-area: fields;
-}
-
-form .prompt {
-  color: var(--gray-100);
-  text-align: left;
-  grid-area: prompt;
-
-}
-
-form .buttons {
-  margin-top: calc(2 * var(--common-gutter));
-  margin-bottom: calc(1 * var(--common-gutter));
-  grid-area: buttons;
-  text-align: right;
-}
-
-@media screen and (min-width: 1000px) {
-
-
-  form .prompt {
-
-  }
-
-  form .prompt h2 {
-    margin: 0;
-    padding: 0
-  }
-
-  form {
-    padding-top: calc(2 * var(--common-gutter));
-    grid-template-columns: 150px  auto;
-
-    grid-template-areas:
-                        "prompt fields"
-                        "prompt fields"
-                        "buttons buttons";
-
-  }
-
-  form .fields {
-    grid-row-gap: calc(2 * var(--common-gutter));
-    grid-template-columns: calc(var(--common-gutter) * 10) auto;
-    grid-auto-rows: auto;
-    grid-column-gap: calc(2 * var(--common-gutter));
-  }
-
-  form label {
-    text-align: right;
-    margin-bottom: 0;
-    margin-top: 0;
-  }
-
-  /*
-    .contact {
-      grid-template-areas:
-            "prompt form"
-            "buttons buttons";
-      grid-template-columns: auto auto;
-      align-content: baseline;
-    }
-  */
-
-
-}
-
 
 /*
   TODO fix the issue with the podcast 'Play' button which, when compressed on mobile devices, gets cropped awkwardly.
