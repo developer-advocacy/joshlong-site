@@ -10,7 +10,7 @@
       <Appearances :appearances="appearances"/>
     </Zone>
     <Zone class="recent-posts">
-      <Search/>
+      <Search v-model="query" />
       <Posts :posts="posts"/>
     </Zone>
     <Zone class="podcast">
@@ -91,16 +91,17 @@ const contentService = new ContentService()
 export default {
 
   name: 'App',
-
+  methods: {
+    doSearch() {
+      console.log('its time to execute the search: ', this.query)
+    }
+  },
   async created() {
     this.podcast = (await podcastService.podcasts())[0]
     this.appearances = await appearanceService.appearances()
     this.posts = await blogService.recent(10)
     this.booksContent = await contentService.books()
     this.livelessonsContent = await contentService.livelessons()
-  },
-  setup() {
-    return {}
   },
   data() {
     return {
@@ -109,6 +110,7 @@ export default {
       appearances: [],
       podcast: null,
       posts: [],
+      query: '',
     }
   },
   components: {
