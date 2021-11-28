@@ -11,6 +11,12 @@ form {
                         "buttons";
 }
 
+.buttons button:disabled,
+.buttons button[disabled] {
+    color: var(--gray-500);
+    background-color: var(--gray-100);
+}
+
 form label {
     /*margin-top: calc(3 * var(--common-gutter));*/
     margin-bottom: var(--common-gutter);
@@ -28,6 +34,7 @@ form textarea {
     background-image: none;
     border: 1px solid #ccc;
     border-radius: var(--button-radius);
+    width: 100%;
 }
 
 form textarea {
@@ -50,14 +57,16 @@ form .buttons {
     margin-top: calc(2 * var(--common-gutter));
     margin-bottom: calc(1 * var(--common-gutter));
     grid-area: buttons;
+
+}
+
+.buttons {
     text-align: right;
 }
 
 @media screen and (min-width: 1000px) {
 
-
     form .prompt {
-
     }
 
     form .prompt h2 {
@@ -72,7 +81,6 @@ form .buttons {
                         "prompt fields"
                         "prompt fields"
                         "buttons buttons";
-
     }
 
     form .fields {
@@ -87,4 +95,9 @@ form .buttons {
         margin-bottom: 0;
         margin-top: 0;
     }
+
+    form .buttons button {
+        margin-right: var(--common-gutter);
+    }
 }
+

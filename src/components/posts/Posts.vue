@@ -1,5 +1,5 @@
 <template>
-  <div>
+
 
     <div class="recent-posts-columns">
       <div v-for="post in posts " :key="post.path ">
@@ -13,18 +13,15 @@
         </div>
       </div>
     </div>
-    <div class="buttons">
+    <div v-if="!truncated " class="buttons">
       <button>See More</button>
-    </div>
   </div>
-
 </template>
-
 <script>
 export default {
   name: 'Posts',
   components: {},
-  props: ['posts'],
+  props: ['posts' , 'truncated'],
   setup() {
   }
 }

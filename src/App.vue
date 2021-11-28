@@ -10,8 +10,32 @@
       <Appearances :appearances="appearances"/>
     </Zone>
     <Zone class="recent-posts">
-      <Search v-model="query" />
-      <Posts :posts="posts"/>
+
+      <div class="search">
+        <form>
+          <div class="prompt">
+            <h2> Posts </h2>
+          </div>
+          <div class="fields">
+            <label>Query </label>
+            <div>
+              <input v-model="query" required type="text"/>
+              <div class="hint">
+                You can use Lucene queries like : <code> content: "paris" AND title:"2019"</code>
+              </div>
+            </div>
+          </div>
+          <div class="buttons">
+            <button @click.prevent="resetSearch">
+              Reset
+            </button>
+            <button :disabled="!isValidQuery()" @click.prevent="doSearch">
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
+      <Posts :posts="posts" :truncated="hasMorePosts"/>
     </Zone>
     <Zone class="podcast">
       <RecentPodcast :podcast="podcast"/>
@@ -77,7 +101,6 @@ import {BlogService} from "@/blog-service";
 import {AppearanceService} from "@/appearance-service";
 import {PodcastService} from "@/podcast-service";
 import {ContentService} from "@/content-service";
-import Search from "@/components/Search";
 
 // todo set it up so that the recents posts also supports a search functionality, so either u get the latest N posts OR the search results.
 // todo also make it so that each posts has a link that lands on the right page
@@ -88,23 +111,58 @@ const appearanceService = new AppearanceService()
 const podcastService = new PodcastService()
 const contentService = new ContentService()
 
+
 export default {
 
   name: 'App',
   methods: {
-    doSearch() {
-      console.log('its time to execute the search: ', this.query)
+    shouldShowMore() {
+      this.hasMorePosts = this.posts != null && this.posts.length > this.maxResults
+    },
+    async resetSearch() {
+      console.log('reset()')
+      this.query = ''
+      this.posts = await blogService.recent(10)
+      this.shouldShowMore()
+    },
+
+    isValidQuery() {
+      return (this.query !== null && this.query.trim() !== '') === true
+    },
+
+    async doSearch() {
+      if (this.isValidQuery()) {
+        this.posts = []
+        const results = await blogService.search(this.query)
+        console.debug('query is ', this.query, 'found ', results.length, 'posts')
+        if (results.length > this.maxResults) {
+          const firstTen = []
+
+          for (let i = 0; i < results.length; i++) {
+            if (i < this.maxResults) {
+              firstTen [i] = results [i]
+            }
+          }
+          this.posts = firstTen
+        } //
+        else {
+          this.posts = results
+        }
+      }
+      this.shouldShowMore()
     }
   },
   async created() {
     this.podcast = (await podcastService.podcasts())[0]
     this.appearances = await appearanceService.appearances()
-    this.posts = await blogService.recent(10)
     this.booksContent = await contentService.books()
     this.livelessonsContent = await contentService.livelessons()
+    await this.resetSearch()
   },
   data() {
     return {
+      hasMorePosts: false,
+      maxResults: 10,
       booksContent: [],
       livelessonsContent: [],
       appearances: [],
@@ -114,7 +172,7 @@ export default {
     }
   },
   components: {
-    Search, Contact, Footer, ContentCarousel, RecentPodcast, Posts, Hero, Page, Menu, Zone, Youtube, Appearances
+    Contact, Footer, ContentCarousel, RecentPodcast, Posts, Hero, Page, Menu, Zone, Youtube, Appearances
   }
 }
 </script>
@@ -123,6 +181,10 @@ export default {
 
 @import url("assets/forms.css");
 
+.hint {
+  font-size: smaller;
+  color: var(--gray-400)
+}
 
 .search form label, .search form .prompt {
   color: var(--black)
@@ -134,12 +196,6 @@ export default {
 .content .buttons button.icon {
   border: 1px solid black;
   margin-right: 0;
-}
-
-@media screen and (min-width: 1000px) {
-  .content .buttons button.icon {
-    margin-right: var(--common-gutter);
-  }
 }
 
 .content .buttons button.leanpub {

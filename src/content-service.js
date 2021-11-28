@@ -3,7 +3,6 @@ import {Content} from "@/content";
 
 
 function contentResultsToContent(data) {
-    console.log(data)
     return data.map(r => new Content(r['title'], r['imageUrl'], r['html']))
 }
 
