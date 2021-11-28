@@ -26,8 +26,8 @@ form label {
 }
 
 
-form input,
-form textarea {
+form input, form textarea {
+
     padding: var(--common-gutter);
     line-height: calc(var(--common-gutter) * 1.4);
     background-color: #fff;
@@ -57,13 +57,15 @@ form .buttons {
     margin-top: calc(2 * var(--common-gutter));
     margin-bottom: calc(1 * var(--common-gutter));
     grid-area: buttons;
-
 }
 
 .buttons {
     text-align: right;
 }
 
+form .buttons button {
+    margin-left: 0 ;
+}
 @media screen and (min-width: 1000px) {
 
     form .prompt {
@@ -97,7 +99,7 @@ form .buttons {
     }
 
     form .buttons button {
-        margin-right: var(--common-gutter);
+        margin-left: var(--common-gutter);
     }
 }
 

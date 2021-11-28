@@ -14,7 +14,7 @@
       <div class="search">
         <form>
           <div class="prompt">
-            <h2> Posts </h2>
+            <h2> {{ postsTitle }} </h2>
           </div>
           <div class="fields">
             <label>Query </label>
@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="buttons">
-            <button @click.prevent="resetSearch">
+            <button :disabled="!canBeReset" @click.prevent="resetSearch">
               Reset
             </button>
             <button :disabled="!isValidQuery()" @click.prevent="doSearch">
@@ -111,19 +111,23 @@ const appearanceService = new AppearanceService()
 const podcastService = new PodcastService()
 const contentService = new ContentService()
 
+const recentPostsTitleString = 'Recent Posts'
+const searchResultsTitleString = 'Search Results'
 
 export default {
 
   name: 'App',
   methods: {
-    shouldShowMore() {
+    setShouldShowMore() {
       this.hasMorePosts = this.posts != null && this.posts.length > this.maxResults
     },
+
     async resetSearch() {
-      console.log('reset()')
+      this.postsTitle = recentPostsTitleString
       this.query = ''
       this.posts = await blogService.recent(10)
-      this.shouldShowMore()
+      this.setShouldShowMore()
+      this.canBeReset = false
     },
 
     isValidQuery() {
@@ -132,24 +136,25 @@ export default {
 
     async doSearch() {
       if (this.isValidQuery()) {
+        this.postsTitle = searchResultsTitleString
         this.posts = []
         const results = await blogService.search(this.query)
-        console.debug('query is ', this.query, 'found ', results.length, 'posts')
         if (results.length > this.maxResults) {
           const firstTen = []
-
           for (let i = 0; i < results.length; i++) {
             if (i < this.maxResults) {
               firstTen [i] = results [i]
             }
           }
           this.posts = firstTen
+
         } //
         else {
           this.posts = results
         }
+        this.canBeReset = true
       }
-      this.shouldShowMore()
+      this.setShouldShowMore()
     }
   },
   async created() {
@@ -161,7 +166,9 @@ export default {
   },
   data() {
     return {
+      canBeReset: false,
       hasMorePosts: false,
+      postsTitle: 'Recent Posts',
       maxResults: 10,
       booksContent: [],
       livelessonsContent: [],

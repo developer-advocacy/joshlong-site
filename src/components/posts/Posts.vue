@@ -7,7 +7,7 @@
           <div class="recent-post">
             <img :alt="post.title" v-if="post.heroImageUrl" :src="post.heroImageUrl"/>
             <div class="date">{{post.month}} {{post.day}},  {{ post.year }} </div>
-            <h3> {{ post.title }}</h3>
+            <h3 v-html="post.title"> </h3>
             <div class="text" v-html="post.html"></div>
           </div>
         </div>
