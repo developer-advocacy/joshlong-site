@@ -1,27 +1,34 @@
 <template>
 
-  <div class="text">
-    <div class="name">Josh Long</div>
-    <div class="description ">
-      A Spring Developer Advocate, Java Champion,
-      Kotlin Google Developer Expert, author of numerous books,
-      best-selling video trainer, open-source contributor,
-      podcaster and YouTuber: hi, Spring fans! 👋
+  <Zone class="hero">
+    <div class="text">
+      <div class="name">Josh Long</div>
+      <div class="description ">
+        A Spring Developer Advocate, Java Champion,
+        Kotlin Google Developer Expert, author of numerous books,
+        best-selling video trainer, open-source contributor,
+        podcaster and YouTuber: hi, Spring fans! 👋
+      </div>
+      <button>
+        Get to know me
+      </button>
     </div>
-    <button>
-      Get to know me
-    </button>
-  </div>
-  <div class="image">
-    <img alt="Hi, Spring fans! I'm Josh Long" src="~@/assets/images/josh-hero-image.png"/>
-  </div>
+    <div class="image">
+      <img alt="Hi, Spring fans! I'm Josh Long" src="~@/assets/images/josh-hero-image.png"/>
+    </div>
+  </Zone>
 
 </template>
 
 <script>
+import Zone from "@/components/Zone";
+
 export default {
   name: 'Hero',
-  props: {}
+  props: {},
+  components: {
+    Zone
+  }
 }
 </script>
 

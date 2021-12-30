@@ -3,9 +3,9 @@
     <Zone class="menu">
       <Menu></Menu>
     </Zone>
-    <Zone class="hero">
-      <Hero/>
-    </Zone>
+
+    <router-view></router-view>
+
     <Zone class="appearances">
       <Appearances :appearances="appearances"/>
     </Zone>
@@ -74,9 +74,9 @@
       <Youtube/>
     </Zone>
 
-    <Zone class="contact">
-      <Contact/>
-    </Zone>
+    <!--    <Zone class="contact">
+          <Contact/>
+        </Zone>-->
     <Zone class="footer">
       <Footer/>
     </Zone>
@@ -89,14 +89,15 @@
 import Zone from "@/components/Zone";
 import Page from "@/components/Page";
 import Menu from "@/components/Menu";
-import Hero from "@/components/Hero";
+// import Hero from "@/components/Hero";
 import Youtube from "@/components/Youtube";
 import Appearances from "@/components/appearances/Appearances";
 import Posts from "@/components/posts/Posts";
 import RecentPodcast from "@/components/podcasts/RecentPodcast";
 import ContentCarousel from "@/components/carousel/ContentCarousel";
 import Footer from "@/components/Footer";
-import Contact from "@/components/Contact";
+// import Contact from "@/components/Contact";
+// todo bring back the Content form once the blog is up and doing its job
 import {BlogService} from "@/blog-service";
 import {AppearanceService} from "@/appearance-service";
 import {PodcastService} from "@/podcast-service";
@@ -110,7 +111,6 @@ const blogService = new BlogService()
 const appearanceService = new AppearanceService()
 const podcastService = new PodcastService()
 const contentService = new ContentService()
-
 const recentPostsTitleString = 'Recent Posts'
 const searchResultsTitleString = 'Search Results'
 
@@ -118,6 +118,7 @@ export default {
 
   name: 'App',
   methods: {
+
     setShouldShowMore() {
       this.hasMorePosts = this.posts != null && this.posts.length > this.maxResults
     },
@@ -179,7 +180,7 @@ export default {
     }
   },
   components: {
-    Contact, Footer, ContentCarousel, RecentPodcast, Posts, Hero, Page, Menu, Zone, Youtube, Appearances
+    /*    Contact, */Footer, ContentCarousel, RecentPodcast, Posts, /*Hero,*/ Page, Menu, Zone, Youtube, Appearances
   }
 }
 </script>
