@@ -7,6 +7,7 @@
     <router-view></router-view>
 
     <Zone class="appearances">
+      <a id="#appearances"></a>
       <Appearances :appearances="appearances"/>
     </Zone>
     <Zone class="recent-posts">
@@ -218,4 +219,22 @@ export default {
   background-image: url("assets/images/buttons/amazon.png");
 }
 
+h1 {
+
+  padding: 0;
+  margin: 0;
+  padding-bottom: calc(var(--page-bottom-pad) * 0.5);
+  padding-top: calc(3 * var(--page-top-pad));
+  color: var(--gray-400);
+
+  font-weight: normal;
+  margin-bottom: var(--page-bottom-pad) ;
+}
+@media screen and (min-width: 1000px) {
+  h1 {
+    font-size: 400%;
+
+  }
+
+}
 </style>
