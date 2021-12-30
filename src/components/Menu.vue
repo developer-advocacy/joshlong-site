@@ -8,9 +8,17 @@
   <div tabindex="1" class="hamburger-menu"></div>
   <div class="links">
 
-    <a href="#">Home</a>
-    <a href="#">About</a>
-    <a href="#">Appearances</a>
+
+
+    <router-link to="/">Home</router-link>
+    <router-link to="/about.html">About</router-link>
+    <!--
+    <router-link :to="{ path: 'register', query: { plan: 'private' }}"
+      >Register</router-link
+
+    -->
+    <router-link to="/#appearances">Appearances</router-link>
+
     <a href="#">Blog</a>
     <a href="#">Abstract</a>
     <a href="#">Livelessons</a>
