@@ -1,0 +1,333 @@
+<template>
+
+  <Zone class="abstracts">
+    <h1> Abstracts </h1>
+
+    <p>All talks are workable in a one-hour slot unless otherwise noted.</p>
+
+    <h2>Bootiful GraphQL</h2>
+
+    <p>Hi Spring fans! Data wants to be free and so much of what we do in the wide and wonderful world of microservices
+      is all about connecting data. It's difficult. There's a tension between how we build well-encapsulated
+      microservices and how we connect their data in our clients. Until now. Facebook open sourced GraphQL in 2015 (also
+      the same year that "Avengers: Age of Ultron," a movie about a psychotic super computer that wanted to take over
+      the world came out. No coincidence, surely...). GraphQL is an alternative to the REST constraint on HTTP. It
+      provides an easy way to model queries (reads, like an HTTP <code>GET</code>), subscriptions (longer-lived,
+      asynchronous notifications sent to the client) and mutations (updates). Join me, Spring Developer Advocate Josh
+      Long (@starbuxman), and we'll look at how to build data gateways for every clients' needs with Spring GraphQL.
+    </p>
+
+    <h2>Bootiful GraalVM</h2>
+
+    <p>Hi, Spring fans! Spring Framework 6 and Spring Boot 3 imply a new baseline, bringing the Spring ecosystem in line
+      with the needs of tomorrow's workloads. A huge part of that is the new baselines of Jakarta EE and Java 17 and the
+      new support for GraalVM native images, based on the work of Spring Native. Join me, Spring Developer Advocate Josh
+      Long, and we'll explore the implications of this exciting new technology for your Spring Boot applications and
+      services. </p>
+
+    <p>We'll look at things like using the GraalVM AOT compiler to produce native images that take up a markedly smaller
+      memory footprint and start up in 10s or maybe hundreds of milliseconds. We'll look at how to containerize those
+      workloads. We'll look at how to tame the GraalVM compiler when something goes wrong. And we'll look at how to
+      teach GraalVM about your custom workloads. </p>
+
+    <h2>Bootiful Edge Services</h2>
+
+    <p>Hi, Spring fans! So much of the difficult of microservices is not the services themselves, but the clients that
+      connect to them. There are just so many things that can go wrong or cause bumps on the road to production! Clients
+      may not speak the same protocols as the services to which they're connecting. Clients may need to adapt the data
+      coming from services to suit their use cases, tailoring them to the user interface' particular requirements. Join
+      me, Spring Developer Advocate Josh Long (@starbuxman) and we'll look at how to use reactive to build better API
+      adapters, how to use Spring GraphQL to build better data integration gateways, and we'll look at Spring Cloud
+      Gateway to build API gateways. </p>
+
+    <h2>Kubernetes Native Java</h2>
+
+    <p>Spring is all about helping developers get to production quickly and safely. These days, "production" is all but
+      guaranteed to mean Kubernetes, and Spring has you covered. Join me, Spring Developer Advocate <a
+          href="https://twitter.com/starbuxman">Josh Long (@starbuxman)</a>, and we'll look at how Spring Boot makes
+      writing blisteringly fast, cloud-native, and scalable services more effortless than ever. </p>
+
+    <h2>The RSocket Revolution</h2>
+
+    <p><a href="http://RSocket.io">RSocket is here!</a> RSocket is a binary, reactive, and operations-friendly wire
+      protocol that integrates that builds on top of Project Reactor. Engineers originally developed RSocket at Netflix.
+      Then they moved to Facebook. RSocket was the fledgling project for the Reactive Foundation, of which the spring
+      team, Lightbend, Facebook, Alibaba, and others are founding members. RSocket represents the operational insight of
+      some of the largest organizations in the world. And, it readily integrates with Spring. Join me, Spring Developer
+      Advocate <a href="http://twitter.com/starbuxman">Josh Long (@starbuxman)</a> in this rapid, reactive ride on the
+      RSocket rocket, and we'll look at the rich Spring support for RSocket and its use in building faster, more robust
+      and more scalable services. </p>
+
+    <ul>
+      <li>How to build RSocket-based controllers in Spring Framework</li>
+      <li>Build RSocket clients using the <code>RSocketRequester</code></li>
+      <li>How to use the <code>rsc</code> client</li>
+      <li>Build processing pipelines using Spring Integration</li>
+      <li>Secure our services with Spring Security</li>
+      <li>Introduce bidirectional communication</li>
+      <li>and more!</li>
+    </ul>
+
+    <h2>Reactive Spring</h2>
+
+    <p>Microservices and big-data increasingly confront us with the limitations of traditional input/output. In
+      traditional IO, work that is IO-bound dominates threads. This wouldn't be such a big deal if we could add more
+      threads cheaply, but threads are expensive on the JVM, and most other platforms. Even if threads were cheap and
+      infinitely scalable, we'd still be confronted with the faulty nature of networks. Things break, and they often do
+      so in subtle, but non-exceptional ways. Traditional approaches to integration bury the faulty nature of networks
+      behind overly simplifying abstractions. We need something better. </p>
+
+    <p>Spring Framework 5 is here! It introduces the Spring developer to a growing world of support for reactive
+      programming across the Spring portfolio, starting with a new Netty-based web runtime, component model and module
+      called Spring WebFlux, and then continuing to Spring Data Kay, Spring Security 5.0, Spring Boot 2.0 and Spring
+      Cloud Finchley. Sure, it sounds like a lot, but don't worry! Join me, your guide, Spring developer advocate Josh
+      Long, and we'll explore the wacky, wonderful world of Reactive Spring together.</p>
+
+    <h2>Bootiful Testing (1-3h)</h2>
+
+    <p>How would you feel if you knew that any pat of the code was at most a few minutes away from being shippable and
+      delivered into production? How would you feel if you knew that any part of the code is a few ctrl+z's away from
+      being shippable and delivered into production? Emboldened and confident? Test driven development (TDD) gives you
+      that. TDD allows you to proceed with confidence that you're building the right thing. It provides you with
+      imminent-horizons that you can meet and measure. TDD gives developers the confidence to go faster, secure in the
+      knowledge that what they break they will fix and be able to improve. In this talk, join Spring Developer Advocate
+      Josh Long (@starbuxman) as he looks at how to test Spring applications and services. We'll look at how to test
+      basic components, mocks, how to take advantage of test slices, and how to test web applications. We'll also look
+      at how to ensure that API producers and API consumers work well together using consumer driven contract testing
+      (CDCT) without sacrificing the testing pyramid for end-to-end integration tests.</p>
+
+    <h2>Bootiful Kotlin</h2>
+
+    <p>Spring Boot, the convention-over-configuration centric framework from the Spring team at Pivotal, marries
+      Spring's flexibility with conventional, common sense defaults to make application development on the JVM not just
+      fly, but pleasant! Spring Boot aims to make address the common functional and non-functional requirements that
+      gate quickly moving to production. The framework is as clean as it gets, wouldn't it be nice if the language
+      matched its elegance?</p>
+
+    <p>Kotlin, the productivity-focused language from our friends at JetBrains, takes up the slack to make the
+      experience leaner, cleaner and even more pleasant!</p>
+
+    <p>The Spring and Kotlin teams have worked hard to make sure that Kotlin and Spring Boot are a first-class
+      experience for all developers trying to get to production, faster and safer. Come for the Spring and stay for the
+      Bootiful Kotlin.</p>
+
+    <h2>Cloud Native Java (3-6h)</h2>
+
+    <p>“It is not necessary to change. Survival is not mandatory.” -W. Edwards Deming</p>
+
+    <p>Work takes time to flow through an organization and ultimately be deployed to production where it captures value.
+      It’s critical to reduce time-to-production. Software - for many organizations and industries - is a competitive
+      advantage. Organizations break their larger software ambitions into smaller, independently deployable, feature
+      -centric batches of work - microservices. In order to reduce the round-trip between stations of work,
+      organizations collapse or consolidate as much of them as possible and automate the rest; developers and operations
+      beget “devops,” cloud-based services and platforms automate operations work and break down the need for ITIL
+      tickets and change management boards. But velocity, for velocity’s sake, is dangerous. Microservices invite
+      architectural complexity that few are prepared to address. In this talk, we’ll look at how high performance
+      organizations like Ticketmaster, Alibaba, and Netflix make short work of that complexity with Spring Boot and
+      Spring Cloud.</p>
+
+    <h2>Cloud Native Java (2 days)</h2>
+
+    <p>In this workshop we'll look at how to build cloud-native Java systems that are elastic, agile, observable and
+      robust.</p>
+
+    <ul>
+      <li><p>Bootcamp: this will be our first hands-on experience. It'll be useful as a way to validate that we have
+        most everything required for the course</p>
+
+        <ul>
+          <li>First Steps with Spring</li>
+          <li>First Steps with Spring Boot</li>
+          <li>First Steps with Kubernetes</li>
+        </ul>
+      </li>
+      <li><p>Reactive Programming </p>
+
+        <ul>
+          <li>Motivating Reactive Programming</li>
+          <li>Reactor</li>
+          <li>Spring Webflux and Spring Data R2DBC</li>
+          <li>Testing Reactive Applications</li>
+        </ul>
+      </li>
+      <li><p>Kotlin </p>
+
+        <ul>
+          <li>Reactive Streams and coroutines</li>
+        </ul>
+      </li>
+      <li><p>RSocket </p>
+
+        <ul>
+          <li>basic client/services</li>
+          <li>bidirection client/services</li>
+          <li>Spring Integration</li>
+        </ul>
+      </li>
+      <li><p>Edge Services </p>
+
+        <ul>
+          <li>API Gateways with Spring Cloud Gateway</li>
+          <li>Reactive service orchestration and composition</li>
+          <li>Reliability Patterns like circuit breakers</li>
+          <li>GraphQL</li>
+        </ul>
+      </li>
+      <li><p>Building Observable Services </p>
+
+        <ul>
+          <li>the Spring Boot Actuator</li>
+          <li>TSDBs and Micrometer</li>
+          <li>Distributed Tracing with Spring Cloud Sleuth</li>
+          <li>The Spring Boot Admin</li>
+        </ul>
+      </li>
+      <li><p>Configuration </p>
+
+        <ul>
+          <li>The Spring Environment abstraction</li>
+          <li>the Refresh Scope</li>
+          <li>The Spring Cloud Config Server</li>
+          <li>Reading data from config trees and environment variables in a Kubernetes environment</li>
+          <li>Reading and re-reading configuration data directly from the Kubernetes <code>ConfigMap</code> structure
+            itself using the API and Spring Cloud Kubernetes' ConfigMap support
+          </li>
+        </ul>
+      </li>
+      <li><p>Service Registration and Discovery </p>
+
+        <ul>
+          <li>Discovery Servers</li>
+          <li>Client-side Loadbalancing</li>
+        </ul>
+      </li>
+      <li><p>Packaging for Production </p>
+
+        <ul>
+          <li>Docker, Buildpacks, KPack, etc.</li>
+          <li>Spring Native and GraalVM</li>
+        </ul>
+      </li>
+      <li><p>Working with the Kubernetes API from Spring </p>
+
+        <ul>
+          <li>using the Kubernetes Java API</li>
+          <li>Turning the application into a native binary with GraalVM and Spring Native</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>Cloud Native Java (5-10 Days)</h2>
+
+    <p>“It is not necessary to change. Survival is not mandatory.” -W. Edwards Deming</p>
+
+    <p>Work takes time to flow through an organization and ultimately be deployed to production where it captures value.
+      It’s critical to reduce time-to-production. Software - for many organizations and industries - is a competitive
+      advantage.</p>
+
+    <p>Organizations break their larger software ambitions into smaller, independently deployable, feature -centric
+      batches of work - microservices. In order to reduce the round-trip between stations of work, organizations
+      collapse or consolidate as much of them as possible and automate the rest; developers and operations beget
+      “devops,” cloud-based services and platforms automate operations work and break down the need for ITIL tickets and
+      change management boards.</p>
+
+    <p>But velocity, for velocity’s sake, is dangerous. Microservices invite architectural complexity that few are
+      prepared to address. In this talk, we’ll look at how high performance organizations like Ticketmaster, Alibaba,
+      and Netflix make short work of that complexity with Spring Boot and Spring Cloud.</p>
+
+    <p>In this workshop we'll look at how to build cloud-native Java applications. A cloud native application is:</p>
+
+    <ul>
+      <li>elastic</li>
+      <li>agile</li>
+      <li>observable</li>
+      <li>robust</li>
+    </ul>
+
+    <p>A cloud native application is one that is designed to fully exploit a cloud platform both in the application
+      layer - where things decompose into microservices - and at the data layer where NoSQL offers better horizontal
+      scaling and fitness for specific purpose. This is what we mean by <em>elastic</em>.</p>
+
+    <p>A cloud native application is one that is <em>agile</em>. It should be easy to write, change, test, deploy and
+      operate. If the cost of change is prohibitive then normal people under normal situations won't do it. We must make
+      doing the right thing - that which supports change - the easy thing.</p>
+
+    <p>A cloud native system is <em>observable</em>. It must support at-a-glance insight into what is happening in the
+      system and support remediation. It must be instrumented at the application and systems levels to support the
+      effort of crisis-management.</p>
+
+    <p>A cloud native application is one that is <em>fault tolerant</em>, or <em>robust</em>. If a service should fail,
+      the system must be able to recover and degrade gracefully. Instead of trying to build a system that is predicated
+      on the lie that things are highly available, build instead to optimize for time to remediation.</p>
+
+    <p>In this workshop we'll cover:</p>
+
+    <ul>
+      <li><p><em>Basics</em> - we'll look at Spring Boot application development concepts like auto-configuration and
+        embedded web container deployments (Spring Boot)</p></li>
+      <li><p><em>REST APIs</em> - we'll look at concerns like API versioning and hypermedia. (Spring MVC, Spring Boot,
+        Spring HATEOAS)</p></li>
+      <li><p><em>Data Access</em> - we'll model a service domain and define bounded contexts. (Spring Boot, Spring Data)
+      </p></li>
+      <li><p><em>Observability</em> - what happens when there's a problem with your production application? How quickly
+        can your team respond? How do you know if you're making improvements to a system? How do you measure progress?
+        How do you monitor individual applications? How do you monitor the flow of requests through circuit breakers?
+        How do you trace requests across the system? Can you visualize all the services in the system? We'll look at how
+        to surface information about your services and systems. (Spring Boot Actuator, Micrometer, Graphite, Spring
+        Cloud Sleuth, OpenZipkin, Spring Cloud Hystrix Dashboard)</p></li>
+      <li><p><em>Testing</em> - we'll look at the concepts of test-driven development. We'll cover unit testing
+        individual components and mock them out. We'll look at how to test service interfaces. We'll look at how to
+        write integration tests that don't sacrifice speed in order to be exhaustive using consumer driven contracts and
+        consumer driven contract testing. (JUnit, Spring Boot, Spring MVC Test Framework, Spring Cloud Contract)</p>
+      </li>
+      <li><p><em>Routing and Load-Balancing</em> - where does your service live? How do your clients find it? How do you
+        handle custom routing requirements? How do you handle custom load-balancing? (Spring Cloud, Ribbon)</p></li>
+      <li><p><em>Message-driven and integration-centric architectures</em> - We'll look at how to build microservices
+        that talk to each other over messaging fabrics like Apache Kafka or RabbitMQ. We'll look at how to integrate
+        existing systems and how to use messaging to connect disparate systems. (RabbitMQ, Spring Integration, Spring
+        Cloud Stream)</p></li>
+      <li><p><em>Stream Processing</em> - We'll look at how to build solutions that process ongoing data over time.
+        We'll look at how to compose messaging-based microservices and orchestrate them over a cloud-based fabric.
+        (Spring Cloud Stream, Spring Cloud Data Flow)</p></li>
+      <li><p><em>Partitioned Batch Processing</em> - In this section we'll look at how to process large amounts of
+        sequential data and scale the processing across a cloud fabric. We'll look at how to scale processing
+        horizontally as our processing needs demand. (Spring Batch, Spring Integration)</p></li>
+      <li><p><em>Reliability Patterns</em> - In this section we'll look at how to employ retries and circuit breakers to
+        build fault-tolerence into service invocations. We'll look at approaches to gracefully degrade if a service
+        invocation should fail. (Spring Cloud Hystrix, Spring Retry, Spring Boot)</p></li>
+      <li><p><em>Ad-hoc Task Processing</em> - Need to send an email? Resize an image? Generate a report? In this
+        section we'll look at a few ways to distribute these longer-running workloads across a cloud fabric. (Spring
+        Batch, Spring Cloud Task, Spring Cloud Data Flow)</p></li>
+      <li><p><em>Workflow</em> - In this section we'll look at how to use a workflow engine to choreograph work across a
+        cloud platform, using messaging-centric microservics and incorporating human actors to achieve a result.
+        (Activiti, Spring Cloud Stream)</p></li>
+      <li><p><em>Edge-services</em> - In this section we'll look at how to build client-centric adapter APIs. and
+        concerns like rate limiting, backends-for-front-ends, proxying, and other cross-cutting concerns. (Spring Cloud,
+        Zuul, Spring Cloud Gateway)</p></li>
+      <li><p><em>Security</em> - In this section we'll look at how to secure individual microservices. We'll look at how
+        to perpetuate authenticated principals across service invocations with OAuth. (Spring Boot, Spring Security
+        OAuth, Spring Cloud Security)</p></li>
+      <li><p><em>Service Registration and Discovery</em> - In this section we'll look at how to register and discover
+        services dynamically with a service registry like Netflix Eureka or Hashicorp Consul. (Spring Cloud)</p></li>
+      <li><p><em>Functions-as-a-service</em> - In this section we'll look at how to build serverless-style applications
+        (Spring Cloud Function)</p></li>
+    </ul>
+
+
+  </Zone>
+</template>
+<style>
+.abstracts a {
+  color: var(--gray-400);
+}
+
+</style>
+<script>
+import Zone from "./Zone";
+
+export default {
+  name: 'Abstracts',
+  components: {Zone},
+  props: {}
+}
+</script>

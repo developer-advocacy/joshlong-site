@@ -4,11 +4,13 @@ import NotFound from "./components/NotFound";
 import {createRouter, createWebHistory} from "vue-router";
 import Hero from "./components/Hero";
 import About from "./components/About.vue";
+import Abstracts from "./components/Abstracts.vue";
 
 const routes = [
     {path: '/', name: 'Home', component: Hero},
     {path: '/about.html', name: 'About', component: About },
-    {path: '/:catchAll(.*)', name: 'Notfound', component: NotFound}
+    {path: '/abstracts.html', name: 'Abstracts', component: Abstracts },
+    {path: '/:catchAll(.*)', name: 'Notfound', component: NotFound} ,
 ]
 
 const router = createRouter({

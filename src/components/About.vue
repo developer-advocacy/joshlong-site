@@ -16,7 +16,6 @@
         href="http://BootifulPodcast.fm">"A Bootiful Podcast"</a>) and
       a <a href="http://bit.ly/spring-tips-playlist">YouTuber</a>.
 
-
     </div>
 
     <img width="400" src="https://joshlong.com/media/josh-0.png"/>

@@ -8,8 +8,6 @@
   <div tabindex="1" class="hamburger-menu"></div>
   <div class="links">
 
-
-
     <router-link to="/">Home</router-link>
     <router-link to="/about.html">About</router-link>
     <!--
@@ -18,9 +16,9 @@
     -->
     <router-link to="/#appearances">Appearances</router-link>
 
-    <a href="#">Blog</a>
-    <a href="#">Abstract</a>
-    <a href="#">Livelessons</a>
+<!--    <a href="#">Blog</a>-->
+    <router-link to="/abstracts.html">Abstracts</router-link>
+    <a href="/livelessons.html">Livelessons</a>
     <a href="#">Books</a>
 <!--    <a href="#">Contact</a>-->
     <div>
