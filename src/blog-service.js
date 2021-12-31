@@ -20,13 +20,6 @@ export class BlogService {
         return blogPostResultsToPosts(response)
     }
 
-
-    /*
-     *
-     * this mapper expects a collection of results,
-     * but this graphql query only returns a single value.
-     *
-     */
     async byPath(path) {
         console.log('searching for path ' + path)
         const graphqlQuery = `
@@ -59,7 +52,6 @@ export class BlogService {
         const response = (await graphqlJson(this.blogPostFragment + graphqlQuery, {query: query})) ['data']['search']
         return blogPostResultsToPosts(response)
     }
-
 
     constructor() {
         this.blogPostFragment = `

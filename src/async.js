@@ -6,10 +6,6 @@ export function createPromiseForGraphqlQuery(graphQlclient, query) {
                 query: query,
                 variables: ['query'],
                 variableValues: ['title: "Apache"'],
-                /*
-                variables?: Record<string, unknown> | null;
-                readonly extensions
-                */
             },
             {
                 next: (data) => (result = data),

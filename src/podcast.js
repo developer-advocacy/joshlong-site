@@ -1,5 +1,4 @@
 export class Podcast {
-
     constructor(id, uid, title, description, episodeUri, episodePhotoUri, date) {
         this.id = id
         this.uid = uid
