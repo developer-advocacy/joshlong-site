@@ -1,4 +1,5 @@
 // https://javascript.plainenglish.io/routing-in-vue-3-6f1e48ecd4b1
+// https://router.vuejs.org/api/#to
 // import App from "./App";
 import NotFound from "./components/NotFound";
 import {createRouter, createWebHistory} from "vue-router";
