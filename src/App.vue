@@ -5,16 +5,12 @@
       <Menu></Menu>
     </Zone>
 
-
-
     <router-view></router-view>
 
     <a name="appearances"></a>
     <Zone class="appearances">
-
       <Appearances :appearances="appearances"/>
     </Zone>
-
 
     <Zone class="recent-posts">
 
@@ -45,15 +41,12 @@
       <Posts :posts="posts" :truncated="hasMorePosts"/>
     </Zone>
 
-
     <Zone class="podcast">
       <RecentPodcast :podcast="podcast"/>
     </Zone>
 
-
     <a name="books"></a>
     <Zone class="books" v-if="booksContent.length > 0 ">
-
       <ContentCarousel :content="booksContent">
         <template v-slot:title>
           Books
@@ -68,12 +61,9 @@
       </ContentCarousel>
     </Zone>
 
-
     <a name="livelessons"></a>
     <Zone class="livelessons">
-
       <ContentCarousel :content="livelessonsContent" v-if="livelessonsContent.length > 0 " side="l">
-
         <template v-slot:title>
           Livelessons
         </template>
