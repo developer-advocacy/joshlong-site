@@ -1,15 +1,20 @@
 <template>
   <Page title="JoshLong.com - Hi, Spring fans!">
+
+
     <Zone class="menu">
       <Menu></Menu>
     </Zone>
 
     <router-view></router-view>
 
+    <a name="appearances"></a>
     <Zone class="appearances">
-      <a id="#appearances"></a>
+
       <Appearances :appearances="appearances"/>
     </Zone>
+
+
     <Zone class="recent-posts">
 
       <div class="search">
@@ -38,10 +43,18 @@
       </div>
       <Posts :posts="posts" :truncated="hasMorePosts"/>
     </Zone>
+
+
+
     <Zone class="podcast">
       <RecentPodcast :podcast="podcast"/>
     </Zone>
+
+
+
+    <a name="books"></a>
     <Zone class="books" v-if="booksContent.length > 0 ">
+
       <ContentCarousel :content="booksContent">
         <template v-slot:title>
           Books
@@ -55,7 +68,11 @@
         </template>
       </ContentCarousel>
     </Zone>
-    <Zone class="livelessons">
+
+
+    <a name="livelessons"></a>
+    <Zone  class="livelessons">
+
       <ContentCarousel :content="livelessonsContent" v-if="livelessonsContent.length > 0 " side="l">
 
         <template v-slot:title>
@@ -75,9 +92,6 @@
       <Youtube/>
     </Zone>
 
-    <!--    <Zone class="contact">
-          <Contact/>
-        </Zone>-->
     <Zone class="footer">
       <Footer/>
     </Zone>

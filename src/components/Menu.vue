@@ -1,26 +1,24 @@
 <template>
 
 
-<!-- todo: make this menu work and make the popup mobile menu
-          based on JS, not just weird CSS pseudo elements
- -->
+  <!-- todo: make this menu work and make the popup mobile menu
+            based on JS, not just weird CSS pseudo elements
+   -->
   <div class="logo">Josh Long</div>
   <div tabindex="1" class="hamburger-menu"></div>
   <div class="links">
-
-    <router-link to="/">Home</router-link>
-    <router-link to="/about.html">About</router-link>
+<!--    <router-link to="/">Home</router-link>-->
+    <a href="/">Home</a>
+    <a href="/about.html">About</a>
+<!--    <router-link to="/about.html#top">About</router-link>-->
     <!--
     <router-link :to="{ path: 'register', query: { plan: 'private' }}"
       >Register</router-link
     -->
-    <router-link to="/#appearances">Appearances</router-link>
-
-<!--    <a href="#">Blog</a>-->
-    <router-link to="/abstracts.html">Abstracts</router-link>
-    <a href="/livelessons.html">Livelessons</a>
-    <a href="#">Books</a>
-<!--    <a href="#">Contact</a>-->
+    <a href="/#appearances">Appearances</a>
+    <a href="/#livelessons">Livelessons</a>
+    <a href="/#books">Books</a>
+    <a href="/abstracts.html">Abstracts</a>
     <div>
       <!-- don't delete this div! for some reason chrome renders
       these <a> elements as super small unless this div is here
@@ -41,8 +39,11 @@ export default {
 }
 </script>
 
-<style >
+<style>
 .menu {
+
+
+  z-index: 1000;
   padding-top: var(--page-top-pad);
   padding-bottom: var(--common-gutter);
   color: var(--white);
@@ -85,6 +86,7 @@ export default {
   grid-area: links;
   display: none;
 
+
 }
 
 .menu > .links {
@@ -107,6 +109,7 @@ export default {
 }
 
 @media screen and (min-width: 1000px) {
+
   .menu .logo {
     font-size: x-large;
   }
@@ -136,6 +139,10 @@ export default {
   }
 
   .menu {
+
+    position: fixed;
+    width: 100%;
+
     grid-template-areas: "logo links social-icons";
     grid-template-columns: 150px  auto 200px;
   }

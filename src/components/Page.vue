@@ -1,6 +1,7 @@
 <template>
 
 
+  <a name="top"></a>
   <slot></slot>
 
 </template>

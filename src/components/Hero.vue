@@ -9,7 +9,7 @@
         best-selling video trainer, open-source contributor,
         podcaster and YouTuber: hi, Spring fans! 👋
       </div>
-      <button>
+      <button type="button" onclick="window.location='about.html'" >
         Get to know me
       </button>
     </div>
@@ -26,6 +26,7 @@ import Zone from "@/components/Zone";
 export default {
   name: 'Hero',
   props: {},
+
   components: {
     Zone
   }

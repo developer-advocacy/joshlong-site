@@ -1,6 +1,4 @@
 <template>
-
-
     <div class="recent-posts-columns">
       <div v-for="post in posts " :key="post.path ">
         <div class="recent-post-panel">
@@ -16,6 +14,7 @@
     <div v-if="!truncated " class="buttons">
       <button>See More</button>
   </div>
+
 </template>
 <script>
 export default {
