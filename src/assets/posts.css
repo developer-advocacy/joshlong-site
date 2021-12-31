@@ -1,0 +1,74 @@
+.recent-post-panel {
+    padding: var(--common-gutter);
+    display: inline-block;
+    width: 100%;
+}
+
+a.read-post {
+    color: var(--gray-400);
+    font-size: small;
+    text-align: right;
+    display: block;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.post a {
+    color: var(--gray-400)
+}
+
+.post {
+    padding-top: var(--page-top-pad);
+}
+
+.recent-post {
+    width: 100%;
+    display: inline-block;
+    filter: drop-shadow(calc(var(--common-gutter) / 2) calc(var(--common-gutter) / 2) calc(var(--common-gutter) / 2) var(--gray-300));
+    background-color: var(--white);
+    padding: var(--common-gutter);
+    border-radius: var(--common-gutter);
+}
+
+.recent-post img {
+    width: 100%;
+    border: 1px solid var(--gray-100);
+}
+
+.post .date {
+    font-size: medium;
+    margin-bottom: 0 ;
+    margin-top:  0 ;
+}
+
+
+.recent-post .date {
+    font-size: smaller;
+    z-index: 1000;
+    color: black;
+    /*color: var(--green-700);*/
+    margin-bottom: var(--common-gutter);
+    margin-top: var(--common-gutter);
+}
+.post h2 {
+    margin-bottom: 0 ;
+    margin-top: calc(var(--common-gutter) / 2 ) ;
+}
+.recent-post h2, .post h2 {
+    font-weight: bold;
+    color: var(--gray-800);
+    margin-bottom: var(--common-gutter);
+}
+
+.recent-post .text p {
+    color: var(--gray-500);
+}
+
+
+@media screen and (min-width: 1000px) {
+    .recent-posts .recent-posts-columns {
+        column-count: 3;
+        column-gap: 0;
+    }
+}

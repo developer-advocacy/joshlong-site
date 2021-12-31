@@ -1,10 +1,11 @@
 <template>
   <Page title="JoshLong.com - Hi, Spring fans!">
 
-
     <Zone class="menu">
       <Menu></Menu>
     </Zone>
+
+
 
     <router-view></router-view>
 
@@ -45,11 +46,9 @@
     </Zone>
 
 
-
     <Zone class="podcast">
       <RecentPodcast :podcast="podcast"/>
     </Zone>
-
 
 
     <a name="books"></a>
@@ -71,7 +70,7 @@
 
 
     <a name="livelessons"></a>
-    <Zone  class="livelessons">
+    <Zone class="livelessons">
 
       <ContentCarousel :content="livelessonsContent" v-if="livelessonsContent.length > 0 " side="l">
 
@@ -104,24 +103,17 @@
 import Zone from "@/components/Zone";
 import Page from "@/components/Page";
 import Menu from "@/components/Menu";
-// import Hero from "@/components/Hero";
 import Youtube from "@/components/Youtube";
 import Appearances from "@/components/appearances/Appearances";
 import Posts from "@/components/posts/Posts";
 import RecentPodcast from "@/components/podcasts/RecentPodcast";
 import ContentCarousel from "@/components/carousel/ContentCarousel";
 import Footer from "@/components/Footer";
-// import Contact from "@/components/Contact";
-// todo bring back the Content form once the blog is up and doing its job
 import {BlogService} from "@/blog-service";
 import {AppearanceService} from "@/appearance-service";
 import {PodcastService} from "@/podcast-service";
 import {ContentService} from "@/content-service";
 
-// todo set it up so that the recents posts also supports a search functionality, so either u get the latest N posts OR the search results.
-// todo also make it so that each posts has a link that lands on the right page
-// todo does vuejs support DI? it would be nice to extract out the blogService into another layer
-//
 const blogService = new BlogService()
 const appearanceService = new AppearanceService()
 const podcastService = new PodcastService()
@@ -203,6 +195,7 @@ export default {
 <style>
 
 @import url("assets/forms.css");
+@import url("assets/posts.css");
 
 .hint {
   font-size: smaller;
@@ -242,8 +235,9 @@ h1 {
   color: var(--gray-400);
 
   font-weight: normal;
-  margin-bottom: var(--page-bottom-pad) ;
+  margin-bottom: var(--page-bottom-pad);
 }
+
 @media screen and (min-width: 1000px) {
   h1 {
     font-size: 400%;

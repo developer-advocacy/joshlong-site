@@ -1,12 +1,20 @@
 <template>
 
-    <div class="social-icons">
-      <img src="~@/assets/images/social-icons.png" alt="social icons"/>
-    </div>
-    <div class="name"> Josh Long</div>
-    <div class="copyright">©2021 Josh Long. All rights reserved.</div>
+  <div class="social-icons">
+    <img src="~@/assets/images/social-icons.png" alt="social icons"/>
+  </div>
+  <div class="name"> Josh Long</div>
+  <div class="copyright">©{{ year }} Josh Long. All rights reserved.</div>
 
 </template>
+<script>
+export default {
+  name: 'Footer',
+  data() {
+    return {year: new Date().getFullYear()   }
+  }
+}
+</script>
 <style>
 
 

@@ -6,17 +6,18 @@ import {createRouter, createWebHistory} from "vue-router";
 import Hero from "./components/Hero";
 import About from "./components/About.vue";
 import Abstracts from "./components/Abstracts.vue";
+import Post from "./components/posts/Post.vue";
 
 const routes = [
     {path: '/', name: 'Home', component: Hero},
-    {path: '/about.html', name: 'About', component: About },
-    {path: '/abstracts.html', name: 'Abstracts', component: Abstracts },
-    {path: '/:catchAll(.*)', name: 'Notfound', component: NotFound} ,
+    {path: '/about.html', name: 'About', component: About},
+    {path: '/jl/blogPost/:postUri', name: 'Post', component: Post, props: true},
+    {path: '/abstracts.html', name: 'Abstracts', component: Abstracts},
+    {path: '/:catchAll(.*)', name: 'Notfound', component: NotFound},
 ]
 
 const router = createRouter({
     history: createWebHistory(),
     routes: routes
 })
-console.log('exporting the router')
 export default router
