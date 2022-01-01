@@ -7,5 +7,7 @@ export class Podcast {
         this.episodeUri = episodeUri
         this.episodePhotoUri = episodePhotoUri
         this.date = date
+
+
     }
 }

@@ -3,7 +3,7 @@ import {graphqlJson} from "@/graphql";
 import {Post} from "@/post";
 
 function blogPostResultsToPosts(data) {
-    return data.map(r => new Post(r['date'], r['title'], r['pathId'], r['heroParagraphs'], r['heroImageUrl']))
+    return data.map(r => new Post(r['date'], r['title'], r['pathId'], r['heroParagraphs'], r['heroImage']))
 }
 
 export class BlogService {

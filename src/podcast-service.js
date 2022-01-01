@@ -8,9 +8,9 @@ function podcastsResultsToPodcasts(data) {
         r['title'],
         r['description'],
         r['episodeUri'],
-        r['episodePhotoUri'],
+        r['heroImage'],
         r['date']
-    ))
+    ));
 }
 
 export class PodcastService {
