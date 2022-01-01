@@ -1,0 +1,41 @@
+name: Deploy
+
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  GKE_CLUSTER: joshlong-com
+  GKE_ZONE: us-central1-c
+  GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+#  DEPLOYMENT_NAME: gke-hello-app # TODO: update deployment name if changed in deployment.yaml
+
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    name: Setup and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+      - uses: google-github-actions/setup-gcloud@v0
+
+      - run: |
+          gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+          kubectl get pods
+#
+#      - uses: actions/setup-node@master
+#        with:
+#          node-version: '16.x'
+#
+#      - name: Deploy Site
+#        run: |
+#          cd $GITHUB_WORKSPACE
+#          export PATH=$GITHUB_WORKSPACE/bin/:$PATH
+#          (curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.14.2/pack-v0.14.2-linux.tgz" | sudo tar -C $GITHUB_WORKSPACE/bin/ --no-same-owner -xzv pack)
+#          ./deploy/deploy.sh
