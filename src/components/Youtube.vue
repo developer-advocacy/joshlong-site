@@ -9,9 +9,12 @@
       applications.
     </p>
     <div class="buttons">
-      <button class="icon youtube">Learn on Youtube</button>
-      <button class="icon twitter">Follow on Twitter</button>
-      <button class="icon spring-site">Get Started Now</button>
+      <button class="icon youtube" onclick="window.location='https://bit.ly/spring-tips-playlist'">Learn on Youtube
+      </button>
+      <button class="icon twitter" onclick="window.location = 'https://twitter.com/springtipslive'">Follow on Twitter
+      </button>
+      <button class="icon spring-site" onclick="window.location = 'http://github.com/spring-tips'">Get Started Now
+      </button>
       <!--            <button class="icon leanpub">Buy on Leanpub</button>-->
     </div>
   </div>
@@ -118,7 +121,6 @@
 }
 
 </style>
-
 
 
 <script>
