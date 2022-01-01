@@ -9,7 +9,5 @@ export class Post {
         this.day = this.date.getUTCDate();
         this.year = this.date.getUTCFullYear();
         this.month = this.date.toLocaleString('default', {month: 'short'})
-
-        console.log(hiu)
     }
 }
