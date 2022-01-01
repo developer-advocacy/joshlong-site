@@ -2,7 +2,7 @@
 
   <Zone class="hero">
     <div class="text">
-      <div class="name">Josh Long</div>
+      <h1 class="name">Josh Long</h1>
       <div class="description ">
         A Spring Developer Advocate, Java Champion,
         Kotlin Google Developer Expert, author of numerous books,
@@ -73,8 +73,8 @@ export default {
 }
 
 .hero > .text > .name {
-  font-size: xxx-large;
-  line-height: 2em;
+  /*font-size: xxx-large;*/
+  /*line-height: 2em;*/
   display: none;
 }
 

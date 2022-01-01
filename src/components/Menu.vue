@@ -5,10 +5,11 @@
   <div v-bind:class="{  'links' : true, 'menuOpen': this.hamburgerMenuOpen ,'menuClosed' : !this.hamburgerMenuOpen }">
     <a href="/">Home</a>
     <a href="/about.html">About</a>
-    <a href="/#appearances">Appearances</a>
     <a href="/#livelessons">Livelessons</a>
     <a href="/#books">Books</a>
     <a href="/abstracts.html">Abstracts</a>
+    <a href="/#appearances">Appearances</a>
+
     <div>
       <!--
             don't delete this div! for some reason chrome renders these
