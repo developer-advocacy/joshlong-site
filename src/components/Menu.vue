@@ -63,12 +63,6 @@ export default {
   display: block;
 }
 
-/*.menu > .hamburger-menu:focus + .links {
-  !* TODO this should be a javascript handler because any links clicked within don't work! *!
-
-  display: block;
-}*/
-
 .menu > .hamburger-menu {
   display: block;
   grid-area: hamburger;
@@ -137,10 +131,8 @@ export default {
   }
 
   .menu {
-
     position: fixed;
     width: 100%;
-
     grid-template-areas: "logo links social-icons";
     grid-template-columns: 150px  auto 200px;
   }
