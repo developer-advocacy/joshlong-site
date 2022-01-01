@@ -8,7 +8,7 @@ function podcastsResultsToPodcasts(data) {
         r['title'],
         r['description'],
         r['episodeUri'],
-        r['heroImage'],
+        r['episodePhotoUri'],
         r['date']
     ));
 }
@@ -24,6 +24,7 @@ export class PodcastService {
             }
         `
         const response = (await graphqlJson(this.podcastsFragment + graphqlQuery))['data']['podcasts']
+        console.log(response)
         return podcastsResultsToPodcasts(response)
     }
 

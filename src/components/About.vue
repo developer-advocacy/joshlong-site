@@ -25,6 +25,10 @@
 </template>
 <style>
 
+.about a {
+  color: var(--gray-400);
+}
+
 img {
   display: block
 }
