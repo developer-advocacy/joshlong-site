@@ -2,7 +2,6 @@
   <Page title="JoshLong.com - Hi, Spring fans!">
 
 
-
     <Zone class="menu">
       <Menu></Menu>
     </Zone>
@@ -80,7 +79,7 @@
     </Zone>
 
     <Zone class="youtube-container">
-      <Youtube/>
+      <SpringTips :latestEpisode="latestSpringTipsEpisode"/>
     </Zone>
 
 
@@ -96,7 +95,7 @@
 import Zone from "@/components/Zone";
 import Page from "@/components/Page";
 import Menu from "@/components/Menu";
-import Youtube from "@/components/Youtube";
+import SpringTips from "@/components/SpringTips";
 import Appearances from "@/components/appearances/Appearances";
 import Posts from "@/components/posts/Posts";
 import RecentPodcast from "@/components/podcasts/RecentPodcast";
@@ -106,11 +105,13 @@ import {BlogService} from "@/blog-service";
 import {AppearanceService} from "@/appearance-service";
 import {PodcastService} from "@/podcast-service";
 import {ContentService} from "@/content-service";
+import {SpringTipsService} from "@/springtips-service";
 
 const blogService = new BlogService()
 const appearanceService = new AppearanceService()
 const podcastService = new PodcastService()
 const contentService = new ContentService()
+const springTipsService = new SpringTipsService()
 const recentPostsTitleString = 'Recent Posts'
 const searchResultsTitleString = 'Search Results'
 
@@ -163,10 +164,12 @@ export default {
     this.appearances = await appearanceService.appearances()
     this.booksContent = await contentService.books()
     this.livelessonsContent = await contentService.livelessons()
+    this.latestSpringTipsEpisode = await springTipsService.latestSpringTipsEpisode()
     await this.resetSearch()
   },
   data() {
     return {
+      latestSpringTipsEpisode: null,
       canBeReset: false,
       hasMorePosts: false,
       postsTitle: 'Recent Posts',
@@ -180,8 +183,7 @@ export default {
     }
   },
   components: {
-
-    /*    Contact, */Footer, ContentCarousel, RecentPodcast, Posts, /*Hero,*/ Page, Menu, Zone, Youtube, Appearances
+    Footer, ContentCarousel, RecentPodcast, Posts, Page, Menu, Zone, SpringTips, Appearances
   }
 }
 </script>

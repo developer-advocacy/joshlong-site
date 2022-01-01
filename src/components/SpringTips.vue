@@ -19,7 +19,8 @@
     </div>
   </div>
   <div class="video">
-    <iframe src="https://www.youtube.com/embed/puIJ1Mn9_LE" title="YouTube video player"
+
+    <iframe v-if="latestEpisode" :src="latestEpisode.youtubeEmbedUrl" title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
   </div>
@@ -124,8 +125,9 @@
 
 <script>
 export default {
-  name: 'Youtube',
-  props: {}
+  name: 'SpringTips',
+  props: ['latestEpisode'],
+
 }
 </script>
 

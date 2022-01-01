@@ -33,17 +33,8 @@ export default {
 
 .footer > .social-icons {
   grid-area: icons;
-  /*text-align: center;*/
-  /*border: 1px solid red ;*/
 }
 
-/*
-.footer > .social-icons > img {
-  width: var(--social-icons-dimensions-width);
-  height: var(--social-icons-dimensions-height);
-  align-self: center;
-}
-*/
 
 .footer > .name {
   grid-area: name;
@@ -69,11 +60,12 @@ export default {
 
   .footer > .name {
     text-align: center;
+    font-weight: bold;
   }
 
   .footer {
     grid-template-areas: "icons name copyright";
-    grid-template-columns: 100px 20% 40%;
+    grid-template-columns: 300px auto 300px;
   }
 
 }
