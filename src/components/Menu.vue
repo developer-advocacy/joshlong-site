@@ -1,7 +1,8 @@
 <template>
   <div class="logo">Josh Long</div>
-  <div tabindex="1" class="hamburger-menu"></div>
-  <div class="links">
+  <div tabindex="1" @click="showMenu" class="hamburger-menu"></div>
+  <div   v-bind:class="{  'links' : true,
+   'menuOpen': this.hamburgerMenuOpen ,'menuClosed' : !this.hamburgerMenuOpen }">
     <a href="/">Home</a>
     <a href="/about.html">About</a>
     <a href="/#appearances">Appearances</a>
@@ -19,14 +20,23 @@
 <script>
 export default {
   name: 'Menu',
-  props: {}
+  props: {},
+  data: function () {
+    return {
+      hamburgerMenuOpen: false
+    }
+  },
+  methods: {
+    showMenu() {
+      this.hamburgerMenuOpen = this.hamburgerMenuOpen !== true;
+      console.log('the menu is ', this.hamburgerMenuOpen)
+    }
+  }
 }
 </script>
 
 <style>
 .menu {
-
-
   z-index: 1000;
   padding-top: var(--page-top-pad);
   padding-bottom: var(--common-gutter);
@@ -46,12 +56,18 @@ export default {
 .menu .social-icons {
   display: none;
 }
-
-.menu > .hamburger-menu:focus + .links {
-  /* TODO this should be a javascript handler because any links clicked within don't work! */
-
+.menuClosed {
+  display: none;
+}
+.menuOpen {
   display: block;
 }
+
+/*.menu > .hamburger-menu:focus + .links {
+  !* TODO this should be a javascript handler because any links clicked within don't work! *!
+
+  display: block;
+}*/
 
 .menu > .hamburger-menu {
   display: block;
@@ -68,9 +84,7 @@ export default {
 
 .menu > .links {
   grid-area: links;
-  display: none;
-
-
+  /*display: none;*/
 }
 
 .menu > .links {

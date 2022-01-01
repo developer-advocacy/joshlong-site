@@ -21,7 +21,6 @@ export class BlogService {
     }
 
     async byPath(path) {
-        console.log('searching for path ' + path)
         const graphqlQuery = `
              query ($path: String) {
                 blogPostByPath( path: $path){ 
@@ -35,7 +34,6 @@ export class BlogService {
         `
         const r = (await graphqlJson(graphqlQuery, {path: path})) ['data']['blogPostByPath']
         if (r != null) {
-            console.log(r )
             return new Post(r['date'], r['title'], r['pathId'], r['processedContent'], r['heroImageUrl']);
         }
         return null;

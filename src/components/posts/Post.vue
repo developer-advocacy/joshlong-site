@@ -22,10 +22,8 @@ export default {
   data() {
     return {post: null}
   },
-
   async created() {
     this.post = (await blogService.byPath(this.postUri))
-    console.log('the results are ', this.post.html  )
   },
 }
 </script>
