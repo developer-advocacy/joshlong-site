@@ -1,6 +1,8 @@
 <template>
   <Page title="JoshLong.com - Hi, Spring fans!">
 
+
+
     <Zone class="menu">
       <Menu></Menu>
     </Zone>
@@ -80,6 +82,7 @@
     <Zone class="youtube-container">
       <Youtube/>
     </Zone>
+
 
     <Zone class="footer">
       <Footer/>
@@ -177,6 +180,7 @@ export default {
     }
   },
   components: {
+
     /*    Contact, */Footer, ContentCarousel, RecentPodcast, Posts, /*Hero,*/ Page, Menu, Zone, Youtube, Appearances
   }
 }

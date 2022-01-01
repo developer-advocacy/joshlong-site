@@ -24,7 +24,6 @@ export class PodcastService {
             }
         `
         const response = (await graphqlJson(this.podcastsFragment + graphqlQuery))['data']['podcasts']
-        console.log(response)
         return podcastsResultsToPodcasts(response)
     }
 

@@ -1,15 +1,15 @@
 <template>
 
-  <div class="social-icons">
-    <img src="~@/assets/images/social-icons.png" alt="social icons"/>
-  </div>
+  <div class="social-icons"><SocialIcons/></div>
   <div class="name"> Josh Long</div>
   <div class="copyright">©{{ year }} Josh Long. All rights reserved.</div>
 
 </template>
 <script>
+import SocialIcons from "@/components/SocialIcons";
 export default {
   name: 'Footer',
+  components: {SocialIcons},
   data() {
     return {year: new Date().getFullYear()   }
   }
@@ -24,8 +24,7 @@ export default {
   padding-bottom: calc(2 * var(--page-bottom-pad));
   background-color: var(--gray-900);
   display: grid;
-  grid-template-areas:
-                        "name"
+  grid-template-areas:  "name"
                         "icons"
                         "copyright";
   grid-template-columns: auto;
@@ -34,14 +33,17 @@ export default {
 
 .footer > .social-icons {
   grid-area: icons;
-  text-align: center;
+  /*text-align: center;*/
+  /*border: 1px solid red ;*/
 }
 
+/*
 .footer > .social-icons > img {
   width: var(--social-icons-dimensions-width);
   height: var(--social-icons-dimensions-height);
   align-self: center;
 }
+*/
 
 .footer > .name {
   grid-area: name;
@@ -71,7 +73,7 @@ export default {
 
   .footer {
     grid-template-areas: "icons name copyright";
-    grid-template-columns: 40% 20% 40%;
+    grid-template-columns: 100px 20% 40%;
   }
 
 }

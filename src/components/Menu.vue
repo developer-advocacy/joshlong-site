@@ -1,8 +1,8 @@
 <template>
   <div class="logo">Josh Long</div>
   <div tabindex="1" @click="showMenu" class="hamburger-menu"></div>
-  <div   v-bind:class="{  'links' : true,
-   'menuOpen': this.hamburgerMenuOpen ,'menuClosed' : !this.hamburgerMenuOpen }">
+
+  <div v-bind:class="{  'links' : true, 'menuOpen': this.hamburgerMenuOpen ,'menuClosed' : !this.hamburgerMenuOpen }">
     <a href="/">Home</a>
     <a href="/about.html">About</a>
     <a href="/#appearances">Appearances</a>
@@ -10,16 +10,24 @@
     <a href="/#books">Books</a>
     <a href="/abstracts.html">Abstracts</a>
     <div>
-      <!-- don't delete this div! for some reason chrome renders these <a> elements as super small unless this div is here -->
+      <!--
+            don't delete this div! for some reason chrome renders these
+            <a> elements as super small unless this div is here
+      -->
     </div>
   </div>
+
   <div class="social-icons">
-    <img alt="social icons" :src="require('@/assets/images/social-icons.png')"/>
+    <SocialIcons/>
   </div>
+
 </template>
 <script>
+import SocialIcons from "@/components/SocialIcons";
+
 export default {
   name: 'Menu',
+  components: {SocialIcons},
   props: {},
   data: function () {
     return {
@@ -53,12 +61,10 @@ export default {
   align-items: center;
 }
 
-.menu .social-icons {
-  display: none;
-}
 .menuClosed {
   display: none;
 }
+
 .menuOpen {
   display: block;
 }
@@ -110,15 +116,6 @@ export default {
     display: none;
   }
 
-  .menu .social-icons {
-    grid-area: social-icons;
-    background: url("~@/assets/images/social-icons.png") no-repeat;
-    background-size: 200px 20px;
-    height: 20px;
-    display: block;
-    width: 200px;
-  }
-
   .menu > .links > a {
     display: inline;
     margin: 0;
@@ -134,7 +131,7 @@ export default {
     position: fixed;
     width: 100%;
     grid-template-areas: "logo links social-icons";
-    grid-template-columns: 150px  auto 200px;
+    grid-template-columns: 150px  auto 100px;
   }
 }
 

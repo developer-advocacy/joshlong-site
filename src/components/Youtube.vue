@@ -15,10 +15,9 @@
       </button>
       <button class="icon spring-site" onclick="window.location = 'http://github.com/spring-tips'">Get Started Now
       </button>
-      <!--            <button class="icon leanpub">Buy on Leanpub</button>-->
+
     </div>
   </div>
-
   <div class="video">
     <iframe src="https://www.youtube.com/embed/puIJ1Mn9_LE" title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
