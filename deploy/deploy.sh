@@ -47,7 +47,7 @@ image_id=$(docker images -q $APP_NAME)
 echo "the Github SHA is ${GITHUB_SHA}"
 
 docker tag "${image_id}" ${IMAGE_NAME}:${GITHUB_SHA}
-docker tag "${image_id}" ${IMAGE_NAME}:latest
+#docker tag "${image_id}" ${IMAGE_NAME}:latest
 
 echo ${IMAGE_NAME}:${GITHUB_SHA}
 echo ${IMAGE_NAME}:latest
