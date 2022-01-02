@@ -15,7 +15,7 @@ spec:
         app: site
     spec:
       containers:
-        - image: gcr.io/bootiful/joshlong-com-site@sha256:e787fae59a046e37a4cbb4920e4f43f838eb1b1f7fd2263b38d9a33368c4fef7
+        - image: gcr.io/bootiful/joshlong-com-site
           imagePullPolicy: Always
           name: site
           env:
