@@ -15,7 +15,7 @@ spec:
         app: site
     spec:
       containers:
-        - image: gcr.io/bootiful/joshlong-com-site
+        - image: gcr.io/bootiful/joshlong-com-site:latest
           imagePullPolicy: Always
           name: site
           env:
