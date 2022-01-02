@@ -35,4 +35,5 @@ docker image tag "${image_id}" ${IMAGE_NAME}:latest
 docker push -a ${IMAGE_NAME}
 echo "docker pushed ${image_id} to ${IMAGE_NAME}."
 gcloud compute addresses list --format json | jq '.[].name' -r | grep $RESERVED_IP_NAME ||  gcloud compute addresses create $RESERVED_IP_NAME --global
+kubectl delete -f $ROOT_DIR/deploy/deployment.yaml || echo "could not delete the deployment. Moving on.."
 kubectl apply -f $ROOT_DIR/deploy/k8s/
