@@ -14,9 +14,7 @@ cd $ROOT_DIR
 rm -rf $ROOT_DIR/build || echo "couldn't reset $ROOT_DIR/build "
 rm -rf $ROOT_DIR/dist || echo "couldn't reset $ROOT_DIR/dist"
 rm $PROD_ENV_FILE || echo "couldn't reset $PROD_ENV_FILE"
-
 touch $PROD_ENV_FILE
-
 echo "VUE_APP_SERVICE_ROOT=${API_ROOT}" >> ${PROD_ENV_FILE}
 echo "VUE_APP_GIT_HASH=${GITHUB_SHA}" >> ${PROD_ENV_FILE}
 echo "--------------------------"

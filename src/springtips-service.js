@@ -20,10 +20,8 @@ export class SpringTipsService {
             }
         `
         const response = (await graphqlJson(this.springTipsEpisodesFragment + graphqlQuery, {}))['data']['latestSpringTipsEpisode']
-        console.log(response)
-        const results  = springTipsEpisodeResults([response])
-        console.log('the results are ' , results.length)
-        return results [0]
+        const results = springTipsEpisodeResults([response])
+        return results[0]
     }
 
 

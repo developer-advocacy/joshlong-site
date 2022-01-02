@@ -1,17 +1,20 @@
 <template>
 
-  <div class="social-icons"><SocialIcons/></div>
+  <div class="social-icons">
+    <SocialIcons/>
+  </div>
   <div class="name"> Josh Long</div>
   <div class="copyright">©{{ year }} Josh Long. All rights reserved.</div>
 
 </template>
 <script>
 import SocialIcons from "@/components/SocialIcons";
+
 export default {
   name: 'Footer',
   components: {SocialIcons},
   data() {
-    return {year: new Date().getFullYear()   }
+    return {year: new Date().getFullYear()}
   }
 }
 </script>

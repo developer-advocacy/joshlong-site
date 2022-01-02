@@ -1,6 +1,6 @@
 export function graphql(graphqlQuery, variables) {
     // https://graphql.org/graphql-js/passing-arguments/
-    const url = 'http://localhost:8080/graphql' // todo make this URL a parameter from the environment or something
+    const url = process.env.VUE_APP_SERVICE_ROOT + '/graphql'
     return window.fetch(url, {
         method: 'POST',
         headers: {
@@ -15,6 +15,6 @@ export function graphql(graphqlQuery, variables) {
 
 }
 
-export async function graphqlJson (q, v) {
-    return (await graphql( q, v) ).json()
+export async function graphqlJson(q, v) {
+    return (await graphql(q, v)).json()
 }

@@ -1,4 +1,5 @@
 export class Podcast {
+
     constructor(id, uid, title, description, episodeUri, episodePhotoUri, date) {
         this.id = id
         this.uid = uid
@@ -7,7 +8,5 @@ export class Podcast {
         this.episodeUri = episodeUri
         this.episodePhotoUri = episodePhotoUri
         this.date = date
-
-
     }
 }

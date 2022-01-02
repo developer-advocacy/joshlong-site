@@ -38,7 +38,6 @@ export default {
   methods: {
     showMenu() {
       this.hamburgerMenuOpen = this.hamburgerMenuOpen !== true;
-      console.log('the menu is ', this.hamburgerMenuOpen)
     }
   }
 }

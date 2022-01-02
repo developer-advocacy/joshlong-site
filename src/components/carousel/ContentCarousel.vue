@@ -14,10 +14,12 @@
   text-align: center;
   color: #667085;
 }
+
 .content a {
   color: var(--green-600);
   font-weight: bold;
 }
+
 .content-showcase > h2 {
   color: var(--gray-900);
   font-style: normal;
@@ -153,7 +155,6 @@
 }
 
 
-
 .content .covers {
   /*grid-area: covers;*/
   display: grid;
@@ -264,19 +265,22 @@ export default {
   props: ['content', 'side'],
   data() {
     return {
-
       orientationClass: {
         'right': true,
         'left': false,
       },
-
       tallestCover: null,
       contentTitle: '',
       contentDescription: '',
       leftArrowActive: false,
       rightArrowActive: false,
       sized: false,
-      activeIndex: 0, leftIndex: 0, rightIndex: 0, activeUrl: '', leftUrl: '', rightUrl: ''
+      activeIndex: 0,
+      leftIndex: 0,
+      rightIndex: 0,
+      activeUrl: '',
+      leftUrl: '',
+      rightUrl: ''
     }
   },
   methods: {
