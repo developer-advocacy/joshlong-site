@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   annotations:
     ingress.kubernetes.io/force-ssl-redirect: "true"
-    networking.gke.io/managed-certificates: "site-certificate"
+    networking.gke.io/managed-certificates: "joshlong-site-certificate"
     kubernetes.io/ingress.global-static-ip-name: "joshlong-com-site-ip"
   name: site-ingress
 spec:
