@@ -28,14 +28,14 @@ jobs:
       - run: |
           gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
           kubectl get pods
-#
-#      - uses: actions/setup-node@master
-#        with:
-#          node-version: '16.x'
-#
-#      - name: Deploy Site
-#        run: |
-#          cd $GITHUB_WORKSPACE
-#          export PATH=$GITHUB_WORKSPACE/bin/:$PATH
-#          (curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.14.2/pack-v0.14.2-linux.tgz" | sudo tar -C $GITHUB_WORKSPACE/bin/ --no-same-owner -xzv pack)
-#          ./deploy/deploy.sh
+
+      - uses: actions/setup-node@master
+        with:
+          node-version: '16.x'
+
+      - name: Deploy Site
+        run: |
+          cd $GITHUB_WORKSPACE
+          export PATH=$GITHUB_WORKSPACE/bin/:$PATH
+          (curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.14.2/pack-v0.14.2-linux.tgz" | sudo tar -C $GITHUB_WORKSPACE/bin/ --no-same-owner -xzv pack)
+          ./deploy/deploy.sh
