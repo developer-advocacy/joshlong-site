@@ -12,7 +12,6 @@ export PROD_ENV_FILE=${ROOT_DIR}/.env.production
 export RESERVED_IP_NAME=${APP_NAME}-ip
 
 
-
 echo "--------------------------"
 echo "The environment contains: "
 echo APP_NAME=$APP_NAME
