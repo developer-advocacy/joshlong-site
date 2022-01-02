@@ -5,9 +5,8 @@ set -o pipefail
 
 ## i setup ROOT_DIR=$GITHUB_WORKSPACE in the deploy.yaml for the github action
 export APP_NAME=joshlong-com-site
-export IMAGE_TAG="${GITHUB_SHA:-}"
 export GCR_IMAGE_NAME=gcr.io/${PROJECT_ID}/${APP_NAME}
-export IMAGE_NAME=${GCR_IMAGE_NAME}:${IMAGE_TAG}
+export IMAGE_NAME=${GCR_IMAGE_NAME}:${GITHUB_SHA}
 export PROD_ENV_FILE=${ROOT_DIR}/.env.production
 export RESERVED_IP_NAME=${APP_NAME}-ip
 
@@ -16,7 +15,6 @@ echo "--------------------------"
 echo "The environment contains: "
 echo APP_NAME=$APP_NAME
 echo ROOT_DIR=$ROOT_DIR
-echo IMAGE_TAG=$IMAGE_TAG
 echo GCR_IMAGE_NAME=$GCR_IMAGE_NAME
 echo IMAGE_NAME=$IMAGE_NAME
 echo PROD_ENV_FILE=$PROD_ENV_FILE
@@ -55,7 +53,7 @@ echo "docker pushed ${image_id} to $IMAGE_NAME "
 
 gcloud compute addresses list --format json | jq '.[].name' -r | grep $RESERVED_IP_NAME ||  gcloud compute addresses create $RESERVED_IP_NAME --global
 
-cd $ROOT_DIR/k8s/
+cd $ROOT_DIR/deploy/k8s/
 kubectl apply -f .
 
 
