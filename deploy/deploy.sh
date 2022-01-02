@@ -43,20 +43,19 @@ cp $ROOT_DIR/deploy/nginx-buildpack-config/* ${ROOT_DIR}/build
 cp -r $ROOT_DIR/dist/* ${ROOT_DIR}/build/public
 cd $ROOT_DIR/build
 
-pack build $APP_NAME --builder paketobuildpacks/builder:full --buildpack gcr.io/paketo-buildpacks/nginx:latest  --env PORT=8080
-image_id=$(docker images -q $APP_NAME)
-
-docker tag "${image_id}" $IMAGE_NAME
-echo "docker tagged ${GCR_IMAGE_NAME}"
-docker push $IMAGE_NAME
-echo "docker pushed ${image_id} to $IMAGE_NAME "
+#
+#pack build $APP_NAME --builder paketobuildpacks/builder:full --buildpack gcr.io/paketo-buildpacks/nginx:latest  --env PORT=8080
+#image_id=$(docker images -q $APP_NAME)
+#
+#docker tag "${image_id}" $IMAGE_NAME
+#echo "docker tagged ${GCR_IMAGE_NAME}"
+#docker push $IMAGE_NAME
+#echo "docker pushed ${image_id} to $IMAGE_NAME "
 
 gcloud compute addresses list --format json | jq '.[].name' -r | grep $RESERVED_IP_NAME ||  gcloud compute addresses create $RESERVED_IP_NAME --global
 
 cd $ROOT_DIR/deploy/k8s/
 kubectl apply -f .
 
-
-#
 #kustomize edit set image $GCR_IMAGE_NAME=$IMAGE_NAME
 #kustomize build ${OD} | kubectl apply -f -

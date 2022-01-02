@@ -8,9 +8,10 @@ metadata:
   name: site-ingress
 spec:
   rules:
-  - host: joshlong.com
+    - host: joshlong.com
     http:
       paths:
-      - backend:
+        - backend:
           serviceName: site
           servicePort: 80
+          #  networking.k8s.io/v1
