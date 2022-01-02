@@ -8,7 +8,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app:  site
+      app: site
   template:
     metadata:
       labels:
@@ -17,7 +17,7 @@ spec:
       containers:
         - image: gcr.io/bootiful/joshlong-com-site:latest
           imagePullPolicy: Always
-          name:  site
+          name: site
           env:
             - name: PORT
               value: "8080"
