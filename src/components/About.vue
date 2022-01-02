@@ -18,8 +18,8 @@
 
     </div>
 
-    <img width="400" src="https://joshlong.com/media/josh-0.png"/>
-    <img width="400" src="https://joshlong.com/media/josh-1.jpg"/>
+    <img width="400" src="https://api.joshlong.com/media/josh-0.png"/>
+    <img width="400" src="https://api.joshlong.com/media/josh-1.jpg"/>
 
   </Zone>
 </template>
