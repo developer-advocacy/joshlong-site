@@ -3,7 +3,6 @@
 set -e
 set -o pipefail
 
-## i setup ROOT_DIR=$GITHUB_WORKSPACE in the deploy.yaml for the github action
 export APP_NAME=joshlong-com-site
 export IMAGE_NAME=gcr.io/${PROJECT_ID}/${APP_NAME}
 export PROD_ENV_FILE=${ROOT_DIR}/.env.production
