@@ -25,6 +25,7 @@ jobs:
       - uses: google-github-actions/setup-gcloud@v0
 
       - run: |
+          gcloud config set project $PROJECT_ID
           gcloud --quiet auth configure-docker
           gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
           kubectl get pods
