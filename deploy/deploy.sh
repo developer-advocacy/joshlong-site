@@ -5,7 +5,7 @@ set -o pipefail
 
 ## i setup ROOT_DIR=$GITHUB_WORKSPACE in the deploy.yaml for the github action
 export APP_NAME=joshlong-com-site
-export IMAGE_TAG="${GITHUB_SHA:-latest}"
+export IMAGE_TAG="${GITHUB_SHA:-}"
 export GCR_IMAGE_NAME=gcr.io/${PROJECT_ID}/${APP_NAME}
 export IMAGE_NAME=${GCR_IMAGE_NAME}:${IMAGE_TAG}
 export PROD_ENV_FILE=${ROOT_DIR}/.env.production
