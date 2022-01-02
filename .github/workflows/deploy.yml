@@ -24,6 +24,7 @@ jobs:
 
       - uses: google-github-actions/setup-gcloud@v0
 
+
       - run: |
           gcloud config set project $PROJECT_ID
           gcloud --quiet auth configure-docker
