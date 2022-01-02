@@ -5,7 +5,8 @@ env:
   GKE_CLUSTER: joshlong-com
   GKE_ZONE: us-central1-c
   GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
-  API_ROOT: http://api.joshlong.com
+  API_ROOT: http://104.197.29.11
+#  API_ROOT: http://api.joshlong.com
 
 on:
   push:
