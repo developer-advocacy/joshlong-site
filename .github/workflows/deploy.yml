@@ -5,8 +5,7 @@ env:
   GKE_CLUSTER: joshlong-com
   GKE_ZONE: us-central1-c
   GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
-  ROOT_DIR: ${{ env.GITHUB_WORKSPACE }}
-#  DEPLOYMENT_NAME: gke-hello-app # TODO: update deployment name if changed in deployment.yaml
+  ROOT_DIR: ${{ GITHUB_WORKSPACE }}
 
 
 on:
