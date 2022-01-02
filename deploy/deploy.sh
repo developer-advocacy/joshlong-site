@@ -5,21 +5,9 @@ set -o pipefail
 
 ## i setup ROOT_DIR=$GITHUB_WORKSPACE in the deploy.yaml for the github action
 export APP_NAME=joshlong-com-site
-export GCR_IMAGE_NAME=gcr.io/${PROJECT_ID}/${APP_NAME}
-export IMAGE_NAME=${GCR_IMAGE_NAME}
+export IMAGE_NAME=gcr.io/${PROJECT_ID}/${APP_NAME}
 export PROD_ENV_FILE=${ROOT_DIR}/.env.production
 export RESERVED_IP_NAME=${APP_NAME}-ip
-
-
-echo "--------------------------"
-echo "The environment contains: "
-echo APP_NAME=$APP_NAME
-echo ROOT_DIR=$ROOT_DIR
-echo GCR_IMAGE_NAME=$GCR_IMAGE_NAME
-echo IMAGE_NAME=$IMAGE_NAME
-echo PROD_ENV_FILE=$PROD_ENV_FILE
-echo RESERVED_IP_NAME=$RESERVED_IP_NAME
-echo "--------------------------"
 
 cd $ROOT_DIR
 
@@ -47,9 +35,10 @@ image_id=$(docker images -q $APP_NAME)
 echo "the Github SHA is ${GITHUB_SHA}"
 
 PUSH_NAME=${IMAGE_NAME}:${GITHUB_SHA}
-docker tag "${image_id}" ${IMAGE_NAME}:${GITHUB_SHA}
-docker tag "${image_id}" ${IMAGE_NAME}:latest
-docker push "$PUSH_NAME"
+docker image tag "${image_id}" ${IMAGE_NAME}:${GITHUB_SHA}
+docker image tag "${image_id}" ${IMAGE_NAME}:latest
+docker push -a ${IMAGE_NAME}
+
 echo "docker pushed ${image_id} to $IMAGE_NAME "
 gcloud compute addresses list --format json | jq '.[].name' -r | grep $RESERVED_IP_NAME ||  gcloud compute addresses create $RESERVED_IP_NAME --global
 kubectl delete -f $ROOT_DIR/deploy/k8s/deployment.yaml || echo "couldn't delete the existing deployment..."
