@@ -6,7 +6,7 @@ set -o pipefail
 ## i setup ROOT_DIR=$GITHUB_WORKSPACE in the deploy.yaml for the github action
 export APP_NAME=joshlong-com-site
 export GCR_IMAGE_NAME=gcr.io/${PROJECT_ID}/${APP_NAME}
-export IMAGE_NAME=${GCR_IMAGE_NAME}:${GITHUB_SHA}
+export IMAGE_NAME=${GCR_IMAGE_NAME}
 export PROD_ENV_FILE=${ROOT_DIR}/.env.production
 export RESERVED_IP_NAME=${APP_NAME}-ip
 
@@ -44,7 +44,8 @@ cp -r $ROOT_DIR/dist/* ${ROOT_DIR}/build/public
 cd $ROOT_DIR/build
 pack build $APP_NAME --builder paketobuildpacks/builder:full --buildpack gcr.io/paketo-buildpacks/nginx:latest  --env PORT=8080
 image_id=$(docker images -q $APP_NAME)
-docker tag "${image_id}" $IMAGE_NAME
+docker tag "${image_id}" $IMAGE_NAME:${GITHUB_SHA}
+docker tag "${image_id}" ${IMAGE_NAME}:latest
 echo "docker tagged ${GCR_IMAGE_NAME}"
 docker push ${IMAGE_NAME}
 echo "docker pushed ${image_id} to $IMAGE_NAME "
