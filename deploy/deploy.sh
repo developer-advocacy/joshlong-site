@@ -24,11 +24,11 @@ echo PROD_ENV_FILE=$PROD_ENV_FILE
 echo RESERVED_IP_NAME=$RESERVED_IP_NAME
 echo "--------------------------"
 
-
 cd $ROOT_DIR
-rm -rf $ROOT_DIR/build
-rm -rf $ROOT_DIR/dist
-rm $PROD_ENV_FILE
+
+rm -rf $ROOT_DIR/build || echo "couldn't reset $ROOT_DIR/build "
+rm -rf $ROOT_DIR/dist || echo "couldn't reset $ROOT_DIR/dist"
+rm $PROD_ENV_FILE || echo "couldn't reset $PROD_ENV_FILE"
 
 touch $PROD_ENV_FILE
 
