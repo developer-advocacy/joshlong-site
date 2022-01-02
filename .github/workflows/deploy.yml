@@ -24,21 +24,17 @@ jobs:
 
       - uses: google-github-actions/setup-gcloud@v0
 
-
       - run: |
           gcloud config set project $PROJECT_ID
           gcloud --quiet auth configure-docker
           gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
           kubectl get pods
-          
           docker pull busybox
           docker tag busybox gcr.io/$PROJECT_ID/bb
           docker push gcr.io/$PROJECT_ID/bb
           echo "Finished pushing to my repository." 
-          
-          
 
-- uses: actions/setup-node@master
+      - uses: actions/setup-node@master
         with:
           node-version: '16.x'
 
