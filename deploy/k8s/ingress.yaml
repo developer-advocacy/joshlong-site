@@ -2,9 +2,9 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    ingress.kubernetes.io/force-ssl-redirect: "true"
-    networking.gke.io/managed-certificates: "joshlong-site-certificate"
     kubernetes.io/ingress.global-static-ip-name: "joshlong-com-site-ip"
+#    ingress.kubernetes.io/force-ssl-redirect: "true"
+#    networking.gke.io/managed-certificates: "joshlong-site-certificate"
   name: site-ingress
 spec:
   rules:
