@@ -4,4 +4,4 @@ metadata:
   name: site-certificate
 spec:
   domains:
-    - development.bootifulpodcast.fm
+    - joshlong.com
