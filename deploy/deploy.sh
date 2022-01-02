@@ -49,9 +49,9 @@ pack build $APP_NAME --builder paketobuildpacks/builder:full --buildpack gcr.io/
 image_id=$(docker images -q $APP_NAME)
 
 docker tag "${image_id}" $IMAGE_NAME
+echo "docker tagged ${GCR_IMAGE_NAME}"
 docker push $IMAGE_NAME
-echo "pushing ${image_id} to $IMAGE_NAME "
-echo "tagging ${GCR_IMAGE_NAME}"
+echo "docker pushed ${image_id} to $IMAGE_NAME "
 
 gcloud compute addresses list --format json | jq '.[].name' -r | grep $RESERVED_IP_NAME ||  gcloud compute addresses create $RESERVED_IP_NAME --global
 

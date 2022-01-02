@@ -29,20 +29,5 @@ jobs:
           gcloud --quiet auth configure-docker
           gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
           kubectl get pods
-          docker pull busybox
-          docker tag busybox gcr.io/$PROJECT_ID/bb
-          docker push gcr.io/$PROJECT_ID/bb
-          echo "Finished pushing to my repository." 
+          gcloud compute addresses list --format json  
 
-      - uses: actions/setup-node@master
-        with:
-          node-version: '16.x'
-
-      - name: Deploy Site
-        run: |
-          cd $GITHUB_WORKSPACE
-          mkdir -p $GITHUB_WORKSPACE/bin
-          export PATH=$GITHUB_WORKSPACE/bin/:$PATH
-          (curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.14.2/pack-v0.14.2-linux.tgz" | sudo tar -C $GITHUB_WORKSPACE/bin/ --no-same-owner -xzv pack)
-          export ROOT_DIR=$GITHUB_WORKSPACE
-          ./deploy/deploy.sh
