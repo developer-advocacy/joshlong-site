@@ -46,11 +46,11 @@ pack build $APP_NAME --builder paketobuildpacks/builder:full --buildpack gcr.io/
 image_id=$(docker images -q $APP_NAME)
 echo "the Github SHA is ${GITHUB_SHA}"
 
+PUSH_NAME=${IMAGE_NAME}:${GITHUB_SHA}
 docker tag "${image_id}" ${IMAGE_NAME}:${GITHUB_SHA}
-docker push ${IMAGE_NAME}:${GITHUB_SHA}
+docker tag "${image_id}" ${IMAGE_NAME}:latest
+docker push "$PUSH_NAME"
 echo "docker pushed ${image_id} to $IMAGE_NAME "
-
 gcloud compute addresses list --format json | jq '.[].name' -r | grep $RESERVED_IP_NAME ||  gcloud compute addresses create $RESERVED_IP_NAME --global
-kubectl apply -f $ROOT_DIR/deploy/k8s/
-#kustomize edit set image $GCR_IMAGE_NAME=$IMAGE_NAME
-#kustomize build ${OD} | kubectl apply -f -
+kubectl delete -f $ROOT_DIR/deploy/k8s/deployment.yml
+kubectl apply -f $ROOT_DIR/deploy/k8s/deployment.yml
