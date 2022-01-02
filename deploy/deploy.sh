@@ -47,12 +47,7 @@ image_id=$(docker images -q $APP_NAME)
 echo "the Github SHA is ${GITHUB_SHA}"
 
 docker tag "${image_id}" ${IMAGE_NAME}:${GITHUB_SHA}
-#docker tag "${image_id}" ${IMAGE_NAME}:latest
-
-echo ${IMAGE_NAME}:${GITHUB_SHA}
-echo ${IMAGE_NAME}:latest
-
-docker push ${IMAGE_NAME}
+docker push ${IMAGE_NAME}:${GITHUB_SHA}
 echo "docker pushed ${image_id} to $IMAGE_NAME "
 
 gcloud compute addresses list --format json | jq '.[].name' -r | grep $RESERVED_IP_NAME ||  gcloud compute addresses create $RESERVED_IP_NAME --global
