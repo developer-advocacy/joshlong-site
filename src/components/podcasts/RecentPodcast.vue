@@ -1,32 +1,37 @@
 <template>
-<!--  <div v-if="podcast">-->
-
-    <h2>
-      Listen to my Podcast
-    </h2>
-    <div class="podcast-description">
-      I run a podcast called A Bootiful Podcast, a celebration of the heroes that drive the Spring and Java
-      ecosystems. It's also on Twitter (<a href="https://twitter.com/bootifulpodcast">@BootifulPodcast</a>). Here are
-      the episodes.
-    </div>
-    <div class="podcast-logo">
-      <img alt="A Bootiful Podcast" src="~@/assets/images/bootiful-podcast-logo.png"/>
-    </div>
-    <div class="latest-episode-panel"></div>
-    <div class="latest-episode-panel-content">
-      <div class="image">
-        <img v-if="podcast" alt="the latest guest needs no introduction.." :src="podcast.episodePhotoUri"/>
-      </div>
-      <div class="prompt">Latest episode</div>
-      <div class="synopsis">
-        <h3 v-if="podcast"> {{ podcast.title }} </h3>
-        <div v-if="podcast" v-html="podcast.description"></div>
-      </div>
-      <div class="play"></div>
-    </div>
 
 
-<!--  </div>-->
+  <h2>
+    Listen to my Podcast
+  </h2>
+  <div class="podcast-description">
+    I run a podcast called A Bootiful Podcast, a celebration of the heroes that drive the Spring and Java
+    ecosystems. It's also on Twitter (<a href="https://twitter.com/bootifulpodcast">@BootifulPodcast</a>). Here are
+    the episodes.
+  </div>
+  <div class="podcast-logo">
+    <img alt="A Bootiful Podcast" src="~@/assets/images/bootiful-podcast-logo.png"/>
+  </div>
+  <div class="latest-episode-panel"></div>
+  <div class="latest-episode-panel-content">
+    <div class="image">
+      <img v-if="podcast" alt="the latest guest needs no introduction.." :src="podcast.episodePhotoUri"/>
+    </div>
+    <div class="prompt">Latest episode</div>
+    <div class="synopsis">
+      <h3 v-if="podcast"> {{ podcast.title }} </h3>
+      <div v-if="podcast" v-html="podcast.description"></div>
+    </div>
+    <div class="player">
+      <audio v-if="podcast" controls>
+        <source :src="podcast.episodeUri"/>
+      </audio>
+    </div>
+
+
+  </div>
+
+
 </template>
 
 <script>
@@ -34,12 +39,22 @@ export default {
   name: 'RecentPodcast',
   components: {},
   props: ['podcast'],
-  setup() {
+  created() {
   }
 }
 </script>
 <style>
+.player {
+  grid-area: play;
 
+}
+
+.player audio {
+  width: 100%;
+  margin-bottom : calc( var(--page-top-pad)  );
+  margin-top : calc( var(--page-top-pad)  );
+
+}
 
 /* PODCAST */
 .latest-episode-panel-content .image {
@@ -83,7 +98,6 @@ export default {
 
 .podcast > .podcast-logo {
   grid-area: logo;
-
   text-align: center;
   margin-top: calc(2 * var(--common-gutter));
   margin-bottom: calc(2 * var(--common-gutter));
@@ -110,9 +124,11 @@ export default {
   opacity: 1;
   grid-area: panel;
   z-index: 2;
+
   grid-template-areas:
-                "image prompt prompt"
-                "image synopsis play ";
+                "image  prompt  "
+                "image  synopsis  "
+                "play  play";
   grid-template-columns: calc( var(--guest-image-dimension) / 2 ) auto 80px;
   grid-template-rows:     auto auto;
 }
@@ -138,7 +154,7 @@ export default {
 }
 
 
-.latest-episode-panel-content > .play {
+/*.latest-episode-panel-content > .play {
 
   --play-icon-dimensions: 50px;
   background-image: url("~@/assets/images/play.png");
@@ -146,7 +162,7 @@ export default {
   background-size: var(--play-icon-dimensions);
   background-position: center;
   grid-area: play;
-}
+}*/
 
 .latest-episode-panel-content > .synopsis {
   grid-area: synopsis;
@@ -169,6 +185,15 @@ export default {
 }
 
 @media screen and (min-width: 1000px) {
+
+  .latest-episode-panel-content {
+
+    grid-template-areas:
+                "image  prompt  "
+                "image  synopsis  "
+                "image  play";
+
+  }
 
   :root {
     --guest-image-dimension: 200px;
