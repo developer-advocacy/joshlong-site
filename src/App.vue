@@ -170,18 +170,6 @@ export default {
     this.livelessonsContent = await contentService.livelessons()
     this.latestSpringTipsEpisode = await springTipsService.latestSpringTipsEpisode()
     await this.resetSearch()
-
-
-    setTimeout ( function () {
-      const imgs = document.getElementsByTagName('img')
-      for (let i = 0; i < imgs.length; i++) {
-        const img = imgs.item(i)
-        const src = img.src
-        console.log('the source is ', src)
-      }
-
-    } , 2 * 1000)
-
   },
   data() {
     return {
