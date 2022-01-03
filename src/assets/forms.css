@@ -1,7 +1,6 @@
 
 form {
 
-
     display: grid;
     grid-template-columns: auto;
     grid-auto-rows: auto;
@@ -63,9 +62,7 @@ form .buttons {
     text-align: right;
 }
 
-form .buttons button {
-    margin-left: 0 ;
-}
+
 @media screen and (min-width: 1000px) {
 
     form .prompt {
@@ -98,8 +95,6 @@ form .buttons button {
         margin-top: 0;
     }
 
-    form .buttons button {
-        margin-left: var(--common-gutter);
-    }
+
 }
 

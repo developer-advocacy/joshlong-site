@@ -70,9 +70,13 @@
         </template>
         <template v-slot:description>
           <p>
-            I've authored, or co-authored, six books so far.
-            The latest and greatest of these are <strong><em>Reactive Spring</em></strong> and
-            <strong><em>Cloud Native Java</em></strong>.
+            I love working with the <em>Livelessons</em> teams! We have put together a <em>lot</em> of in-depth, online,
+            courses on various things Spring since <strong>2013</strong>. I'm usually the instructor, but on occasion
+            I've been lucky enough to
+            have been able to persuade some of my friends and heroes to collaborate with me, and the results are the
+            stuff of legend.
+            Check them out!
+
           </p>
         </template>
       </ContentCarousel>
@@ -205,20 +209,33 @@ export default {
 /*
   TODO fix the issue with the podcast 'Play' button which, when compressed on mobile devices, gets cropped awkwardly.
 */
-.content .buttons button.icon {
-  border: 1px solid black;
+.content .buttons a.icon {
+  --icon-dimensions: 27px;
+  border: 2px solid black;
+  font-weight: normal;
+  text-decoration: none;
   margin-right: 0;
+  background-repeat: no-repeat;
+  padding: 5px;
+  border-radius: 5px;
+  padding-left: 35px;
+  margin-left: 5px;
+  background-position-x : 5px ;
 }
 
-.content .buttons button.leanpub {
+.content .buttons a.icon.leanpub {
   color: white;
   background-color: black;
   background-image: url("assets/images/buttons/leanpub.png");
+  background-size: var(--icon-dimensions) 14px;
+  background-position-y: 7px ;
+
 }
 
-.content .buttons button.amazon {
+.content .buttons a.icon.amazon {
   color: black;
   background-color: white;
+  background-size: var(--icon-dimensions) var(--icon-dimensions);
   background-image: url("assets/images/buttons/amazon.png");
 }
 
