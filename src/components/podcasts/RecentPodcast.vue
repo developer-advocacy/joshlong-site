@@ -1,11 +1,9 @@
 <template>
-
-
   <h2>
-    Listen to my Podcast
+    A Bootiful Podcast
   </h2>
   <div class="podcast-description">
-    I run a podcast called A Bootiful Podcast, a celebration of the heroes that drive the Spring and Java
+    I run a podcast called <strong>A Bootiful Podcast</strong>, a celebration of the heroes that drive the Spring and Java
     ecosystems. It's also on Twitter (<a href="https://twitter.com/bootifulpodcast">@BootifulPodcast</a>). Here are
     the episodes.
   </div>
@@ -27,11 +25,7 @@
         <source :src="podcast.episodeUri"/>
       </audio>
     </div>
-
-
   </div>
-
-
 </template>
 
 <script>
@@ -44,19 +38,17 @@ export default {
 }
 </script>
 <style>
+
 .player {
   grid-area: play;
-
 }
 
 .player audio {
   width: 100%;
-  margin-bottom : calc( var(--page-top-pad)  );
-  margin-top : calc( var(--page-top-pad)  );
-
+  margin-bottom: calc(var(--page-top-pad));
+  margin-top: calc(var(--page-top-pad));
 }
 
-/* PODCAST */
 .latest-episode-panel-content .image {
   grid-area: image;
   align-content: center;
@@ -126,9 +118,9 @@ export default {
   z-index: 2;
 
   grid-template-areas:
-                "image  prompt  "
-                "image  synopsis  "
-                "play  play";
+                "image prompt    "
+                "image synopsis  "
+                "play  play      ";
   grid-template-columns: calc( var(--guest-image-dimension) / 2 ) auto 80px;
   grid-template-rows:     auto auto;
 }
@@ -147,22 +139,11 @@ export default {
   );
   color: white;
   grid-template-areas:
-                    "listen "
-                    "text "
-                    "logo "
-                    "panel";
+                    "listen   "
+                    "text     "
+                    "logo     "
+                    "panel    ";
 }
-
-
-/*.latest-episode-panel-content > .play {
-
-  --play-icon-dimensions: 50px;
-  background-image: url("~@/assets/images/play.png");
-  background-repeat: no-repeat;
-  background-size: var(--play-icon-dimensions);
-  background-position: center;
-  grid-area: play;
-}*/
 
 .latest-episode-panel-content > .synopsis {
   grid-area: synopsis;
@@ -189,10 +170,9 @@ export default {
   .latest-episode-panel-content {
 
     grid-template-areas:
-                "image  prompt  "
-                "image  synopsis  "
-                "image  play";
-
+                "image prompt   "
+                "image synopsis "
+                "image play     ";
   }
 
   :root {
@@ -201,10 +181,10 @@ export default {
 
   .podcast {
     grid-template-areas:
-                "listen logo"
-                "text logo"
-                "panel panel";
-    grid-template-rows: auto auto   auto;
+                "listen logo    "
+                "text   logo    "
+                "panel  panel   ";
+    grid-template-rows: auto auto auto;
   }
 
 
