@@ -131,6 +131,10 @@ const springTipsService = new SpringTipsService()
 const recentPostsTitleString = 'Recent Posts'
 const searchResultsTitleString = 'Search Results'
 
+/*
+* TODO rework this so that the act of getting the latest is also retriggered in doSearch() if that modality is selected
+*  TODO rework latest() so that it returns a BlogPostSearchResults
+* */
 export default {
 
   name: 'App',
