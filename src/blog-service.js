@@ -3,22 +3,16 @@ import {graphqlJson} from "@/graphql";
 import {Post} from "@/post";
 
 function blogPostResultsToPosts(data) {
-    return data.map(r => new Post(r['date'], r['title'], r['pathId'], r['heroParagraphs'], r['heroImage'], r['heroParagraphsTruncated']))
+    console.log('blogPostResultsToPosts', data.length)
+    const result = []
+    for (let i = 0; i < data.length; i++) {
+        const r = data [i]
+        result.push(new Post(r['date'], r['title'], r['pathId'], r['heroParagraphs'], r['heroImage'], r['heroParagraphsTruncated']))
+    }
+    return result
 }
 
 export class BlogService {
-
-    async recent(c) {
-        const graphqlQuery = ` 
-            query ($count: Int) {
-                recentBlogPosts(count: $count) { 
-                    ...blogPostResults
-                }
-            }
-        `
-        const response = (await graphqlJson(this.blogPostFragment + graphqlQuery, {count: c}))['data']['recentBlogPosts']
-        return blogPostResultsToPosts(response)
-    }
 
     async byPath(path) {
         const graphqlQuery = `
@@ -32,23 +26,49 @@ export class BlogService {
                 } 
              }
         `
-        const r = (await graphqlJson(graphqlQuery, {path: path})) ['data']['blogPostByPath']
+        const r = (await graphqlJson(graphqlQuery, {path: path}))['data']['blogPostByPath']
         if (r != null) {
             return new Post(r['date'], r['title'], r['pathId'], r['processedContent'], r['heroImageUrl']);
         }
         return null;
     }
 
-    async search(query) {
-        const graphqlQuery = `
-            query ($query: String) {
-                search(query: $query ){
+    async recent(c) {
+        const graphqlQuery = ` 
+            query ($count: Int) {
+                recentBlogPosts(count: $count) { 
                     ...blogPostResults
                 }
             }
         `
-        const response = (await graphqlJson(this.blogPostFragment + graphqlQuery, {query: query})) ['data']['search']
+        const response = (await graphqlJson(this.blogPostFragment + graphqlQuery, {count: c}))['data']['recentBlogPosts']
         return blogPostResultsToPosts(response)
+    }
+
+    async search(query, offset, pageSize) {
+        const graphqlQuery = `
+            query($query: String , $offset: Int , $pageSize: Int) {
+                search(query: $query, offset: $offset, pageSize: $pageSize ) {
+                    totalResultsSize
+                    offset
+                    pageSize
+                    posts {
+                        ...blogPostResults
+                    }
+                }
+            }
+        `
+        console.log('the query is ', query, 'the offset is  ', offset, 'the pageSize is', pageSize)
+        const results = (await graphqlJson(this.blogPostFragment + graphqlQuery, {
+            query: query,
+            offset: offset,
+            pageSize: pageSize
+        }))
+        console.log('the results are', results)
+        let r = results ['data'] ['search']
+        console.log("::", r.posts)
+        r.posts = blogPostResultsToPosts( r.posts)
+        return r
     }
 
     constructor() {

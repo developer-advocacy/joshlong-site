@@ -44,7 +44,12 @@
           </div>
         </form>
       </div>
-      <Posts :posts="posts" :truncated="hasMorePosts"/>
+      <Posts
+          :posts="posts"
+          :older-remains="olderRemains"
+          :newer-remains="newerRemains"
+          @newer="newer()" @older="older()"
+      />
     </Zone>
 
     <a name="podcast"></a>
@@ -131,16 +136,30 @@ export default {
   name: 'App',
   methods: {
 
-    setShouldShowMore() {
-      this.hasMorePosts = this.posts != null && this.posts.length > this.maxResults
+    async newer() {
+      console.log('newer()', this.newerRemains, ':', this.olderRemains)
+      if ((this.offset - this.pageSize) <= 0)
+        this.offset = 0
+      else
+        this.offset -= this.pageSize
+      await this.doSearch()
+    },
+    async older() {
+      console.log('older()', this.newerRemains, ':', this.olderRemains)
+      if ((this.offset + this.pageSize) <= this.totalResultsSize)
+        this.offset += this.pageSize
+      await this.doSearch()
     },
 
     async resetSearch() {
       this.postsTitle = recentPostsTitleString
-      this.query = ''
-      this.posts = await blogService.recent(10)
-      this.setShouldShowMore()
+      this.query = 'content: "spring boot"'
       this.canBeReset = false
+      this.offset = 0
+      this.totalResultsSize = 0
+      this.pageSize = 5
+      this.posts = await blogService.recent(10)
+
     },
 
     isValidQuery() {
@@ -151,25 +170,24 @@ export default {
       if (this.isValidQuery()) {
         this.postsTitle = searchResultsTitleString
         this.posts = []
-        const results = await blogService.search(this.query)
-        if (results.length > this.maxResults) {
-          const firstTen = []
-          for (let i = 0; i < results.length; i++) {
-            if (i < this.maxResults) {
-              firstTen[i] = results[i]
-            }
-          }
-          this.posts = firstTen
-
-        } //
-        else {
-          this.posts = results
-        }
+        const results = await blogService.search(this.query, this.offset, this.pageSize)
+        this.doHandleResults(results)
         this.canBeReset = true
       }
-      this.setShouldShowMore()
+    },
+
+    doHandleResults(results) {
+      this.offset = results.offset
+      this.totalResultsSize = results.totalResultsSize
+      this.pageSize = results.pageSize
+      this.posts = results.posts
+      this.newerRemains = results.offset !== 0
+      this.olderRemains = results.offset < results.totalResultsSize
+      console.log('the offset is', this.offset, 'the pageSize', this.pageSize, 'the totalResultSize', this.totalResultsSize)
     }
   },
+
+
   async created() {
     this.podcast = (await podcastService.podcasts())[0]
     this.appearances = await appearanceService.appearances()
@@ -178,11 +196,19 @@ export default {
     this.latestSpringTipsEpisode = await springTipsService.latestSpringTipsEpisode()
     await this.resetSearch()
   },
+
   data() {
     return {
+      // search results
+      offset: 0,
+      totalResultsSize: 0,
+      pageSize: 0,
+      olderRemains: false,
+      newerRemains: false,
+
+      // search results
       latestSpringTipsEpisode: null,
       canBeReset: false,
-      hasMorePosts: false,
       postsTitle: 'Recent Posts',
       maxResults: 10,
       booksContent: [],
