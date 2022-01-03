@@ -99,7 +99,9 @@ export default {
   padding: 0;
   display: block;
   font-weight: 500;
+  text-align: center;
   text-decoration: none;
+  font-size: larger;
 }
 
 .menu .logo {

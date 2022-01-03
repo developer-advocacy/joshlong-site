@@ -41,6 +41,7 @@
       </div>
       <Posts :posts="posts" :truncated="hasMorePosts"/>
     </Zone>
+
     <a name="podcast"></a>
     <Zone class="podcast">
       <RecentPodcast :podcast="podcast"/>
