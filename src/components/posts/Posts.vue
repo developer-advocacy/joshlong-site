@@ -13,9 +13,9 @@
       </div>
     </div>
   </div>
-  <div v-if="!truncated " class="buttons">
+<!--  <div v-if="!truncated " class="buttons">
     <button>See More</button>
-  </div>
+  </div>-->
 
 </template>
 <script>
