@@ -166,11 +166,15 @@
 
 
 .content {
-  /*grid-template-rows: auto auto ;*/
   grid-template-areas:
             "covers "
             "description ";
 }
+
+.content .buttons {
+  text-align: center;
+}
+
 
 
 @media screen and (min-width: 1000px) {
@@ -179,9 +183,8 @@
     --three-covers-width: calc(calc(var(--cover-width) / 2) + var(--active-cover-width) + calc(var(--cover-width) / 2));
   }
 
-  .content {
-
-
+  .content .buttons {
+    text-align: left;
   }
 
   .content.right {

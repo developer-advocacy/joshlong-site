@@ -220,7 +220,7 @@ export default {
   border-radius: 5px;
   padding-left: 35px;
   margin-left: 5px;
-  background-position-x : 5px ;
+  background-position-x: 5px;
 }
 
 .content .buttons a.icon.leanpub {
@@ -228,7 +228,7 @@ export default {
   background-color: black;
   background-image: url("assets/images/buttons/leanpub.png");
   background-size: var(--icon-dimensions) 14px;
-  background-position-y: 7px ;
+  background-position-y: 7px;
 
 }
 
@@ -238,6 +238,7 @@ export default {
   background-size: var(--icon-dimensions) var(--icon-dimensions);
   background-image: url("assets/images/buttons/amazon.png");
 }
+
 
 h1 {
 
