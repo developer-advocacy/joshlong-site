@@ -17,7 +17,7 @@ form {
 }
 
 form label {
-    /*margin-top: calc(3 * var(--common-gutter));*/
+
     margin-bottom: var(--common-gutter);
     margin-top: var(--common-gutter);
     color: var(--white);

@@ -239,6 +239,13 @@ export default {
   background-image: url("assets/images/buttons/amazon.png");
 }
 
+.content .buttons a.icon.livelessons {
+  color: white;
+  background-color: black;
+  background-size: var(--icon-dimensions) var(--icon-dimensions);
+  background-image: url("assets/images/buttons/pearson.png");
+  background-position-y: 2px ;
+}
 
 h1 {
 
