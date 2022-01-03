@@ -3,7 +3,7 @@
 
 
     <Zone class="menu">
-      <Menu></Menu>
+      <Menu/>
     </Zone>
 
     <router-view></router-view>
@@ -41,7 +41,7 @@
       </div>
       <Posts :posts="posts" :truncated="hasMorePosts"/>
     </Zone>
-
+    <a name="podcast"></a>
     <Zone class="podcast">
       <RecentPodcast :podcast="podcast"/>
     </Zone>
@@ -82,6 +82,7 @@
       </ContentCarousel>
     </Zone>
 
+    <a name="youtube"></a>
     <Zone class="youtube-container">
       <SpringTips :latestEpisode="latestSpringTipsEpisode"/>
     </Zone>

@@ -7,8 +7,10 @@
     <a href="/about.html">About</a>
     <a href="/#livelessons">Livelessons</a>
     <a href="/#books">Books</a>
+    <a href="/#podcast">Podcast</a>
     <a href="/abstracts.html">Abstracts</a>
     <a href="/#appearances">Appearances</a>
+    <a href="/#youtube">Spring Tips</a>
 
     <div>
       <!--
@@ -120,6 +122,10 @@ export default {
     display: inline;
     margin: 0;
     padding-right: 0.5em;
+  }
+
+  .menu > .links > a:hover {
+    color: var(--green-600)
   }
 
   .menu > .links {
