@@ -3,7 +3,7 @@ import {graphqlJson} from "@/graphql";
 import {Post} from "@/post";
 
 function blogPostResultsToPosts(data) {
-    return data.map(r => new Post(r['date'], r['title'], r['pathId'], r['heroParagraphs'], r['heroImage']))
+    return data.map(r => new Post(r['date'], r['title'], r['pathId'], r['heroParagraphs'], r['heroImage'], r['heroParagraphsTruncated']))
 }
 
 export class BlogService {
@@ -59,6 +59,7 @@ export class BlogService {
              heroParagraphs
              heroImage 
              date
+             heroParagraphsTruncated
             }
     `
     }

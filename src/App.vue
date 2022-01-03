@@ -145,7 +145,7 @@ export default {
           const firstTen = []
           for (let i = 0; i < results.length; i++) {
             if (i < this.maxResults) {
-              firstTen [i] = results [i]
+              firstTen[i] = results[i]
             }
           }
           this.posts = firstTen

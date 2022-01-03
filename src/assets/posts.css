@@ -1,3 +1,4 @@
+
 .recent-post-panel {
     padding: var(--common-gutter);
     display: inline-block;
@@ -7,8 +8,6 @@
 a.read-post {
     color: var(--gray-400);
     font-size: small;
-    text-align: right;
-    display: block;
     text-transform: uppercase;
     font-weight: bold;
     text-decoration: none;

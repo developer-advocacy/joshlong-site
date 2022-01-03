@@ -78,7 +78,7 @@ export default {
   padding: var(--appearance-event-padding);
   display: grid;
   grid-template-areas:     "date description"
-                                 " .   description";
+                           " .   description";
   grid-template-columns: 100px auto;
   grid-template-rows: auto auto;
 }
