@@ -18,16 +18,16 @@
     </div>
   </div>
 
-  <!--  <div v-if="!truncated " class="buttons">
-      <button>See More</button>
-    </div>-->
+  <div v-if="hasMorePosts " class="buttons">
+    <button>See More</button>
+  </div>
 
 </template>
 <script>
 export default {
   name: 'Posts',
   components: {},
-  props: ['posts', 'truncated', 'postResolver'],
+  props: ['posts', 'hasMorePosts', 'postResolver'],
   created() {
     console.log(this.posts)
     for (let i = 0; i < this.posts.length; i++)

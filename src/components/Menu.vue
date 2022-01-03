@@ -5,12 +5,13 @@
   <div v-bind:class="{  'links' : true, 'menuOpen': this.hamburgerMenuOpen ,'menuClosed' : !this.hamburgerMenuOpen }">
     <a href="/">Home</a>
     <a href="/about.html">About</a>
+    <a href="/#blog">Blog</a>
     <a href="/#livelessons">Livelessons</a>
     <a href="/#books">Books</a>
     <a href="/#podcast">Podcast</a>
-    <a href="/abstracts.html">Abstracts</a>
     <a href="/#appearances">Appearances</a>
     <a href="/#youtube">Youtube</a>
+    <a href="/abstracts.html">Abstracts</a>
 
     <div>
       <!--

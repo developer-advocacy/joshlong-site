@@ -13,6 +13,11 @@
       <Appearances :appearances="appearances"/>
     </Zone>
 
+
+    <!--
+    SEARCH RESULTS
+    -->
+    <a name="blog"></a>
     <Zone class="recent-posts">
 
       <div class="search">
