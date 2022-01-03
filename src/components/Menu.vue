@@ -10,7 +10,7 @@
     <a href="/#podcast">Podcast</a>
     <a href="/abstracts.html">Abstracts</a>
     <a href="/#appearances">Appearances</a>
-    <a href="/#youtube">Spring Tips</a>
+    <a href="/#youtube">Youtube</a>
 
     <div>
       <!--
@@ -86,12 +86,10 @@ export default {
 
 .menu > .links {
   grid-area: links;
-  /*display: none;*/
 }
 
 .menu > .links {
   text-align: center;
-
 }
 
 .menu > .links > a {
