@@ -35,10 +35,10 @@
             </div>
           </div>
           <div class="buttons">
-            <button :disabled="!canBeReset" @click.prevent="resetSearch">
+            <button :disabled="!canBeReset" @click.prevent="doRecent()">
               Reset
             </button>
-            <button :disabled="!isValidQuery()" @click.prevent="doSearch">
+            <button :disabled="!isValidQuery()" @click.prevent="doQuery()">
               Search
             </button>
           </div>
@@ -140,6 +140,25 @@ export default {
   name: 'App',
   methods: {
 
+    async doQuery() {
+      this.callback = async () => await this.runQuery()
+      await this.doSearch()
+    },
+    async doRecent() {
+      const that = this
+      this.callback = async () => await that.runRecent()
+      await this.doSearch()
+    },
+    async runQuery() {
+      if (this.isValidQuery()) {
+        const results = await blogService.search(this.query, this.offset, this.pageSize)
+        this.doHandleResults(searchResultsTitleString, results, true)
+      }
+    },
+    async runRecent() {
+      const results = await blogService.recent(this.offset, this.pageSize)
+      this.doHandleResults(recentPostsTitleString, results, false)
+    },
     async newer() {
       console.log('newer()', this.newerRemains, ':', this.olderRemains)
       if ((this.offset - this.pageSize) <= 0)
@@ -150,43 +169,33 @@ export default {
     },
     async older() {
       console.log('older()', this.newerRemains, ':', this.olderRemains)
-      if ((this.offset + this.pageSize) <= this.totalResultsSize)
+      if ((this.offset + this.pageSize) < this.totalResultsSize)
         this.offset += this.pageSize
       await this.doSearch()
     },
-
-    async resetSearch() {
-      this.postsTitle = recentPostsTitleString
-      this.query = 'content: "spring boot"'
-      this.canBeReset = false
-      this.offset = 0
-      this.totalResultsSize = 0
-      this.pageSize = 5
-      this.posts = await blogService.recent(10)
-
-    },
-
     isValidQuery() {
       return (this.query !== null && this.query.trim() !== '') === true
     },
-
     async doSearch() {
-      if (this.isValidQuery()) {
-        this.postsTitle = searchResultsTitleString
-        this.posts = []
-        const results = await blogService.search(this.query, this.offset, this.pageSize)
-        this.doHandleResults(results)
-        this.canBeReset = true
-      }
+      console.log('doSearch(): the callback should not be null!', (this.callback === null ? 'null' : 'not null'))
+      this.callback()
     },
 
-    doHandleResults(results) {
+    /**
+     * generic function to reset the results regardless of the query that produced them
+     * @param title
+     * @param results
+     * @param canBeReset
+     */
+    doHandleResults(title, results, canBeReset) {
+      this.postsTitle = title
       this.offset = results.offset
       this.totalResultsSize = results.totalResultsSize
       this.pageSize = results.pageSize
       this.posts = results.posts
       this.newerRemains = results.offset !== 0
-      this.olderRemains = results.offset < results.totalResultsSize
+      this.olderRemains = (results.offset + results.pageSize) < results.totalResultsSize
+      this.canBeReset = canBeReset
       console.log('the offset is', this.offset, 'the pageSize', this.pageSize, 'the totalResultSize', this.totalResultsSize)
     }
   },
@@ -198,19 +207,17 @@ export default {
     this.booksContent = await contentService.books()
     this.livelessonsContent = await contentService.livelessons()
     this.latestSpringTipsEpisode = await springTipsService.latestSpringTipsEpisode()
-    await this.resetSearch()
+    await this.doRecent()
   },
 
   data() {
     return {
-      // search results
+      callback: null,// the callback function to invoke when paging for either search or recent posts
       offset: 0,
       totalResultsSize: 0,
-      pageSize: 0,
+      pageSize: 10,
       olderRemains: false,
       newerRemains: false,
-
-      // search results
       latestSpringTipsEpisode: null,
       canBeReset: false,
       postsTitle: 'Recent Posts',

@@ -2,8 +2,13 @@ import {graphqlJson} from "@/graphql";
 
 import {Post} from "@/post";
 
+function blogSearchResults(r) {
+    console.log('the r is', r)
+    r.posts = blogPostResultsToPosts(r.posts)
+    return r
+}
+
 function blogPostResultsToPosts(data) {
-    console.log('blogPostResultsToPosts', data.length)
     const result = []
     for (let i = 0; i < data.length; i++) {
         const r = data [i]
@@ -33,17 +38,25 @@ export class BlogService {
         return null;
     }
 
-    async recent(c) {
+    async recent(offset, pageSize) {
         const graphqlQuery = ` 
-            query ($count: Int) {
-                recentBlogPosts(count: $count) { 
-                    ...blogPostResults
+            query ($offset: Int , $pageSize: Int) {
+                recentBlogPosts(  offset: $offset, pageSize: $pageSize   ) { 
+                        totalResultsSize
+                        offset
+                        pageSize
+                        posts {
+                            ...blogPostResults
+                        }    
                 }
             }
         `
-        const response = (await graphqlJson(this.blogPostFragment + graphqlQuery, {count: c}))['data']['recentBlogPosts']
-        return blogPostResultsToPosts(response)
+        const results = (await graphqlJson(this.blogPostFragment + graphqlQuery, {
+            offset: offset, pageSize: pageSize
+        }))
+        return blogSearchResults(results['data']['recentBlogPosts'])
     }
+
 
     async search(query, offset, pageSize) {
         const graphqlQuery = `
@@ -58,17 +71,13 @@ export class BlogService {
                 }
             }
         `
-        console.log('the query is ', query, 'the offset is  ', offset, 'the pageSize is', pageSize)
         const results = (await graphqlJson(this.blogPostFragment + graphqlQuery, {
             query: query,
             offset: offset,
             pageSize: pageSize
         }))
-        console.log('the results are', results)
-        let r = results ['data'] ['search']
-        console.log("::", r.posts)
-        r.posts = blogPostResultsToPosts( r.posts)
-        return r
+        return blogSearchResults(results ['data'] ['search'])
+
     }
 
     constructor() {
