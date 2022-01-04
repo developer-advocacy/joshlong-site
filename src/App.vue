@@ -1,7 +1,6 @@
 <template>
   <Page title="JoshLong.com - Hi, Spring fans!">
 
-
     <Zone class="menu">
       <Menu/>
     </Zone>
@@ -13,32 +12,19 @@
       <Appearances :appearances="appearances"/>
     </Zone>
 
-
-    <!--
-    SEARCH RESULTS
-    -->
     <a name="blog"></a>
     <Zone class="recent-posts">
-
-      <div class="search">
+      <div class="search-form">
         <form>
-          <div class="prompt">
-            <h2> {{ postsTitle }} </h2>
-          </div>
-          <div class="fields">
-            <label>Query </label>
-            <div>
-              <input v-model="query" required type="text"/>
-              <div class="hint">
-                You can use Lucene queries like : <code> content: "paris" AND title:"2019"</code>
-              </div>
-            </div>
+          <input v-model="query" required type="text"/>
+          <div class="hint">
+            You can use Lucene queries like : <code> content: "paris" AND title:"2019"</code>
           </div>
           <div class="buttons">
-            <button :disabled="!canBeReset" @click.prevent="doRecent()">
+            <button :disabled="!canBeReset" @click.prevent="cancelQuery()" type="submit">
               Reset
             </button>
-            <button :disabled="!isValidQuery()" @click.prevent="doQuery()">
+            <button :disabled="!isValidQuery()" @click.prevent="doQuery()" type="submit">
               Search
             </button>
           </div>
@@ -99,7 +85,7 @@
       <SpringTips :latestEpisode="latestSpringTipsEpisode"/>
     </Zone>
 
-
+    <a name="footer"></a>
     <Zone class="footer">
       <Footer/>
     </Zone>
@@ -139,9 +125,23 @@ const searchResultsTitleString = 'Search Results'
 export default {
   name: 'App',
   methods: {
+
+    isValidQuery() {
+      const v = (this.query !== null && this.query.trim() !== '') === true
+      console.log('is it a valid query? ', v, 'can it be reset? ', this.canBeReset)
+      return v
+    },
+
     async doQuery() {
       this.callback = async () => await this.runQuery()
       await this.doSearch()
+    },
+    async cancelQuery() {
+      console.log('cancelQuery()')
+      // this is a special case that resets the search and then runs the recent query
+      this.offset = 0
+      this.query = ''
+      await this.doRecent()
     },
     async doRecent() {
       this.callback = async () => await this.runRecent()
@@ -171,9 +171,7 @@ export default {
         this.offset += this.pageSize
       await this.doSearch()
     },
-    isValidQuery() {
-      return (this.query !== null && this.query.trim() !== '') === true
-    },
+
     async doSearch() {
       console.log('doSearch(): the callback should not be null! it is:', (this.callback === null ? 'null' : 'not null'))
       this.callback()
@@ -192,7 +190,7 @@ export default {
       this.pageSize = results.pageSize
       this.posts = results.posts
       this.newerRemains = results.offset !== 0
-      this.olderRemains = (results.offset + results.pageSize) < results.totalResultsSize
+      this.olderRemains = (results.offset + results.pageSize) < results.totalResultsSize // &&  ( results.totalResultsSize > results.pageSize )
       this.canBeReset = canBeReset
       console.log('the offset is', this.offset, 'the pageSize', this.pageSize, 'the totalResultSize', this.totalResultsSize)
     }
@@ -236,21 +234,67 @@ export default {
 
 <style>
 
-@import url("assets/forms.css");
 @import url("assets/posts.css");
+
+/* the search form */
 
 .hint {
   font-size: smaller;
-  color: var(--gray-400)
+  color: var(--gray-400) ;
+  grid-area: hint ;
+  text-align: center;
 }
 
-.search form label, .search form .prompt {
-  color: var(--black)
+button:disabled, button[disabled] {
+  color: var(--gray-500);
+  background-color: var(--gray-100);
 }
 
-/*
-  TODO fix the issue with the podcast 'Play' button which, when compressed on mobile devices, gets cropped awkwardly.
-*/
+.search-form input {
+  padding: var(--common-gutter);
+  line-height: calc(var(--common-gutter) * 3);
+  background-color: #fff;
+  text-align: center;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: var(--button-radius);
+  width: 100%;
+  font-size: larger;
+}
+
+.search-form {
+  padding: 5vh;
+}
+
+.search-form form {
+  display: grid;
+  grid-template-areas: ".  query   . "
+                       ".  hint    . "
+                       ". buttons  . ";
+  grid-template-columns: auto 50% auto;
+  grid-row-gap: 10px;
+}
+
+.search-form form input {
+  grid-area: query;
+}
+
+.search-form .buttons {
+  grid-area: buttons;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.search-form .buttons button {
+  text-align: center;
+  margin-right: .5vw;
+  margin-left: .5vw;
+}
+
+/* the search form */
+
 .content .buttons a.icon {
   --icon-dimensions: 27px;
   border: 2px solid black;

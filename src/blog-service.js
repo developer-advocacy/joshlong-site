@@ -4,7 +4,11 @@ import {Post} from "@/post";
 
 function blogSearchResults(r) {
     console.log('the r is', r)
-    r.posts = blogPostResultsToPosts(r.posts)
+
+    if (r !== null) {
+        r.posts = blogPostResultsToPosts(r.posts)
+    }
+
     return r
 }
 

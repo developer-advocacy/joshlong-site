@@ -50,14 +50,8 @@ export default {
 </script>
 <style>
 
-/*<div @click="left()" :class="{'active': leftArrowActive }" class="arrow    left"></div>*/
-/*<div @click="right()" :class="{'active': rightArrowActive }" class="arrow right"></div>*/
-
-
-/**/
 body {
   --link-icon-dimension: 20px;
-
 }
 
 a.link {
@@ -68,52 +62,21 @@ a.read-post {
   grid-area: read;
 }
 
-
 div.links > a {
   text-align: right;
 }
 
-
 a.link {
-
   display: block;
   background-size: var(--link-icon-dimension) var(--link-icon-dimension);
   height: var(--link-icon-dimension);
   width: var(--link-icon-dimension);
   background-image: url("~@/assets/images/link.png");
-
-
 }
 
 .posts-container .navigation {
-
   width: 100%;
-
-
 }
-
-/*
-.posts-container .navigation a {
-  color: var(--gray-400);
-}
-
-
-.posts-container .navigation a.older {
-  grid-area: older;
-  text-align: right;
-  padding-right: var(--common-gutter);
-
-}
-
-.posts-container .navigation a.newer {
-  grid-area: newer;
-  padding-left: var(--common-gutter);
-}
-
-.posts-container .navigation a.enabled {
-  color: var(--black)
-}
-*/
 
 
 .recent-posts-columns div.links a {
