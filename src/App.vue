@@ -133,6 +133,7 @@ export default {
     },
 
     async doQuery() {
+      this.offset = 0
       this.callback = async () => await this.runQuery()
       await this.doSearch()
     },
@@ -208,7 +209,7 @@ export default {
 
   data() {
     return {
-      callback: null,// the callback function to invoke when paging for either search or recent posts
+      callback: null,
       offset: 0,
       totalResultsSize: 0,
       pageSize: 10,
@@ -240,8 +241,8 @@ export default {
 
 .hint {
   font-size: smaller;
-  color: var(--gray-400) ;
-  grid-area: hint ;
+  color: var(--gray-400);
+  grid-area: hint;
   text-align: center;
 }
 

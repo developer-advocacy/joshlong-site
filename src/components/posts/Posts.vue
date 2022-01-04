@@ -78,6 +78,9 @@ a.link {
   width: 100%;
 }
 
+.recent-posts-columns {
+  margin-bottom: 10vh ;
+}
 
 .recent-posts-columns div.links a {
   color: var(--green-600);
