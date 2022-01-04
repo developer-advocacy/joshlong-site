@@ -1,8 +1,12 @@
 <template>
   <div class="posts-container">
     <div class="navigation">
-      <a class="newer"  :class=" { 'enabled' : newerRemains }" @click.prevent="$emit('newer')" href="#">newer</a>
-      <a class="older" :class=" { 'enabled' : olderRemains }" @click.prevent="$emit('older')" href="#">older</a>
+      <NavigationArrows
+          :left-arrow-active="newerRemains"
+          :right-arrow-active="olderRemains"
+          @right="$emit('older')"
+          @left="$emit('newer')"
+      />
     </div>
     <div class="recent-posts-columns">
 
@@ -27,13 +31,15 @@
 
 </template>
 <script>
+import NavigationArrows from "@/components/NavigationArrows";
+
 export default {
   name: 'Posts',
-  components: {},
+  components: {NavigationArrows},
   props: ['posts', 'postResolver', 'newerRemains', 'olderRemains'],
-  created(){
+  created() {
 
-  } ,
+  },
   methods: {
     buildUrlForPost(post) {
       return '/jl/blogPost/' + post.path
@@ -44,6 +50,11 @@ export default {
 </script>
 <style>
 
+/*<div @click="left()" :class="{'active': leftArrowActive }" class="arrow    left"></div>*/
+/*<div @click="right()" :class="{'active': rightArrowActive }" class="arrow right"></div>*/
+
+
+/**/
 body {
   --link-icon-dimension: 20px;
 
@@ -75,14 +86,13 @@ a.link {
 }
 
 .posts-container .navigation {
-  display: grid;
-  grid-template-areas:  ". older newer .";
-  grid-template-columns: auto 100px 100px auto;
+  
   width: 100%;
 
 
 }
 
+/*
 .posts-container .navigation a {
   color: var(--gray-400);
 }
@@ -103,7 +113,7 @@ a.link {
 .posts-container .navigation a.enabled {
   color: var(--black)
 }
-
+*/
 
 
 .recent-posts-columns div.links a {

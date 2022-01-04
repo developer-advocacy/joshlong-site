@@ -28,38 +28,6 @@
   letter-spacing: -0.02em;
 }
 
-.arrows {
-
-  text-align: center;
-  margin-top: var(--common-gutter);
-}
-
-.arrows > .arrow.left {
-  background-image: url("~@/assets/images/arrows/gray-l.png");
-  display: inline-block;
-}
-
-.arrows > .arrow.right {
-  display: inline-block;
-  background-image: url("~@/assets/images/arrows/gray-r.png");
-}
-
-.arrows > .arrow.left.active {
-  background-image: url("~@/assets/images/arrows/bw-l.png");
-}
-
-.arrows > .arrow.right.active {
-  background-image: url("~@/assets/images/arrows/bw-r.png");
-}
-
-.arrows > .arrow {
-  --arrow-dimension: 40px;
-  height: var(--arrow-dimension);
-  width: var(--arrow-dimension);
-  background-size: var(--arrow-dimension);
-  background-repeat: no-repeat;
-}
-
 .content {
   display: grid;
 }
@@ -221,10 +189,14 @@
           <div class="cover right "><img alt="the right title" :src="rightUrl"/></div>
         </div>
         <div>
-          <div class="arrows">
-            <div @click="left()" :class="{'active': leftArrowActive }" class="arrow    left"></div>
-            <div @click="right()" :class="{'active': rightArrowActive }" class="arrow right"></div>
-          </div>
+
+          <NavigationArrows
+              :left-arrow-active="this.leftArrowActive"
+              :right-arrow-active="this.rightArrowActive"
+              @right="right()"
+              @left="left()"
+          />
+
         </div>
       </div>
     </div>
@@ -232,6 +204,8 @@
   </div>
 </template>
 <script>
+
+import NavigationArrows from "@/components/NavigationArrows";
 
 function goLeft(cs, content) {
   return (cs === 0) ? content.length - 1 : cs - 1
@@ -263,7 +237,7 @@ function createPromiseFromDomEvent(eventTarget, eventName, run) {
 
 export default {
   name: 'ContentCarousel',
-  components: {},
+  components: {NavigationArrows},
   props: ['content', 'side'],
   data() {
     return {

@@ -48,7 +48,8 @@
           :posts="posts"
           :older-remains="olderRemains"
           :newer-remains="newerRemains"
-          @newer="newer()" @older="older()"
+          @newer="newer()"
+          @older="older()"
       />
     </Zone>
 
@@ -131,22 +132,19 @@ const springTipsService = new SpringTipsService()
 const recentPostsTitleString = 'Recent Posts'
 const searchResultsTitleString = 'Search Results'
 
-/*
-* TODO rework this so that the act of getting the latest is also retriggered in doSearch() if that modality is selected
-*  TODO rework latest() so that it returns a BlogPostSearchResults
-* */
+/**
+ * This component is the centerpiece of the entire application.
+ * It also orchestrates the pagination for the search engine and the recent blogs.
+ */
 export default {
-
   name: 'App',
   methods: {
-
     async doQuery() {
       this.callback = async () => await this.runQuery()
       await this.doSearch()
     },
     async doRecent() {
-      const that = this
-      this.callback = async () => await that.runRecent()
+      this.callback = async () => await this.runRecent()
       await this.doSearch()
     },
     async runQuery() {
@@ -177,7 +175,7 @@ export default {
       return (this.query !== null && this.query.trim() !== '') === true
     },
     async doSearch() {
-      console.log('doSearch(): the callback should not be null!', (this.callback === null ? 'null' : 'not null'))
+      console.log('doSearch(): the callback should not be null! it is:', (this.callback === null ? 'null' : 'not null'))
       this.callback()
     },
 
