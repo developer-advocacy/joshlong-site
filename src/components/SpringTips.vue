@@ -2,11 +2,12 @@
   <div class="text">
     <h2> Spring Tips </h2>
     <p>
-      I run a screencast called <em><strong>Spring Tips</strong></em>. It's also on Twitter (<a
-        href="https://twitter.com/SpringTipsLive">@SpringTipsLive</a>)
-      Spring is the most popular application development framework for Java™. Millions
-      of developers use Spring to build simple, truly portable, fast and flexible JVM-based systems and
-      applications.
+      I run a Youtube series called  <a href="https://bit.ly/spring-tips-playlist"><strong>Spring Tips</strong></a> (<a
+        href="https://twitter.com/SpringTipsLive">@SpringTipsLive</a>).
+      Want to learn about the latest-and-greatest aspects of the Spring ecosystem? You're in luck!
+      On (<em>almost</em>) every Wednesday (give or take a few hours, timezones permitting...),
+      I look at some corner of the wide and wonderful world of Springdom.
+
     </p>
     <div class="buttons">
       <button class="icon youtube" onclick="window.location='https://bit.ly/spring-tips-playlist'">Learn on Youtube

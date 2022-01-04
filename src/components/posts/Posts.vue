@@ -86,7 +86,7 @@ a.link {
 }
 
 .posts-container .navigation {
-  
+
   width: 100%;
 
 

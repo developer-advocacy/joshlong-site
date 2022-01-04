@@ -3,7 +3,8 @@
     A Bootiful Podcast
   </h2>
   <div class="podcast-description">
-    I run a podcast called <strong>A Bootiful Podcast</strong>, a celebration of the heroes that drive the Spring and Java
+    I run a podcast called <a href="https://bootifulpodcast.fm"><strong>A Bootiful Podcast</strong></a>, a celebration
+    of the heroes that drive the Spring and Java
     ecosystems. It's also on Twitter (<a href="https://twitter.com/bootifulpodcast">@BootifulPodcast</a>). Here are
     the episodes.
   </div>
