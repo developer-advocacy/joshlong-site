@@ -301,13 +301,11 @@ export default {
         let existingHeight = 0
         if (cd.style.height && (typeof cd.style.height === 'string') && cd.style.height !== '') {
           existingHeight = Math.floor(parseInt(cd.style.height))
-          // console.log('the existing height is ' + existingHeight)
         }
         return existingHeight !== nh;
       }
 
       if (isWindowDirty(nh)) {
-        // console.log('adjusting div height based on height changes!')
         cd.style.height = nh + 'px'
       }
     },
