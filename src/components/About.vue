@@ -44,9 +44,9 @@ img {
   background-color: var(--black);
   display: grid;
   grid-template-columns: auto;
-  grid-template-areas: "title  "
-                       "description "
-                       "image1"
+  grid-template-areas:  "title  "
+                        "description "
+                        "image1"
                         "image2";
 }
 
@@ -57,11 +57,13 @@ img {
 .about img:first-of-type {
   grid-area: image1;
   border-bottom: 0 solid white;
+  width : 100%;
 }
 
 .about img:last-of-type {
   grid-area: image2;
   margin-bottom: var(--page-bottom-pad);
+  width : 100%;
 }
 
 h1 {
