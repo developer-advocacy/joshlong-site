@@ -16,7 +16,7 @@
     <Zone class="recent-posts">
       <div class="search-form">
         <form>
-          <input v-model="query" required type="text"/>
+          <input v-model="query" @keyup="doQueryAfterEnter " required type="text"/>
           <div class="hint">
             You can use Lucene queries like : <code> content: "paris" AND title:"2019"</code>
           </div>
@@ -126,10 +126,19 @@ export default {
   name: 'App',
   methods: {
 
+    async doQueryAfterEnter(event) {
+      event.preventDefault()
+      console.log('preventDefault')
+      const kc = event.keyCode
+      console.log('the keycode is ' , kc )
+      if (kc === 13) {
+        console.log('running doQuery()')
+        await this.doQuery()
+      }
+    },
+
     isValidQuery() {
-      const v = (this.query !== null && this.query.trim() !== '') === true
-      console.log('is it a valid query? ', v, 'can it be reset? ', this.canBeReset)
-      return v
+      return (this.query !== null && this.query.trim() !== '') === true
     },
 
     async doQuery() {
@@ -138,8 +147,6 @@ export default {
       await this.doSearch()
     },
     async cancelQuery() {
-      console.log('cancelQuery()')
-      // this is a special case that resets the search and then runs the recent query
       this.offset = 0
       this.query = ''
       await this.doRecent()
@@ -159,7 +166,6 @@ export default {
       this.doHandleResults(recentPostsTitleString, results, false)
     },
     async newer() {
-      console.log('newer()', this.newerRemains, ':', this.olderRemains)
       if ((this.offset - this.pageSize) <= 0)
         this.offset = 0
       else
@@ -167,7 +173,6 @@ export default {
       await this.doSearch()
     },
     async older() {
-      console.log('older()', this.newerRemains, ':', this.olderRemains)
       if ((this.offset + this.pageSize) < this.totalResultsSize)
         this.offset += this.pageSize
       await this.doSearch()

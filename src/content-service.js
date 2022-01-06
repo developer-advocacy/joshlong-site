@@ -8,6 +8,15 @@ function contentResultsToContent(data) {
 
 export class ContentService {
 
+    async abstracts() {
+        const q = `
+            query {
+                abstracts
+            }
+        `
+        return (await graphqlJson(q, {}))['data']['abstracts']
+    }
+
     async livelessons() {
         const query = ` 
             query {
