@@ -18,8 +18,8 @@
 
     </div>
 
-    <img width="400" src="https://api.joshlong.com/media/josh-0.png"/>
-    <img width="400" src="https://api.joshlong.com/media/josh-1.jpg"/>
+    <img src="https://api.joshlong.com/media/josh-0.png"/>
+    <img src="https://api.joshlong.com/media/josh-1.jpg"/>
 
   </Zone>
 </template>
@@ -56,7 +56,7 @@ img {
 
 .about img:first-of-type {
   grid-area: image1;
-  border-bottom: 0px solid white;
+  border-bottom: 0 solid white;
 }
 
 .about img:last-of-type {
