@@ -274,15 +274,16 @@ button:disabled, button[disabled] {
 
 .search-form form {
   display: grid;
-  grid-template-areas: ".  query   . "
-                       ".  hint    . "
-                       ". buttons  . ";
-  grid-template-columns: auto 50% auto;
+  grid-template-areas: "  query  "
+                       "  hint   "
+                       " buttons ";
+  grid-template-columns:   100%  ;
   grid-row-gap: 10px;
 }
 
 .search-form form input {
   grid-area: query;
+
 }
 
 .search-form .buttons {
@@ -354,8 +355,15 @@ h1 {
 @media screen and (min-width: 1000px) {
   h1 {
     font-size: 400%;
-
   }
 
+
+
+  .search-form form {
+    grid-template-areas: ".  query  ."
+                         ".  hint   ."
+                         ". buttons .";
+    grid-template-columns: auto 70% auto;
+  }
 }
 </style>
