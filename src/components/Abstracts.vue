@@ -1,6 +1,7 @@
 <template>
 
   <Zone class="abstracts">
+    <h1> Abstracts </h1>
     <div v-html="html"></div>
   </Zone>
 </template>
@@ -9,9 +10,7 @@
   color: var(--gray-400);
 }
 
-.abstracts {
-  padding-top: calc(var(--page-top-pad) * 2);
-}
+
 </style>
 <script>
 import Zone from "./Zone";
@@ -25,6 +24,7 @@ export default {
   async created() {
     const cs = new ContentService()
     this.html = await cs.abstracts()
+    console.log('loaded the html for the abstracts...')
   },
   data() {
     return {
