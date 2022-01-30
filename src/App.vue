@@ -44,22 +44,6 @@
       <RecentPodcast :podcast="podcast"/>
     </Zone>
 
-    <a name="books"></a>
-    <Zone class="books" v-if="booksContent.length > 0 ">
-      <ContentCarousel :content="booksContent">
-        <template v-slot:title>
-          Books
-        </template>
-        <template v-slot:description>
-          <p>
-            I've authored, or co-authored, six books so far.
-            The latest and greatest of these are <strong><em>Reactive Spring</em></strong> and
-            <strong><em>Cloud Native Java</em></strong>.
-          </p>
-        </template>
-      </ContentCarousel>
-    </Zone>
-
     <a name="livelessons"></a>
     <Zone class="livelessons">
       <ContentCarousel :content="livelessonsContent" v-if="livelessonsContent.length > 0 " side="l">
@@ -79,6 +63,24 @@
         </template>
       </ContentCarousel>
     </Zone>
+
+
+    <a name="books"></a>
+    <Zone class="books" v-if="booksContent.length > 0 ">
+      <ContentCarousel :content="booksContent">
+        <template v-slot:title>
+          Books
+        </template>
+        <template v-slot:description>
+          <p>
+            I've authored, or co-authored, six books so far.
+            The latest and greatest of these are <strong><em>Reactive Spring</em></strong> and
+            <strong><em>Cloud Native Java</em></strong>.
+          </p>
+        </template>
+      </ContentCarousel>
+    </Zone>
+
 
     <a name="youtube"></a>
     <Zone class="youtube-container">
