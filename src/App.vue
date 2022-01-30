@@ -130,7 +130,7 @@ export default {
       event.preventDefault()
       console.log('preventDefault')
       const kc = event.keyCode
-      console.log('the keycode is ' , kc )
+      console.log('the keycode is ', kc)
       if (kc === 13) {
         console.log('running doQuery()')
         await this.doQuery()
@@ -277,7 +277,7 @@ button:disabled, button[disabled] {
   grid-template-areas: "  query  "
                        "  hint   "
                        " buttons ";
-  grid-template-columns:   100%  ;
+  grid-template-columns:   100%;
   grid-row-gap: 10px;
 }
 
@@ -332,6 +332,23 @@ button:disabled, button[disabled] {
   background-image: url("assets/images/buttons/amazon.png");
 }
 
+
+.content .buttons a.icon.oreilly {
+  color: white;
+  background-color: black;
+  --oreilly-image-width: 385;
+  --oreilly-image-height: 66;
+  --oreilly-image-divisor: 3;
+  --oreilly-image-size-factor: calc(var(--oreilly-image-width) / var(--oreilly-image-height));
+  --oreilly-width: calc(calc(var(--oreilly-image-size-factor) * var(--icon-dimensions)) / var(--oreilly-image-divisor));
+  --oreilly-height: calc(var(--icon-dimensions) / var(--oreilly-image-divisor));
+  background-size: var(--oreilly-width) var(--oreilly-height);
+  background-image: url("assets/images/buttons/oreilly.png");
+  background-position-y: calc(var(--common-gutter) + calc(var(--common-gutter) / 5));
+  padding-left: calc(var(--oreilly-width) + 10px);
+
+}
+
 .content .buttons a.icon.livelessons {
   color: white;
   background-color: black;
@@ -356,7 +373,6 @@ h1 {
   h1 {
     font-size: 400%;
   }
-
 
 
   .search-form form {

@@ -26,7 +26,7 @@ export class BlogService {
     async byPath(path) {
         const graphqlQuery = `
              query ($path: String) {
-                blogPostByPath( path: $path){ 
+                blogPostByPath( path: $path ){ 
                         pathId
                         title 
                         processedContent
@@ -45,7 +45,7 @@ export class BlogService {
     async recent(offset, pageSize) {
         const graphqlQuery = ` 
             query ($offset: Int , $pageSize: Int) {
-                recentBlogPosts(  offset: $offset, pageSize: $pageSize   ) { 
+                recentBlogPosts(  offset: $offset, pageSize: $pageSize  ) { 
                         totalResultsSize
                         offset
                         pageSize
