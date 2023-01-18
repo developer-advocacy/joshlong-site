@@ -6,6 +6,16 @@
       <h2 v-html="post.title"></h2>
       <div class="text" v-html="post.html"></div>
     </div>
+    <div>
+
+      <!-- You can specify a per page discussion id on the next line, if your URLs might change. -->
+      <div class="talkyard-comments" data-discussion-id="" style="margin-top: 45px;">
+        <noscript>Please enable Javascript to view comments.</noscript>
+        <p style="margin-top: 25px; opacity: 0.9; font-size: 96%">Comments powered by
+          <a href="https://www.talkyard.io">Talkyard</a>.</p>
+      </div>
+
+    </div>
   </Zone>
 </template>
 <script>
