@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -7,10 +7,9 @@ metadata:
     networking.gke.io/managed-certificates: "joshlong-site-certificate"
   name: site-ingress
 spec:
-  rules:
-  - host: joshlong.com
-    http:
-      paths:
-      - backend:
-          serviceName: site
-          servicePort: 80
+  defaultBackend:
+    service:
+      name: site
+      port:
+        number: 80
+
