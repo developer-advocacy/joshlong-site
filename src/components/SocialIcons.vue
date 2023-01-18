@@ -3,7 +3,9 @@
     <a class="overlay li" href="https://linkedin.com/in/joshlong"></a>
     <a class="overlay yt" href="https://bit.ly/spring-tips-playlist"></a>
     <a class="overlay twitter" href="https://twitter.com/starbuxman"></a>
+
   </div>
+
 </template>
 <script>
 export default {

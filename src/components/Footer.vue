@@ -1,10 +1,18 @@
 <template>
 
-  <div class="social-icons">
-    <SocialIcons/>
-  </div>
-  <div class="name"> Josh Long</div>
-  <div class="copyright">©{{ year }} Josh Long. All rights reserved.</div>
+    <div class="social-icons">
+      <SocialIcons/>
+
+    </div>
+    <div class="name"> Josh Long
+    <br/>
+      <a href="#" class="" id="open_preferences_center">
+        Cookie preferences
+      </a>
+    </div>
+    <div class="copyright">©{{ year }} Josh Long. All rights reserved.</div>
+
+
 
 </template>
 <script>
