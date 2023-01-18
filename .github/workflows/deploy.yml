@@ -1,11 +1,11 @@
 name: Deploy
 
 env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
+  API_ROOT: https://api.joshlong.com
   GKE_CLUSTER: joshlong-com
   GKE_ZONE: us-central1-c
   GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
-  API_ROOT: https://api.joshlong.com
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}  
 #  API_ROOT: http://104.197.29.11
 
 on:
@@ -14,27 +14,42 @@ on:
 
 
 jobs:
+
   build-and-deploy:
+  
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+  
     name: Setup and Deploy
+  
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: 'google-github-actions/auth@v0'
         with:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-      - uses: google-github-actions/setup-gcloud@v0
+      - id: 'get-credentials'
+        uses: 'google-github-actions/get-gke-credentials@v1'
+        with:
+          cluster_name: '${{ env.GKE_CLUSTER  }}'
+          location: '${{ env.GKE_ZONE }}'
 
       - run: |
           gcloud config set project $PROJECT_ID
           gcloud --quiet auth configure-docker
-          gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
           kubectl get pods
 
-      - uses: actions/setup-node@master
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16.x'
+          node-version: 16
+
+#       - uses: actions/setup-node@master
+#         with:
+#           node-version: '16.x'
 
       - name: Deploy Site
         run: |
