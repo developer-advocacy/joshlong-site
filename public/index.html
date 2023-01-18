@@ -10,6 +10,20 @@
     <link rel="alternate" type ="application/rss-xml" title = "Subscribe to my feed" href="https://api.joshlong.com/feed.xml"/>
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
+        
+        
+<!-- Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+<script type="text/javascript" src="//www.termsfeed.com/public/cookie-consent/4.0.0/cookie-consent.js" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"interstitial","consent_type":"express","palette":"dark","language":"en","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"website_name":"Josh Long"});
+});
+</script>
+
+<noscript>Free cookie consent management tool by <a href="https://www.termsfeed.com/" rel="nofollow noopener">TermsFeed Policy Generator</a></noscript>
+<!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+
+        
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-01ZKS7H3KC"></script>
@@ -31,15 +45,19 @@
 
 </head>
 <body>
+    
+
+
+ 
+
 <noscript>
-    <strong>
-        We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to continue.
-    </strong>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
 
-    Or, alternatively, if you're trying to build something cool for your backend, you
-    might give the <a href="http://start.spring.io">Spring Initializr</a> a try.
+    Or, alternatively, if you're trying to build something cool for your backend, you might give the <a href="http://start.spring.io">Spring Initializr</a> a try.
 
+    <br/>
+        
+    <a href="#" id="open_preferences_center">Update cookies preferences</a>
 </noscript>
 <div id="app"></div>
 <!-- built files will be auto injected -->
