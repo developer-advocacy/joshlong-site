@@ -10,7 +10,20 @@
     <link rel="alternate" type ="application/rss-xml" title = "Subscribe to my feed" href="https://api.joshlong.com/feed.xml"/>
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= htmlWebpackPlugin.options.title %></title>
-        
+
+    <!--
+
+    Talkyard and Google Analytics both rely on cookies, so I'm using Termsfeed.com to provide opt-in and opt-out for cookies.
+    Plugin in Termsfeed.com and then annotate your JavaScript pages <a href="https://www.termsfeed.com/cookie-consent/">with `cookie-consent`</a>
+    and a value declaring what level of consent you require before those scripts can be run. Also, be sure to change the
+    type from `text/javascript` to `text/plain`.
+
+
+    Google Analytics only requires cookies for anonymized tracking.
+    Talkyard requires cookies for login and logout.
+
+    -->
+
         
     <!-- Cookie Consent by TermsFeed https://www.TermsFeed.com -->
     <script type="text/javascript" src="//www.termsfeed.com/public/cookie-consent/4.0.0/cookie-consent.js" charset="UTF-8"></script>
@@ -24,9 +37,8 @@
     <!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
 
 
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script  async type="text/plain" cookie-consent ="tracking" src="https://www.googletagmanager.com/gtag/js?id=G-01ZKS7H3KC"></script>
+    <script async type="text/plain" cookie-consent ="tracking" src="https://www.googletagmanager.com/gtag/js?id=G-01ZKS7H3KC"></script>
     <script type="text/plain" cookie-consent ="tracking">
         window.dataLayer = window.dataLayer || [];
 
@@ -38,10 +50,12 @@
 
         gtag('config', 'G-01ZKS7H3KC');
     </script>
+    <!-- end Google Analytics -->
 
-    <script type="text/plain" cookie-consent ="tracking" >talkyardServerUrl='https://site-ypulnxougd.talkyard.net';</script>
-    <script async defer src="https://c1.ty-cdn.net/-/talkyard-comments.min.js" type="text/plain" cookie-consent ="tracking" ></script>
-
+    <!-- Talkyard -->
+    <script type="text/plain" cookie-consent ="functionality" >talkyardServerUrl='https://site-ypulnxougd.talkyard.net';</script>
+    <script async defer src="https://c1.ty-cdn.net/-/talkyard-comments.min.js" type="text/plain" cookie-consent ="functionality" ></script>
+    <!-- end Talkyard -->
 
 </head>
 <body>
