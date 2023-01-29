@@ -4,22 +4,71 @@
     <h1> About Me
     </h1>
     <div>
-      <a href="http://twitter.com/starbuxman">Josh (@starbuxman)</a> has been the first Spring Developer Advocate since
-      2010. Josh is a Java Champion, author of 6 books (including O'Reilly's <a
-        href="https://www.amazon.com/Cloud-Native-Java-Designing-Resilient/dp/1449374646">
-      "Cloud Native Java: Designing Resilient Systems with Spring Boot, Spring Cloud, and Cloud Foundry"</a> and <a
-        href="http://ReactiveSpring.io">"Reactive Spring"</a>) and numerous best-selling video training (including <a
-        href="https://www.safaribooksonline.com/library/view/building-microservices-with/9780134192468/">
-      "Building Microservices with Spring Boot Livelessons"</a> with Spring Boot co-founder Phil Webb), and an
-      open-source
-      contributor (Spring Boot, Spring Integration, Spring Cloud, Activiti and Vaadin, etc), a podcaster (<a
-        href="http://BootifulPodcast.fm">"A Bootiful Podcast"</a>) and
-      a <a href="http://bit.ly/spring-tips-playlist">YouTuber</a>.
+
+ 
+
+
+
+<a href="http://twitter.com/starbuxman">Josh (@starbuxman)</a> has been the first Spring Developer Advocate since 2010.
+Josh is a Java Champion, author of 6 books (including <a href="http://ReactiveSpring.io"> "Reactive Spring"</a>) and numerous best-selling 
+video training (including <a href="https://www.safaribooksonline.com/library/view/building-microservices-with/9780134192468/">"Building
+  Microservices with Spring Boot Livelessons"</a> with Spring Boot co-founder Phil Webb), and an open-source
+contributor (Spring Boot, Spring Integration, Spring Cloud, Activiti and Vaadin, etc),  
+a Youtuber (<A href= "https://youtube.com/@coffeesoftware">Coffee + Software with Josh Long</a> as well as <a href="http://bit.ly/spring-tips-playlist">my Spring Tips series
+</a>),  and 
+a podcaster (<a href="http://BootifulPodcast.fm">"A Bootiful Podcast"</a>).
+
+
+<img src="https://api.joshlong.com/media/josh-0.png"/>
+<img src="https://api.joshlong.com/media/josh-1.jpg"/>
+
+
+People in the community have given me my name, spelled in their written language. I love this very much. <B>Thank You</B> for any additions! 
+
+A good deal of these came <a href="https://twitter.com/starbuxman/status/1052923894104018944">from this amazing Twitter thread</a>
+
+<ol>
+ 
+  <li> <b>Chinese</b> : 龍之春 (it means "Spring Dragon", as my last name "Long" means "Dragon" in Chinese)</li>
+ <li> <b>Japanese</b> : ジョシュ•ロング </li>
+ <li> <b>Hindi </b> : जोश (it means "passion", and sounds  <i>almost</i> like "Joosh"!) </li>
+ <li> <b>Kannada / Kanarese </b>: ಜೋಶ </li>
+ <li> <b>Korean</b> : 조쉬 롱 </li>
+ <li> <b>Bengali</b>: যশ লং </li>
+ <li> <b>Punjabi</b>: ਜੌਸ਼ </li>
+ <LI> <B>Arabic</B>: جوش لونگ </LI>
+ <!-- <li> <b>Arabic</b>:   جوش لونج  </li> -->
+ <li> <b>Farsi</b>: جاش لانگ  </li>
+ <li> <b>Russian/Ukranian/Bulgarian Cyrillic</b>: Джош Лонг  </li>
+ <li> <b>Amharic</b>:  ጆሽ ሎንግ  </li>
+ <LI> <b>Macedonian/Serbian/Montenegrin Cyrillic</b>: Џош Лонг </LI>
+ <LI> <b>Hebrew</b>:  ג׳וש לונג </LI>
+ <LI> <b>Armenian</b>: Ջոշ Լոնգ </LI>
+ <LI> <b>Telugu</b>: జోష్ </LI>
+ <LI> <b>Portuguese</b>: Josué Longo </LI>
+ <li> <b>Tamil</b>: ஜோஷ் </li>
+ <li> <b>Hexadecimal </b>: 4a 6f 73 68 20 4c 6f 6e 67</li>
+ <li> <b>Romanian</b>: Joș </li>
+ <li> <b>Italian</b>: Giosuè Lungo </li> 
+ <li> <b>German</b>: Josua  Lang </li>
+ <LI> <b>Afrikaans</b> :  Josuah Langman. According to  <a href="https://twitter.com/chazaqdev/status/1053239810918436864">Michael van Niekerk (@chazaqdev)</a>,  "Langman" is a surname, although can be translated as "middle finger." ...Interesting! 
+ </LI> 
+  
+ <li>   	<b>Norwegian</b> : Josva Lang   </li>
+ <li> <b>Irish Gaelic</b>: Iósua </li>
+  <LI>     <B> Greek</b>:      Μακρής (Makris). Μακρής literally means "long" and it's a common lastname in Greece, too. </LI>
+</ol>
+
+
+
+
+
 
     </div>
 
-    <img src="https://api.joshlong.com/media/josh-0.png"/>
-    <img src="https://api.joshlong.com/media/josh-1.jpg"/>
+
+
+
 
   </Zone>
 </template>
