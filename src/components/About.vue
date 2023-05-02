@@ -56,7 +56,10 @@ A good deal of these came <a href="https://twitter.com/starbuxman/status/1052923
   
  <li>   	<b>Norwegian</b> : Josva Lang   </li>
  <li> <b>Irish Gaelic</b>: Iósua </li>
-  <LI>     <B> Greek</b>:      Μακρής (Makris). Μακρής literally means "long" and it's a common lastname in Greece, too. </LI>
+  <LI>     <B> Greek</b>:      Μακρής (Makris). Μακρής literally means "long" and it's a common lastname in Greece, too. </LI> 
+  
+      <LI> <B>Latvian</b>: Džošs Longs  </li>
+
 </ol>
 
 
