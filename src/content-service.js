@@ -8,6 +8,14 @@ function contentResultsToContent(data) {
 
 export class ContentService {
 
+    async about() {
+        const q = `
+            query {
+                about
+            }
+        `
+        return (await graphqlJson(q, {}))['data']['about']
+    }
     async abstracts() {
         const q = `
             query {

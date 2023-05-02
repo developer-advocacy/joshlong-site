@@ -1,148 +1,35 @@
 <template>
 
-  <Zone class="about">
-    <h1> About Me
-    </h1>
-    <div>
-
- 
-
-
-
-<a href="http://twitter.com/starbuxman">Josh (@starbuxman)</a> has been the first Spring Developer Advocate since 2010.
-Josh is a Java Champion, author of 6 books (including <a href="http://ReactiveSpring.io"> "Reactive Spring"</a>) and numerous best-selling 
-video training (including <a href="https://www.safaribooksonline.com/library/view/building-microservices-with/9780134192468/">"Building
-  Microservices with Spring Boot Livelessons"</a> with Spring Boot co-founder Phil Webb), and an open-source
-contributor (Spring Boot, Spring Integration, Spring Cloud, Activiti and Vaadin, etc),  
-a Youtuber (<A href= "https://youtube.com/@coffeesoftware">Coffee + Software with Josh Long</a> as well as <a href="http://bit.ly/spring-tips-playlist">my Spring Tips series
-</a>),  and 
-a podcaster (<a href="http://BootifulPodcast.fm">"A Bootiful Podcast"</a>).
-
-
-<img src="https://api.joshlong.com/media/josh-0.png"/>
-<img src="https://api.joshlong.com/media/josh-1.jpg"/>
-
-
-People in the community have given me my name, spelled in their written language. I love this very much. <B>Thank You</B> for any additions! 
-
-A good deal of these came <a href="https://twitter.com/starbuxman/status/1052923894104018944">from this amazing Twitter thread</a>
-
-<ol>
- 
-  <li> <b>Chinese</b> : 龍之春 (it means "Spring Dragon", as my last name "Long" means "Dragon" in Chinese)</li>
- <li> <b>Japanese</b> : ジョシュ•ロング </li>
- <li> <b>Hindi </b> : जोश (it means "passion", and sounds  <i>almost</i> like "Joosh"!) </li>
- <li> <b>Kannada / Kanarese </b>: ಜೋಶ </li>
- <li> <b>Korean</b> : 조쉬 롱 </li>
- <li> <b>Bengali</b>: যশ লং </li>
- <li> <b>Punjabi</b>: ਜੌਸ਼ </li>
- <LI> <B>Arabic</B>: جوش لونگ </LI>
- <!-- <li> <b>Arabic</b>:   جوش لونج  </li> -->
- <li> <b>Farsi</b>: جاش لانگ  </li>
- <li> <b>Russian/Ukranian/Bulgarian Cyrillic</b>: Джош Лонг  </li>
- <li> <b>Amharic</b>:  ጆሽ ሎንግ  </li>
- <LI> <b>Macedonian/Serbian/Montenegrin Cyrillic</b>: Џош Лонг </LI>
- <LI> <b>Hebrew</b>:  ג׳וש לונג </LI>
- <LI> <b>Armenian</b>: Ջոշ Լոնգ </LI>
- <LI> <b>Telugu</b>: జోష్ </LI>
- <LI> <b>Portuguese</b>: Josué Longo </LI>
- <li> <b>Tamil</b>: ஜோஷ் </li>
- <li> <b>Hexadecimal </b>: 4a 6f 73 68 20 4c 6f 6e 67</li>
- <li> <b>Romanian</b>: Joș </li>
- <li> <b>Italian</b>: Giosuè Lungo </li> 
- <li> <b>German</b>: Josua  Lang </li>
- <LI> <b>Afrikaans</b> :  Josuah Langman. According to  <a href="https://twitter.com/chazaqdev/status/1053239810918436864">Michael van Niekerk (@chazaqdev)</a>,  "Langman" is a surname, although can be translated as "middle finger." ...Interesting! 
- </LI> 
-  
- <li>   	<b>Norwegian</b> : Josva Lang   </li>
- <li> <b>Irish Gaelic</b>: Iósua </li>
-  <LI>     <B> Greek</b>:      Μακρής (Makris). Μακρής literally means "long" and it's a common lastname in Greece, too. </LI> 
-  
-      <LI> <B>Latvian</b>: Džošs Longs  </li>
-
-</ol>
-
-
-
-
-
-
-    </div>
-
-
-
-
-
-  </Zone>
+    <Zone class="abstracts">
+        <h1> About  </h1>
+        <div v-html="html"></div>
+    </Zone>
 </template>
 <style>
-
-.about a {
-  color: var(--gray-400);
+.abstracts a {
+    color: var(--gray-400);
 }
 
-img {
-  display: block
-}
 
-.about div {
-  grid-area: description;
-  padding-bottom: var(--page-bottom-pad);
-
-}
-
-.about {
-  color: white;
-  background-color: var(--black);
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-areas:  "title  "
-                        "description "
-                        "image1"
-                        "image2";
-}
-
-.about img {
-  border: 1px solid var(--white);
-}
-
-.about img:first-of-type {
-  grid-area: image1;
-  border-bottom: 0 solid white;
-  width : 100%;
-}
-
-.about img:last-of-type {
-  grid-area: image2;
-  margin-bottom: var(--page-bottom-pad);
-  width : 100%;
-}
-
-h1 {
-  grid-area: title;
-}
-
-@media screen and (min-width: 1000px) {
-  .about {
-    color: white;
-    background-color: var(--black);
-    display: grid;
-    grid-template-columns: auto 400px;
-    grid-template-areas: "title title"
-                        "description image1"
-                        "description image2";
-  }
-  .about div {
-    padding-right: var(--page-right-pad)
-  }
-}
 </style>
 <script>
 import Zone from "./Zone";
+import {ContentService} from "@/content-service";
 
 export default {
-  name: 'About',
-  components: {Zone},
-  props: {}
+    name: 'About',
+    components: {Zone},
+    props: {},
+
+    async created() {
+        const cs = new ContentService()
+        this.html = await cs.about()
+        console.log('loaded the html for the about page ')
+    },
+    data() {
+        return {
+            html: ''
+        }
+    }
 }
 </script>
