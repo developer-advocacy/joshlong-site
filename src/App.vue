@@ -218,7 +218,8 @@ export default {
         this.latestSpringTipsEpisode = this.springtipsVideos [this.springtipsVideos.length - 1]
         this.latestCoffeesoftwareEpisode = this.coffeesoftwareVideos [this.coffeesoftwareVideos.length - 1]
 
-        console.log( this.springtipsVideos)
+        console.log(this.latestSpringTipsEpisode)
+        console.log(this.latestCoffeesoftwareEpisode)
         // this.coffeesoftwareVideos.forEach(o => console.log('result is', o))
         await this.doRecent()
     },
