@@ -106,10 +106,10 @@
     </Zone>
     <Zone class="youtube-container">
       <YoutubeVideos
-          twitter="starbuxman"
+          twitter="SpringTipsLive"
           github="spring-tips"
           youtube="https://bit.ly/spring-tips-playlist"
-          :latestEpisode="latestSpringTipsEpisode">
+          :latest-episode="latestSpringTipsEpisode">
         <template v-slot:title>
           Spring Tips
         </template>
