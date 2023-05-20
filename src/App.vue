@@ -52,12 +52,12 @@
         </template>
         <template v-slot:description>
           <p>
-            I love working with the <em>Livelessons</em> teams! We have put together a <em>lot</em> of in-depth, online,
-            courses on various things Spring since <strong>2013</strong>. I'm usually the instructor, but on occasion
-            I've been lucky enough to
-            have been able to persuade some of my friends and heroes to collaborate with me, and the results are the
-            stuff of legend.
-            Check them out!
+            I love working with the <em>Livelessons</em> teams! We have put together a <em>lot</em> of
+            in-depth, online, courses on various things Spring since <strong>2013</strong>. I'm usually the instructor,
+            but on
+            occasion I've been lucky enough to have been able to persuade some of my friends and heroes to collaborate
+            with me, and the results
+            are the stuff of legend. Check them out!
 
           </p>
         </template>
@@ -84,7 +84,45 @@
 
     <a name="youtube"></a>
     <Zone class="youtube-container">
-      <SpringTips :latestEpisode="latestSpringTipsEpisode"/>
+      <YoutubeVideos
+          twitter="starbuxman"
+          github="coffee-software-show"
+          youtube="https://youtube.com/@CoffeeSoftware"
+          :latest-episode="latestCoffeeSoftwareEpisode">
+        <template v-slot:title>
+          CoffeeSoftware
+        </template>
+        <template v-slot:description>
+          <p>
+
+            <a href="https://twitter.com/starbuxman">I</a> stream <EM>almost</EM>
+            every day about whatever happens to be going through my head on my
+            personal Youtube channel, <a href="https://youtube.com/@coffeesoftware"><strong>@CoffeeSoftware</strong></a>.
+            Most of the time it works out. Subscribe and come join the fun.
+
+          </p>
+        </template>
+      </YoutubeVideos>
+    </Zone>
+    <Zone class="youtube-container">
+      <YoutubeVideos
+          twitter="starbuxman"
+          github="spring-tips"
+          youtube="https://bit.ly/spring-tips-playlist"
+          :latestEpisode="latestSpringTipsEpisode">
+        <template v-slot:title>
+          Spring Tips
+        </template>
+        <template v-slot:description>
+          <p>
+            I run a Youtube series called <a href="https://bit.ly/spring-tips-playlist">
+            <strong>Spring Tips</strong></a> (<a href="https://twitter.com/SpringTipsLive">@SpringTipsLive</a>).
+            Want to learn about the latest-and-greatest aspects of the Spring ecosystem? You're in luck!
+            On (<em>almost</em>) every Wednesday (give or take a few hours, timezones permitting...),
+            I look at some corner of the wide and wonderful world of Springdom.
+          </p>
+        </template>
+      </YoutubeVideos>
     </Zone>
 
     <a name="footer"></a>
@@ -100,7 +138,7 @@
 import Zone from "@/components/Zone";
 import Page from "@/components/Page";
 import Menu from "@/components/Menu";
-import SpringTips from "@/components/SpringTips";
+import YoutubeVideos from "@/components/YoutubeVideos.vue";
 import Appearances from "@/components/appearances/Appearances";
 import Posts from "@/components/posts/Posts";
 import RecentPodcast from "@/components/podcasts/RecentPodcast";
@@ -110,13 +148,13 @@ import {BlogService} from "@/blog-service";
 import {AppearanceService} from "@/appearance-service";
 import {PodcastService} from "@/podcast-service";
 import {ContentService} from "@/content-service";
-import {SpringTipsService} from "@/springtips-service";
+import {YoutubeService} from "@/youtube";
 
 const blogService = new BlogService()
 const appearanceService = new AppearanceService()
 const podcastService = new PodcastService()
+const youtubeService = new YoutubeService()
 const contentService = new ContentService()
-const springTipsService = new SpringTipsService()
 const recentPostsTitleString = 'Recent Posts'
 const searchResultsTitleString = 'Search Results'
 
@@ -181,7 +219,6 @@ export default {
     },
 
     async doSearch() {
-      console.log('doSearch(): the callback should not be null! it is:', (this.callback === null ? 'null' : 'not null'))
       this.callback()
     },
 
@@ -198,19 +235,23 @@ export default {
       this.pageSize = results.pageSize
       this.posts = results.posts
       this.newerRemains = results.offset !== 0
-      this.olderRemains = (results.offset + results.pageSize) < results.totalResultsSize // &&  ( results.totalResultsSize > results.pageSize )
+      this.olderRemains = (results.offset + results.pageSize) < results.totalResultsSize
       this.canBeReset = canBeReset
-      console.log('the offset is', this.offset, 'the pageSize', this.pageSize, 'the totalResultSize', this.totalResultsSize)
     }
   },
 
 
   async created() {
+    this.springtipsVideos = (await youtubeService.springtipsVideos())
+    this.coffeesoftwareVideos = (await youtubeService.coffeesoftwareVideos())
     this.podcast = (await podcastService.podcasts())[0]
     this.appearances = await appearanceService.appearances()
     this.booksContent = await contentService.books()
     this.livelessonsContent = await contentService.livelessons()
-    this.latestSpringTipsEpisode = await springTipsService.latestSpringTipsEpisode()
+    this.latestSpringTipsEpisode = this.springtipsVideos[this.springtipsVideos.length - 1]
+    this.latestCoffeeSoftwareEpisode = this.coffeesoftwareVideos [this.coffeesoftwareVideos.length - 1]
+    console.debug('latest spring tips episode:', this.latestSpringTipsEpisode.youtubeEmbedUrl)
+    console.debug('latest coffee software episode:', this.latestCoffeeSoftwareEpisode.youtubeEmbedUrl)
     await this.doRecent()
   },
 
@@ -223,6 +264,7 @@ export default {
       olderRemains: false,
       newerRemains: false,
       latestSpringTipsEpisode: null,
+      latestCoffeeSoftwareEpisode: null,
       canBeReset: false,
       postsTitle: 'Recent Posts',
       maxResults: 10,
@@ -235,7 +277,7 @@ export default {
     }
   },
   components: {
-    Footer, ContentCarousel, RecentPodcast, Posts, Page, Menu, Zone, SpringTips, Appearances
+    YoutubeVideos, Footer, ContentCarousel, RecentPodcast, Posts, Page, Menu, Zone, Appearances
   }
 }
 </script>

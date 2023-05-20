@@ -1,19 +1,16 @@
 <template>
   <div class="text">
-    <h2> Spring Tips </h2>
-    <p>
-      I run a Youtube series called  <a href="https://bit.ly/spring-tips-playlist">
-      <strong>Spring Tips</strong></a> (<a href="https://twitter.com/SpringTipsLive">@SpringTipsLive</a>).
-      Want to learn about the latest-and-greatest aspects of the Spring ecosystem? You're in luck!
-      On (<em>almost</em>) every Wednesday (give or take a few hours, timezones permitting...),
-      I look at some corner of the wide and wonderful world of Springdom.
-    </p>
+    <h2>
+      <slot name="title"></slot>
+    </h2>
+    <slot name="description"></slot>
+
     <div class="buttons">
-      <button class="icon youtube" onclick="window.location='https://bit.ly/spring-tips-playlist'">Learn on Youtube
+      <button class="icon youtube" @click="navigateTo (youtube ) ">Learn on Youtube
       </button>
-      <button class="icon twitter" onclick="window.location = 'https://twitter.com/springtipslive'">Follow on Twitter
+      <button class="icon twitter" @click="navigateTo ( 'https://twitter.com/' + twitter ) ">Follow on Twitter
       </button>
-      <button class="icon spring-site" onclick="window.location = 'http://github.com/spring-tips'">Get Started Now
+      <button class="icon spring-site" @click=" navigateTo ('http://github.com/' + github  )">Get Started Now
       </button>
 
     </div>
@@ -25,6 +22,23 @@
             allowfullscreen></iframe>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'YoutubeVideos',
+  props: ['latestEpisode', 'youtube', 'twitter', 'github'],
+  methods: {
+    navigateTo(url) {
+      window.location = url
+    }
+  },
+  updated() {
+    console.log('------------------------------------')
+    console.log('episode URL is [' + this.latestEpisode.youtubeEmbedUrl + ']');
+    console.log('the youtube url to which we should dispatch is [' + this.youtubeUrl + ']')
+  }
+}
+</script>
 
 
 <style>
@@ -39,6 +53,7 @@
                 "video";
   grid-template-columns: auto;
   margin-top: var(--page-top-pad);
+  margin-bottom: var(--page-top-pad);
 }
 
 .youtube-container .buttons button {
@@ -121,13 +136,4 @@
 }
 
 </style>
-
-
-<script>
-export default {
-  name: 'SpringTips',
-  props: ['latestEpisode'],
-
-}
-</script>
 

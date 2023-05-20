@@ -3,8 +3,6 @@ import {graphqlJson} from "@/graphql";
 import {Post} from "@/post";
 
 function blogSearchResults(r) {
-    console.log('the r is', r)
-
     if (r !== null) {
         r.posts = blogPostResultsToPosts(r.posts)
     }
