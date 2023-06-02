@@ -6,7 +6,6 @@ set -o pipefail
 
 
 export ENV_SUB_DOMAIN=$( [ "${BP_MODE_LOWERCASE}" = "production" ] && echo ""  || echo "${BP_MODE_LOWERCASE}.")
-export ROOT_DIR=$(cd $(dirname $0) && pwd)
 export OD=${ROOT_DIR}/overlays/${BP_MODE_LOWERCASE}
 export PROJECT_ID=${GCLOUD_PROJECT}
 export IMAGE_NAME=gcr.io/${PROJECT_ID}/${APP_NAME}
@@ -14,9 +13,7 @@ echo "OD=$OD"
 echo "BP_MODE_LOWERCASE=$BP_MODE_LOWERCASE"
 echo "IMAGE_NAME=$IMAGE_NAME"
 
-cd $(dirname $0)/..
-ROOT_DIR=$(pwd)
-cd $ROOT_DIR
+
 
 rm -rf $ROOT_DIR/build
 rm -rf $ROOT_DIR/dist

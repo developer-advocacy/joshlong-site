@@ -3,10 +3,15 @@ name: Deploy
 env:
   API_ROOT: https://api.joshlong.com
   APP_NAME: joshlong-site
-  GKE_CLUSTER:   ${{ secrets.GKE_CLUSTER }}
-  GCLOUD_ZONE:  ${{ secrets.GCLOUD_ZONE }}
-  NS_NAME:  ${{ secrets.NS_NAME }}
-  GCLOUD_SA_KEY:  ${{ secrets.GCLOUD_SA_KEY }}
+
+  ##
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
+  GCLOUD_ZONE: ${{ secrets.GCLOUD_ZONE }}
+  NS_NAME: ${{ secrets.NS_NAME }}
+  GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
+
+
 
 on:
   push:
