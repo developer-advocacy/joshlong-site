@@ -2,14 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: "joshlong-com-site-ip"
+    kubernetes.io/ingress.global-static-ip-name: "developer-advocacy-joshlong-site-ip"
     ingress.kubernetes.io/force-ssl-redirect: "true"
     networking.gke.io/managed-certificates: "joshlong-site-certificate"
-  name: site-ingress
+  name: joshlong-site-ingress
 spec:
   defaultBackend:
     service:
-      name: site
+      name: joshlong-site
       port:
         number: 80
 

@@ -2,22 +2,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: site
-  name: site
+    app: joshlong-site
+  name: joshlong-site
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: site
+      app: joshlong-site
   template:
     metadata:
       labels:
-        app: site
+        app: joshlong-site
     spec:
       containers:
-        - image: gcr.io/bootiful/joshlong-com-site
+        - image: gcr.io/pgtm-jlong/joshlong-site
           imagePullPolicy: Always
-          name: site
+          name: joshlong-site
           env:
             - name: PORT
               value: "8080"

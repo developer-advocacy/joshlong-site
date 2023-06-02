@@ -2,11 +2,11 @@ name: Deploy
 
 env:
   API_ROOT: https://api.joshlong.com
-  GKE_CLUSTER: joshlong-com
-  GKE_ZONE: us-central1-c
-  GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}  
-#  API_ROOT: http://104.197.29.11
+  APP_NAME: joshlong-site
+  GKE_CLUSTER:   ${{ secrets.GKE_CLUSTER }}
+  GCLOUD_ZONE:  ${{ secrets.GCLOUD_ZONE }}
+  NS_NAME:  ${{ secrets.NS_NAME }}
+  GCLOUD_SA_KEY:  ${{ secrets.GCLOUD_SA_KEY }}
 
 on:
   push:
@@ -28,18 +28,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+
       - uses: 'google-github-actions/auth@v0'
         with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+          credentials_json: '${{ secrets.GCLOUD_SA_KEY }}'
 
       - id: 'get-credentials'
         uses: 'google-github-actions/get-gke-credentials@v1'
         with:
           cluster_name: '${{ env.GKE_CLUSTER  }}'
-          location: '${{ env.GKE_ZONE }}'
+          location: '${{ env.GCLOUD_ZONE }}'
 
       - run: |
-          gcloud config set project $PROJECT_ID
+          gcloud config set project $GCLOUD_PROJECT 
           gcloud --quiet auth configure-docker
           kubectl get pods
 
@@ -47,15 +55,14 @@ jobs:
         with:
           node-version: 16
 
-#       - uses: actions/setup-node@master
-#         with:
-#           node-version: '16.x'
-
       - name: Deploy Site
         run: |
+          kubectl get ns/$NS_NAME || kubectl create ns $NS_NAME 
+          kubectl config set-context --current --namespace=$NS_NAME
+          kubectl config view --minify | grep "namespace:" && echo "found the namespace.."
           cd $GITHUB_WORKSPACE
-          mkdir -p $GITHUB_WORKSPACE/bin
           export PATH=$GITHUB_WORKSPACE/bin/:$PATH
-          (curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.27.0/pack-v0.27.0-linux.tgz" | sudo tar -C $GITHUB_WORKSPACE/bin/ --no-same-owner -xzv pack)
+          mkdir -p $GITHUB_WORKSPACE/bin/
+          (curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.29.0/pack-v0.29.0-linux.tgz" | sudo tar -C  $GITHUB_WORKSPACE/bin/ --no-same-owner -xzv pack)
           export ROOT_DIR=$GITHUB_WORKSPACE
           ./deploy/deploy.sh
