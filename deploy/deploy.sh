@@ -14,7 +14,6 @@ echo "BP_MODE_LOWERCASE=$BP_MODE_LOWERCASE"
 echo "IMAGE_NAME=$IMAGE_NAME"
 
 
-
 rm -rf $ROOT_DIR/build
 rm -rf $ROOT_DIR/dist
 
