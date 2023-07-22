@@ -134,6 +134,7 @@
 </template>
 
 <script>
+import {AppearanceService, BlogService, ContentService, PodcastService, YoutubeService} from "@/core";
 
 import Zone from "@/components/Zone";
 import Page from "@/components/Page";
@@ -144,11 +145,7 @@ import Posts from "@/components/posts/Posts";
 import RecentPodcast from "@/components/podcasts/RecentPodcast";
 import ContentCarousel from "@/components/carousel/ContentCarousel";
 import Footer from "@/components/Footer";
-import {BlogService} from "@/blog-service";
-import {AppearanceService} from "@/appearance-service";
-import {PodcastService} from "@/podcast-service";
-import {ContentService} from "@/content-service";
-import {YoutubeService} from "@/youtube";
+
 
 const blogService = new BlogService()
 const appearanceService = new AppearanceService()

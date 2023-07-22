@@ -21,7 +21,8 @@
 </template>
 <script>
 import Zone from "@/components/Zone";
-import {BlogService} from "@/blog-service";
+import {BlogService} from "@/core";
+
 
 const blogService = new BlogService()
 

@@ -14,7 +14,8 @@
 </style>
 <script>
 import Zone from "./Zone";
-import {ContentService} from "@/content-service";
+import {ContentService} from "@/core";
+
 
 export default {
     name: 'About',
