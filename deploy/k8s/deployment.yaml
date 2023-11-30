@@ -15,7 +15,7 @@ spec:
         app: joshlong-site
     spec:
       containers:
-        - image: gcr.io/pgtm-jlong/joshlong-site
+        - image: gcr.io/joshlong/joshlong-site
           imagePullPolicy: Always
           name: joshlong-site
           env:
