@@ -2,6 +2,7 @@ export function graphql(graphqlQuery, variables) {
 
     // https://graphql.org/graphql-js/passing-arguments/
 
+    console.log( 'process root:'  + process.env.VUE_APP_SERVICE_ROOT )
     const url = process.env.VUE_APP_SERVICE_ROOT + '/graphql'
     return window.fetch(url, {
         method: 'POST',

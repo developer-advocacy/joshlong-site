@@ -33,9 +33,11 @@ export default {
     }
   },
   updated() {
-    console.log('------------------------------------')
-    console.log('episode URL is [' + this.latestEpisode.youtubeEmbedUrl + ']');
-    console.log('the youtube url to which we should dispatch is [' + this.youtubeUrl + ']')
+    if (this.latestEpisode) {
+      console.log('------------------------------------')
+      console.log('episode URL is [' + this.latestEpisode.youtubeEmbedUrl + ']');
+      console.log('the youtube url to which we should dispatch is [' + this.youtubeUrl + ']')
+    }
   }
 }
 </script>

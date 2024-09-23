@@ -7,6 +7,7 @@
 
     <router-view></router-view>
 
+
     <a name="appearances"></a>
     <Zone class="appearances">
       <Appearances :appearances="appearances"/>
@@ -38,11 +39,11 @@
           @older="older()"
       />
     </Zone>
-
     <a name="podcast"></a>
     <Zone class="podcast">
       <RecentPodcast :podcast="podcast"/>
     </Zone>
+
 
     <a name="livelessons"></a>
     <Zone class="livelessons">
@@ -63,7 +64,6 @@
         </template>
       </ContentCarousel>
     </Zone>
-
 
     <a name="books"></a>
     <Zone class="books" v-if="booksContent.length > 0 ">
@@ -125,11 +125,12 @@
       </YoutubeVideos>
     </Zone>
 
+
     <a name="footer"></a>
     <Zone class="footer">
       <Footer/>
     </Zone>
-
+    
   </Page>
 </template>
 
@@ -243,12 +244,12 @@ export default {
     this.coffeesoftwareVideos = (await youtubeService.coffeesoftwareVideos())
     this.podcast = (await podcastService.podcasts())[0]
     this.appearances = await appearanceService.appearances()
+
     this.booksContent = await contentService.books()
     this.livelessonsContent = await contentService.livelessons()
     this.latestSpringTipsEpisode = this.springtipsVideos[this.springtipsVideos.length - 1]
     this.latestCoffeeSoftwareEpisode = this.coffeesoftwareVideos [this.coffeesoftwareVideos.length - 1]
-    console.debug('latest spring tips episode:', this.latestSpringTipsEpisode.youtubeEmbedUrl)
-    console.debug('latest coffee software episode:', this.latestCoffeeSoftwareEpisode.youtubeEmbedUrl)
+
     await this.doRecent()
   },
 
@@ -274,7 +275,8 @@ export default {
     }
   },
   components: {
-    YoutubeVideos, Footer, ContentCarousel, RecentPodcast, Posts, Page, Menu, Zone, Appearances
+    Appearances, YoutubeVideos, Footer, ContentCarousel, RecentPodcast, Posts,
+    Page, Menu, Zone,
   }
 }
 </script>

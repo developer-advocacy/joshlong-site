@@ -1,5 +1,4 @@
-# hello-world
-
+# joshlong-client
 
 ## Project setup
 ```
