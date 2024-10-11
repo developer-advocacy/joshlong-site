@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-npm run serve
+npm install && npm run serve

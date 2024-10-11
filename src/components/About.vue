@@ -1,7 +1,6 @@
 <template>
-
     <Zone class="abstracts">
-        <h1> About  </h1>
+        <h1>About</h1>
         <div v-html="html"></div>
     </Zone>
 </template>
@@ -18,6 +17,7 @@ import {ContentService} from "@/core";
 
 
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
     name: 'About',
     components: {Zone},
     props: {},
