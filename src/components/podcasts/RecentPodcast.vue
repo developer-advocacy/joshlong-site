@@ -14,18 +14,23 @@
   <div class="latest-episode-panel"></div>
   <div class="latest-episode-panel-content">
     <div class="image">
-      <img v-if="podcast" alt="the latest guest needs no introduction.." :src="podcast.episodePhotoUri"/>
+      <img v-if="podcast" alt="the latest guest needs no introduction.." :src="podcast.episodePhotoUri"
+           @click.prevent="openPodcastOnPodbean(podcast.episodeUri )"
+      />
     </div>
     <div class="prompt">Latest episode</div>
     <div class="synopsis">
       <h3 v-if="podcast"> {{ podcast.title }} </h3>
       <div v-if="podcast" v-html="podcast.description"></div>
+      <div class="listen">
+        <a target="podbeanEpisodes" :href=" podcast.episodeUri">Listen Now</a>
+      </div>
     </div>
-    <div class="player">
-      <audio v-if="podcast" controls>
-        <source :src="podcast.episodeUri"/>
-      </audio>
-    </div>
+    <!--    <div class="player">
+          <audio v-if="podcast" controls>
+            <source :src="podcast.episodeUri"/>
+          </audio>
+        </div>-->
   </div>
 </template>
 
@@ -33,6 +38,11 @@
 export default {
   name: 'RecentPodcast',
   components: {},
+  methods: {
+    openPodcastOnPodbean: function (url) {
+      window.open(url, 'podbeanEpisodes');
+    }
+  },
   props: ['podcast'],
   created() {
   }
@@ -59,7 +69,9 @@ export default {
   padding: var(--common-gutter);
 }
 
+
 .latest-episode-panel-content .image img {
+  cursor: pointer;
   --guest-image-dimension: 80px;
   width: var(--guest-image-dimension);
   height: var(--guest-image-dimension);
@@ -149,6 +161,10 @@ export default {
 .latest-episode-panel-content > .synopsis {
   grid-area: synopsis;
   margin-bottom: calc(-1 * var(--common-gutter));
+}
+
+.latest-episode-panel-content > .synopsis > .listen {
+  padding-top: var(--common-gutter);
 }
 
 .latest-episode-panel-content > .synopsis > p {
