@@ -166,13 +166,11 @@ export class ContentService {
 
         this.data = null;
         this.fragment = `
-        
             fragment contentResults on Content {
                 title 
                 imageUrl
                 html
             }
-            
         `;
     }
 }
@@ -242,11 +240,10 @@ export class YoutubeService {
     async __fetchYoutubeVideos(field) {
         // lazily load both video feeds when either one of them is requested. saves us the extra roundtrip.
         if (this.result == null) {
-            console.debug( 'result == null ' +field)
+            console.debug('result == null ' + field)
             const totalGqlQuery = 'query { ' + this.__gqlForVideo('coffeesoftwareVideos') + '\n\n' + this.__gqlForVideo('springtipsVideos') + ' } ';
             this.result = (await graphqlJson(totalGqlQuery, {}))['data']
-        }
-        else {
+        } else {
             console.debug('the result is not null ' + field)
         }
         const results = this.result [field].map(jsonObj => new YoutubeVideo(jsonObj ['published'], jsonObj ['thumbnail'], jsonObj ['title'], jsonObj ['id']))
@@ -266,6 +263,7 @@ export class YoutubeService {
 export class PodcastService {
 
     async podcasts() {
+
         const graphqlQuery = ` 
             {
               podcasts {

@@ -80,8 +80,6 @@
         </template>
       </ContentCarousel>
     </Zone>
-
-
     <a name="youtube"></a>
     <Zone class="youtube-container">
       <YoutubeVideos
@@ -94,12 +92,10 @@
         </template>
         <template v-slot:description>
           <p>
-
-            <a href="https://twitter.com/starbuxman">I</a> stream <EM>almost</EM>
+            <a href="https://twitter.com/starbuxman">I</a> stream <em>almost</em>
             every day about whatever happens to be going through my head on my
             personal Youtube channel, <a href="https://youtube.com/@coffeesoftware"><strong>@CoffeeSoftware</strong></a>.
             Most of the time it works out. Subscribe and come join the fun.
-
           </p>
         </template>
       </YoutubeVideos>
@@ -118,8 +114,9 @@
             I run a Youtube series called <a href="https://bit.ly/spring-tips-playlist">
             <strong>Spring Tips</strong></a> (<a href="https://twitter.com/SpringTipsLive">@SpringTipsLive</a>).
             Want to learn about the latest-and-greatest aspects of the Spring ecosystem? You're in luck!
-            On (<em>almost</em>) every Wednesday (give or take a few hours or days, timezones and production schedule permitting...),
-            I look at some corner of the wide and wonderful world of  <em>Springdom</em>.
+            On (<em>almost</em>) every Wednesday (give or take a few hours or days, timezones and production schedule
+            permitting...),
+            I look at some corner of the wide and wonderful world of <em>Springdom</em>.
           </p>
         </template>
       </YoutubeVideos>
@@ -130,7 +127,7 @@
     <Zone class="footer">
       <Footer/>
     </Zone>
-    
+
   </Page>
 </template>
 
