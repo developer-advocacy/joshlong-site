@@ -39,9 +39,6 @@ cd $ROOT_DIR/build
 
 docker images -q $IMAGE_NAME | while read  l ; do docker rmi $l -f ; done
 
-# pack build $IMAGE_NAME --builder paketobuildpacks/builder:full \
-#     --buildpack gcr.io/paketo-buildpacks/nginx:latest  --env PORT=8080
-
 pack build  $IMAGE_NAME \
   --builder paketobuildpacks/builder:base \
  --buildpack docker.io/paketobuildpacks/nginx:latest \
