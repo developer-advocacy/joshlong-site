@@ -15,7 +15,7 @@ spec:
         app: joshlong-site
     spec:
       containers:
-        - image: gcr.io/joshlong/joshlong-site
+        - image: us-docker.pkg.dev/joshlong/developer-advocacy-artifact-registry/joshlong-site:latest
           imagePullPolicy: Always
           name: joshlong-site
           env:

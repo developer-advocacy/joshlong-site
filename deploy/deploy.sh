@@ -8,7 +8,8 @@ set -o pipefail
 export ENV_SUB_DOMAIN=$( [ "${BP_MODE_LOWERCASE}" = "production" ] && echo ""  || echo "${BP_MODE_LOWERCASE}.")
 export OD=${ROOT_DIR}/overlays/${BP_MODE_LOWERCASE}
 export PROJECT_ID=${GCLOUD_PROJECT}
-export IMAGE_NAME=gcr.io/${PROJECT_ID}/${APP_NAME}
+# export IMAGE_NAME=gcr.io/${PROJECT_ID}/${APP_NAME}
+export IMAGE_NAME=us-docker.pkg.dev/${PROJECT_ID}/developer-advocacy-artifact-registry/${APP_NAME}:latest
 echo "OD=$OD"
 echo "BP_MODE_LOWERCASE=$BP_MODE_LOWERCASE"
 echo "IMAGE_NAME=$IMAGE_NAME"
