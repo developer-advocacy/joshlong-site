@@ -51,5 +51,8 @@ gcloud compute addresses list --format json | jq '.[].name' -r | grep $RESERVED_
 echo "created static IP named ${RESERVED_IP_NAME}"
 
 cd $GITHUB_WORKSPACE
+ls -la
+echo "about to start kubectl deleting.."
 kubectl delete -f deploy/k8s/deployment.yaml || echo "could not find the deployment to delete..."
+echo "and now applying.."
 kubectl apply -f deploy/k8s
