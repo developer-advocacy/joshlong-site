@@ -8,6 +8,7 @@ env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
   GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
   GCLOUD_ZONE: ${{ secrets.GCLOUD_ZONE }}
+  GCLOUD_PROJECT: joshlong
   NS_NAME: ${{ secrets.NS_NAME }}
   GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
 
@@ -26,35 +27,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+      - name: "Setup PATH"
+        run: |
+          P="${GITHUB_WORKSPACE}/bin"
+          mkdir -p $P
+          echo "${P}" >> $GITHUB_PATH
 
-      - uses: "google-github-actions/auth@v0"
+      - uses: "google-github-actions/auth@v2"
         with:
           credentials_json: "${{ secrets.GCLOUD_SA_KEY }}"
-
-      - id: "get-credentials"
-        uses: "google-github-actions/get-gke-credentials@v1"
-        with:
-          cluster_name: "${{ env.GKE_CLUSTER  }}"
-          location: "${{ env.GCLOUD_ZONE }}"
 
       - run: |
           gcloud config set project $GCLOUD_PROJECT
           gcloud --quiet auth configure-docker us-docker.pkg.dev
-          kubectl get pods
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: "21.x"
 
-      - name: Deploy Site
+      - name: Publish Container
         run: |
           kubectl get ns/$NS_NAME || kubectl create ns $NS_NAME
           kubectl config set-context --current --namespace=$NS_NAME
@@ -65,3 +58,43 @@ jobs:
           (curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.29.0/pack-v0.29.0-linux.tgz" | sudo tar -C  $GITHUB_WORKSPACE/bin/ --no-same-owner -xzv pack)
           export ROOT_DIR=$GITHUB_WORKSPACE
           ./deploy/deploy.sh
+
+      # - uses: actions/checkout@v3
+
+      # - uses: actions/cache@v3
+      #   with:
+      #     path: ~/.m2/repository
+      #     key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-maven-
+
+      # - uses: "google-github-actions/auth@v0"
+      #   with:
+      #     credentials_json: "${{ secrets.GCLOUD_SA_KEY }}"
+
+      # - id: "get-credentials"
+      #   uses: "google-github-actions/get-gke-credentials@v1"
+      #   with:
+      #     cluster_name: "${{ env.GKE_CLUSTER  }}"
+      #     location: "${{ env.GCLOUD_ZONE }}"
+
+      # - run: |
+      #     gcloud config set project $GCLOUD_PROJECT
+      #     gcloud --quiet auth configure-docker us-docker.pkg.dev
+      #     kubectl get pods
+
+      # - uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 16
+
+      # - name: Deploy Site
+      #   run: |
+      #     kubectl get ns/$NS_NAME || kubectl create ns $NS_NAME
+      #     kubectl config set-context --current --namespace=$NS_NAME
+      #     kubectl config view --minify | grep "namespace:" && echo "found the namespace.."
+      #     cd $GITHUB_WORKSPACE
+      #     export PATH=$GITHUB_WORKSPACE/bin/:$PATH
+      #     mkdir -p $GITHUB_WORKSPACE/bin/
+      #     (curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.29.0/pack-v0.29.0-linux.tgz" | sudo tar -C  $GITHUB_WORKSPACE/bin/ --no-same-owner -xzv pack)
+      #     export ROOT_DIR=$GITHUB_WORKSPACE
+      #     ./deploy/deploy.sh
