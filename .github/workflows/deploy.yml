@@ -64,29 +64,3 @@ jobs:
           export ROOT_DIR=$GITHUB_WORKSPACE
           $GITHUB_WORKSPACE/deploy/deploy.sh
 
-      # - id: "get-credentials"
-      #   uses: "google-github-actions/get-gke-credentials@v1"
-      #   with:
-      #     cluster_name: "${{ env.GKE_CLUSTER  }}"
-      #     location: "${{ env.GCLOUD_ZONE }}"
-
-      # - run: |
-      #     gcloud config set project $GCLOUD_PROJECT
-      #     gcloud --quiet auth configure-docker us-docker.pkg.dev
-      #     kubectl get pods
-
-      # - uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 16
-
-      # - name: Deploy Site
-      #   run: |
-      #     kubectl get ns/$NS_NAME || kubectl create ns $NS_NAME
-      #     kubectl config set-context --current --namespace=$NS_NAME
-      #     kubectl config view --minify | grep "namespace:" && echo "found the namespace.."
-      #     cd $GITHUB_WORKSPACE
-      #     export PATH=$GITHUB_WORKSPACE/bin/:$PATH
-      #     mkdir -p $GITHUB_WORKSPACE/bin/
-      #     (curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.29.0/pack-v0.29.0-linux.tgz" | sudo tar -C  $GITHUB_WORKSPACE/bin/ --no-same-owner -xzv pack)
-      #     export ROOT_DIR=$GITHUB_WORKSPACE
-      #     ./deploy/deploy.sh
