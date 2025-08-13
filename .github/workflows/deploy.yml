@@ -56,6 +56,10 @@ jobs:
 
       - name: Publish Container
         run: |
+          kubectl get ns/$NS_NAME || kubectl create ns $NS_NAME
+          kubectl config set-context --current --namespace=$NS_NAME
+          kubectl config view --minify | grep namespace: && echo "found the namespace.."
+
           export PATH=$GITHUB_WORKSPACE/bin/:$PATH
           mkdir -p $GITHUB_WORKSPACE/bin/
           (curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.29.0/pack-v0.29.0-linux.tgz" | sudo tar -C  $GITHUB_WORKSPACE/bin/ --no-same-owner -xzv pack)
