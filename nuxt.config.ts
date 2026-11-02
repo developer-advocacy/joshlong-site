@@ -36,9 +36,6 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    // the old static pages. the 301s keep whatever links and rankings they have.
-    '/about.html': {redirect: {to: '/about', statusCode: 301}},
-    '/abstracts.html': {redirect: {to: '/abstracts', statusCode: 301}},
     '/_nuxt/**': {headers: {'cache-control': 'public, max-age=31536000, immutable'}},
   },
 
