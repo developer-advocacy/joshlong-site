@@ -1,0 +1,384 @@
+/* the site-wide styles: the palette, the type, and the pieces every page shares. */
+
+:root {
+  --social-icons-dimensions-height: 20px;
+  --social-icons-dimensions-width: 200px;
+  --common-gutter: 10px;
+  --button-radius: calc(.8 * var(--common-gutter));
+  --zone-padding: calc(2 * var(--page-right-pad));
+  --josh-hero-image-height: 634px;
+  --josh-hero-image-width: 500px;
+  --gray-25: #FCFCFD;
+  --gray-100: #F2F4F7;
+  --gray-300: #D0D5DD;
+  --gray-400: #98A2B3;
+  --gray-500: #667085;
+  --gray-800: #1D2939;
+  --gray-900: #101828;
+  --green-50: #ECFDF3;
+  --green-600: #039855;
+  --green-700: #027A48;
+  --black: #000;
+  --white: white;
+  --light-green: #6CE9A6;
+  --green-gradient: linear-gradient(#079052, #439792);
+  --global-pad-multiplier: 1;
+  --page-right-pad: calc(var(--common-gutter) * var(--global-pad-multiplier));
+  --page-left-pad: calc(var(--common-gutter) * var(--global-pad-multiplier));
+  --page-top-pad: calc(var(--common-gutter) * var(--global-pad-multiplier));
+  --page-bottom-pad: calc(var(--common-gutter) * var(--global-pad-multiplier));
+  --appearance-event-padding: .9em;
+  --mobile-width: 1000px;
+  --hamburger-menu-width: 80px;
+  --icon-button-left-padding: calc(4 * var(--common-gutter));
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: var(--white)
+}
+
+html {
+  font-family: 'Inter Variable', 'Inter', system-ui, sans-serif;
+}
+
+h2 {
+  line-height: normal;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  line-height: 1.5em;
+  padding-left: var(--page-left-pad);
+  padding-right: var(--page-left-pad);
+  padding-top: var(--page-top-pad);
+}
+
+
+button, .button {
+  text-decoration: none;
+  text-align: center;
+  font-size: medium;
+  font-weight: bold;
+  background-color: var(--green-50);
+  border-radius: var(--common-gutter);
+  padding: calc(1.5 * var(--common-gutter));
+  border-width: 0;
+  color: var(--green-700);
+  display: inline-block;
+  margin-bottom: var(--common-gutter);
+  width: 100%;
+}
+
+@media screen and (min-width: 1000px) {
+  body {
+    font-size: medium;
+  }
+
+  button, .button {
+    font-size: medium;
+    width: auto;
+  }
+
+  :root {
+    --global-pad-multiplier: 3;
+  }
+}
+
+button.icon, .button.icon {
+  padding-top: var(--common-gutter);
+  background-repeat: no-repeat;
+  background-position-y: var(--common-gutter);
+  background-position-x: var(--common-gutter);
+  background-size: 25px;
+  padding-left: calc(5 * var(--common-gutter));
+}
+
+
+
+/* the search form */
+
+.hint {
+  font-size: smaller;
+  color: var(--gray-400);
+  grid-area: hint;
+  text-align: center;
+}
+
+button:disabled, button[disabled] {
+  color: var(--gray-500);
+  background-color: var(--gray-100);
+}
+
+.search-form input {
+  padding: var(--common-gutter);
+  line-height: calc(var(--common-gutter) * 3);
+  background-color: #fff;
+  text-align: center;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: var(--button-radius);
+  width: 100%;
+  font-size: larger;
+}
+
+.search-form {
+  padding: 5vh;
+}
+
+.search-form form {
+  display: grid;
+  grid-template-areas: "  query  "
+                       "  hint   "
+                       " buttons ";
+  grid-template-columns:   100%;
+  grid-row-gap: 10px;
+}
+
+.search-form form input {
+  grid-area: query;
+
+}
+
+.search-form .buttons {
+  grid-area: buttons;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.search-form .buttons button {
+  text-align: center;
+  margin-right: .5vw;
+  margin-left: .5vw;
+}
+
+/* the search form */
+
+.content .buttons a.icon {
+  --icon-dimensions: 27px;
+  border: 2px solid black;
+  font-weight: normal;
+  text-decoration: none;
+  margin-right: 0;
+  background-repeat: no-repeat;
+  padding: 5px;
+  border-radius: 5px;
+  padding-left: 35px;
+  margin-left: 5px;
+  background-position-x: 5px;
+}
+
+.content .buttons a.icon.leanpub {
+  color: white;
+  background-color: black;
+  background-image: url("~/assets/images/buttons/leanpub.png");
+  background-size: var(--icon-dimensions) 14px;
+  background-position-y: 7px;
+
+}
+
+.content .buttons a.icon.amazon {
+  color: black;
+  background-color: white;
+  background-size: var(--icon-dimensions) var(--icon-dimensions);
+  background-image: url("~/assets/images/buttons/amazon.png");
+}
+
+
+.content .buttons a.icon.oreilly {
+  color: white;
+  background-color: black;
+  --oreilly-image-width: 385;
+  --oreilly-image-height: 66;
+  --oreilly-image-divisor: 3;
+  --oreilly-image-size-factor: calc(var(--oreilly-image-width) / var(--oreilly-image-height));
+  --oreilly-width: calc(calc(var(--oreilly-image-size-factor) * var(--icon-dimensions)) / var(--oreilly-image-divisor));
+  --oreilly-height: calc(var(--icon-dimensions) / var(--oreilly-image-divisor));
+  background-size: var(--oreilly-width) var(--oreilly-height);
+  background-image: url("~/assets/images/buttons/oreilly.png");
+  background-position-y: calc(var(--common-gutter) + calc(var(--common-gutter) / 5));
+  padding-left: calc(var(--oreilly-width) + 10px);
+
+}
+
+.content .buttons a.icon.livelessons {
+  color: white;
+  background-color: black;
+  background-size: var(--icon-dimensions) var(--icon-dimensions);
+  background-image: url("~/assets/images/buttons/pearson.png");
+  background-position-y: 2px;
+}
+
+h1 {
+
+  padding: 0;
+  margin: 0;
+  padding-bottom: calc(var(--page-bottom-pad) * 0.5);
+  padding-top: calc(3 * var(--page-top-pad));
+  color: var(--gray-400);
+
+  font-weight: normal;
+  margin-bottom: var(--page-bottom-pad);
+}
+
+@media screen and (min-width: 1000px) {
+  h1 {
+    font-size: 400%;
+  }
+
+
+  .search-form form {
+    grid-template-areas: ".  query  ."
+                         ".  hint   ."
+                         ". buttons .";
+    grid-template-columns: auto 70% auto;
+  }
+}
+
+.recent-post-panel {
+    padding: var(--common-gutter);
+    display: inline-block;
+    width: 100%;
+}
+
+a.read-post {
+    color: var(--gray-400);
+    font-size: small;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.post a {
+    color: var(--gray-400)
+}
+
+.post {
+    padding-top: var(--page-top-pad);
+}
+
+.recent-post {
+    width: 100%;
+    display: inline-block;
+    filter: drop-shadow(calc(var(--common-gutter) / 2) calc(var(--common-gutter) / 2) calc(var(--common-gutter) / 2) var(--gray-300));
+    background-color: var(--white);
+    padding: var(--common-gutter);
+    border-radius: var(--common-gutter);
+}
+
+.recent-post img {
+    width: 100%;
+    border: 1px solid var(--gray-100);
+}
+
+.post .date {
+    font-size: medium;
+    margin-bottom: 0 ;
+    margin-top:  0 ;
+}
+
+
+.recent-post .date {
+    font-size: smaller;
+    z-index: 1000;
+    color: black;
+    /*color: var(--green-700);*/
+    margin-bottom: var(--common-gutter);
+    margin-top: var(--common-gutter);
+}
+.post h2 {
+    margin-bottom: 0 ;
+    margin-top: calc(var(--common-gutter) / 2 ) ;
+}
+.recent-post h2, .post h2 {
+    font-weight: bold;
+    color: var(--gray-800);
+    margin-bottom: var(--common-gutter);
+}
+
+.recent-post .text p {
+    color: var(--gray-500);
+}
+
+
+@media screen and (min-width: 1000px) {
+    .recent-posts .recent-posts-columns {
+        column-count: 3;
+        column-gap: 0;
+    }
+}
+
+/* for screen readers and search engines, not for eyes. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--common-gutter);
+  top: -100px;
+  z-index: 2000;
+  padding: var(--common-gutter);
+  background-color: var(--white);
+  color: var(--black);
+}
+
+.skip-link:focus {
+  top: var(--common-gutter);
+}
+
+/* the pages that aren't the home page: about, a post, the books, and so on. */
+.page {
+  padding-bottom: calc(5 * var(--page-bottom-pad));
+}
+
+.page a {
+  color: var(--green-700);
+}
+
+.page .intro {
+  color: var(--gray-500);
+  max-width: 60em;
+}
+
+.page img {
+  max-width: 100%;
+  height: auto;
+}
+
+.breadcrumbs {
+  font-size: small;
+  color: var(--gray-500);
+  padding-top: calc(3 * var(--page-top-pad));
+}
+
+.breadcrumbs + h1 {
+  padding-top: var(--common-gutter);
+}
+
+.breadcrumbs a {
+  color: var(--gray-500);
+}
+
+.section-more {
+  text-align: center;
+  margin-top: var(--common-gutter);
+}
+
+@media screen and (min-width: 1000px) {
+  .page {
+    padding-top: 40px;
+  }
+}
