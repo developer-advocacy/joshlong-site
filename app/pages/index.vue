@@ -18,11 +18,8 @@
       <RecentPodcast :podcast="home?.podcast ?? null"/>
     </Zone>
 
-    <Zone v-if="home?.livelessons.length" id="livelessons" class="livelessons">
-      <ContentCarousel :content="home.livelessons" side="l" details-path="/livelessons">
-        <template #title>Livelessons</template>
-        <template #description><LivelessonsIntro/></template>
-      </ContentCarousel>
+    <Zone id="youtube" class="youtube-container">
+      <CoffeeSoftwareVideos :latest-episode="home?.coffeeSoftware ?? null"/>
     </Zone>
 
     <Zone v-if="home?.books.length" id="books" class="books">
@@ -32,11 +29,15 @@
       </ContentCarousel>
     </Zone>
 
-    <Zone id="youtube" class="youtube-container">
-      <CoffeeSoftwareVideos :latest-episode="home?.coffeeSoftware ?? null"/>
-    </Zone>
     <Zone class="youtube-container">
       <SpringTipsVideos :latest-episode="home?.springTips ?? null"/>
+    </Zone>
+
+    <Zone v-if="home?.livelessons.length" id="livelessons" class="livelessons">
+      <ContentCarousel :content="home.livelessons" side="l" details-path="/livelessons">
+        <template #title>Livelessons</template>
+        <template #description><LivelessonsIntro/></template>
+      </ContentCarousel>
     </Zone>
   </div>
 </template>
